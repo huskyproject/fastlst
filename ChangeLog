@@ -1,8 +1,6 @@
 2003-05-03 Saturday 15:54  gerritkuehn
 
-	* aplibs/Makefile.in (1.5), aplibs/include/Makefile.in (1.5),
-	fastlst/Makefile.in (1.5), include/Makefile.in (1.5),
-	include/max/Makefile.in (1.6): Hopefully finally finishing
+	* aplibs/Makefile.in (1.5): Hopefully finally finishing
 	autoconf-update :-).
 
 2003-05-03 Saturday 15:46  gerritkuehn
@@ -31,37 +29,20 @@
 	* aplibs/misc.cc (1.12): Eleminating problems with gcc 3.x and
 	optimization caused by undefined code.
 
-2003-02-18 Tuesday 05:54  sfpavel
-
-	* include/typedefs.h (1.2): Fix compiler warning about 'long long
-	type'
-
 2003-01-24 Friday 18:15  gerritkuehn
 
-	* aplibs/comprcfg.cc (1.4), aplibs/runcmd.cc (1.4),
-	fastlst/daydir.cc (1.7): (Hopefully :-) fixed bugs when processing
-	archived nodelists and nodediffs.  See source for further comments.
+	* aplibs/: comprcfg.cc (1.4), runcmd.cc (1.4): (Hopefully :-) fixed
+	bugs when processing archived nodelists and nodediffs.	See source
+	for further comments.
 
 2003-01-23 Thursday 13:49  gerritkuehn
 
-	* aplibs/fbbs.cc (1.4), fastlst/fastlst.cc (1.9),
-	fastlst/filesbbs.cc (1.4): Fixed and improved error handling for
+	* aplibs/fbbs.cc (1.4): Fixed and improved error handling for
 	files.bbs.
 
 2003-01-21 Tuesday 09:47  gerritkuehn
 
-	* aplibs/misc.cc (1.11), fastlst/inpblk.cc (1.4),
-	fastlst/parseglb.cc (1.2), include/misc.hpp (1.4): Renamed
-	strupr->fl_strupr.
-
-2003-01-16 Thursday 15:39  gerritkuehn
-
-	* doc/: Compress.Cfg (1.1), FASTLST.INF (1.1), Fast_ful.Cfg (1.1),
-	Fast_min.Cfg (1.1), Fastlst.Doc (1.1), Fastlst.Ico (1.1),
-	V7Plus.Doc (1.1), Whatsnew.Txt (1.1): Created doc/ directory and
-	checked in fastlst documentation, sample configuration files and
-	updated Whatsnew.Txt (stemming from last official fastlst release
-	v2.0.1).
+	* aplibs/misc.cc (1.11): Renamed strupr->fl_strupr.
 
 2003-01-15 Wednesday 04:29  stas_degteff
 
@@ -70,64 +51,8 @@
 
 2003-01-14 Tuesday 17:10  gerritkuehn
 
-	* aplibs/cfgfile.cc (1.2), fastlst/parse.cc (1.2): Removed
-	coredumps caused by usage of NULL pointers in string operations.
-
-2003-01-14 Tuesday 14:55  gerritkuehn
-
-	* fastlst/daydir.cc (1.6): Added comment.
-
-2003-01-14 Tuesday 14:50  gerritkuehn
-
-	* include/defines.hpp (1.5): Added define for errorcode 18.
-
-2003-01-14 Tuesday 14:49  gerritkuehn
-
-	* fastlst/outblk.cc (1.3): Improved error handling to avoid
-	coredump when V7 nodelist index file is unaccessible.
-
-2003-01-14 Tuesday 14:48  gerritkuehn
-
-	* fastlst/misc.cc (1.6): Removed warnings by commenting out pragmas
-	for gcc.
-
-2003-01-14 Tuesday 14:46  gerritkuehn
-
-	* fastlst/: inpbprep.cc (1.2), iocur.cc (1.2): Removed warning.
-
-2003-01-14 Tuesday 14:41  gerritkuehn
-
-	* fastlst/inpblk.cc (1.3): Removed warnings by initializing
-	variables and by adjusting string parsing.
-
-2003-01-14 Tuesday 14:36  gerritkuehn
-
-	* fastlst/inmem.cc (1.2): Removed several warnings by initializing
-	variables and by adjusting data types.
-
-2003-01-14 Tuesday 14:31  gerritkuehn
-
-	* fastlst/flstdat.cc (1.2): Removed warning by initializing
-	variable.
-
-2003-01-14 Tuesday 14:30  gerritkuehn
-
-	* fastlst/fastlst.cc (1.8): Various fixes: Changed includes to
-	compile under gcc2 and gcc3.  Added errorcode OK.  Removed pragmas
-	for gcc.
-
-2003-01-14 Tuesday 14:28  gerritkuehn
-
-	* fastlst/edit.cc (1.2): Removed warnings by initializing
-	variables.
-
-2003-01-14 Tuesday 12:56  gerritkuehn
-
-	* include/v7lib.hpp (1.3): Fixed compilation for gcc3.
-
-2003-01-13 Monday 15:17  gerritkuehn
-
-	* fastlst/daydir.cc (1.5): Removed some warnings.
+	* aplibs/cfgfile.cc (1.2): Removed coredumps caused by usage of
+	NULL pointers in string operations.
 
 2003-01-13 Monday 14:43  gerritkuehn
 
@@ -144,9 +69,8 @@
 
 2003-01-13 Monday 13:29  gerritkuehn
 
-	* aplibs/file.cc (1.4), include/apgenlib.hpp (1.6): Removed
-	warnings. Defined FL_TIME_MAX to be used instead of ULONG_MAX to
-	overcome typecasting problems.
+	* aplibs/file.cc (1.4): Removed warnings. Defined FL_TIME_MAX to be
+	used instead of ULONG_MAX to overcome typecasting problems.
 
 2003-01-13 Monday 12:38  gerritkuehn
 
@@ -162,21 +86,20 @@
 
 2003-01-09 Thursday 09:07  gerritkuehn
 
-	* aplibs/misc.cc (1.10), aplibs/include/bbsgenlb.hpp (1.3),
-	include/bbsgenlb.hpp (1.4): Further fixes to strto4Dadr: removed
+	* aplibs/misc.cc (1.10): Further fixes to strto4Dadr: removed
 	unused flags.
 
 2003-01-09 Thursday 06:10  stas_degteff
 
-	* aplibs/misc.cc (1.9), include/bbsgenlb.hpp (1.3): Fix
-	strto4Dadr() return value; check pointer for NULL
+	* aplibs/misc.cc (1.9): Fix strto4Dadr() return value; check
+	pointer for NULL
 
 2003-01-08 Wednesday 15:03  gerritkuehn
 
-	* aplibs/timers.cc (1.3), fastlst/response.cc (1.2): Added
-	returnvalue to function Sleep in aplibs/timers.cc and typecast in
-	fastlst/response.cc. This removes warnings under gcc 2.95 and
-	(hopefully :-) allows compilation under gcc 3.2.
+	* aplibs/timers.cc (1.3): Added returnvalue to function Sleep in
+	aplibs/timers.cc and typecast in fastlst/response.cc. This removes
+	warnings under gcc 2.95 and (hopefully :-) allows compilation under
+	gcc 3.2.
 
 2003-01-08 Wednesday 14:37  gerritkuehn
 
@@ -186,41 +109,16 @@
 
 2003-01-07 Tuesday 18:25  gerritkuehn
 
-	* aplibs/areadat.cc (1.2), aplibs/misc.cc (1.7), aplibs/runcmd.cc
-	(1.3), fastlst/common.cc (1.2), fastlst/filesbbs.cc (1.3),
-	fastlst/inpblk.cc (1.2), include/apgenlib.hpp (1.5): Changed stpcpy
-	to fl_stpcpy to avoid conflicts on systems using a similar named
-	system function (e.g. RH8?).
+	* aplibs/: areadat.cc (1.2), misc.cc (1.7), runcmd.cc (1.3):
+	Changed stpcpy to fl_stpcpy to avoid conflicts on systems using a
+	similar named system function (e.g. RH8?).
 
 2002-08-05 Monday 11:42  gerrit
 
 	* Makefile.in (1.4), aclocal.m4 (1.2), configure (1.4), depcomp
 	(1.1), missing (1.2), mkinstalldirs (1.2), aplibs/Makefile.in
-	(1.4), aplibs/include/Makefile.in (1.4), fastlst/Makefile.in (1.4),
-	include/Makefile.in (1.4), include/config.h.in (1.3),
-	include/max/Makefile.in (1.5): Update to automake 1.5 / autoconf
-	2.53. Please report problems to 2:2411/12 or 2:2411/12.99.
-
-2002-07-29 Monday 13:21  quetschke
-
-	* fastlst/fastlst.cc (1.7): Changed "void main .." to "int main
-	..". This was necessary because g++ with option "-Wall" otherwise
-	stops with an error. (2:2411/12.99)
-
-2002-07-29 Monday 13:11  quetschke
-
-	* makefls/Makefile (1.3): Cosmetic fix. Removed <TAB> in empty
-	line. (2:2411/12.99)
-
-2002-07-29 Monday 13:07  quetschke
-
-	* include/defines.hpp (1.4): Removed redundant definition of
-	BufSize for cygwin. (2:2411/12.99)
-
-2002-07-29 Monday 13:04  quetschke
-
-	* fastlst/fastlst.cc (1.6): Cygwin doesn't provide fcloseall().
-	(2:2411/12.99)
+	(1.4): Update to automake 1.5 / autoconf 2.53. Please report
+	problems to 2:2411/12 or 2:2411/12.99.
 
 2002-07-29 Monday 13:00  quetschke
 
@@ -252,29 +150,14 @@
 	* aplibs/: fbbs.cc (1.2), fblib.cc (1.2), file.cc (1.3),
 	parsetxt.cc (1.2): More fixes for the UNIX-Port !
 
-2002-06-16 Sunday 17:17  oliver.grimm
-
-	* fastlst/misc.cc (1.5), include/defines.h (1.2): DIRSEP fix.
-
-2002-06-16 Sunday 17:10  oliver.grimm
-
-	* include/max/: alc.h (1.2), callinfo.h (1.2), compiler.h (1.2),
-	fb.h (1.2), max.h (1.2), max_u.h (1.2), newarea.h (1.3), option.h
-	(1.2), prm.h (1.2), prog.h (1.2), typedefs.h (1.2), uclass.h (1.2),
-	uni.h (1.2): Update for DIRSEP
-
 2002-06-16 Sunday 17:03  oliver.grimm
 
 	* aplibs/misc.cc (1.5): Fix strto4Daddr()
 
 2002-06-15 Saturday 19:37  oliver.grimm
 
-	* aplibs/dosfind.cc (1.5), aplibs/harderr.cc (1.5), aplibs/misc.cc
-	(1.4), aplibs/runcmd.cc (1.2), aplibs/timers.cc (1.2),
-	fastlst/daydir.cc (1.4), fastlst/fastlst.cc (1.5),
-	fastlst/filesbbs.cc (1.2), fastlst/misc.cc (1.4), fastlst/outblk.cc
-	(1.2), include/apgenlib.hpp (1.4), include/defines.hpp (1.3),
-	include/misc.hpp (1.3): FreeBSD & CYGWIN patches
+	* aplibs/: dosfind.cc (1.5), harderr.cc (1.5), misc.cc (1.4),
+	runcmd.cc (1.2), timers.cc (1.2): FreeBSD & CYGWIN patches
 
 2002-06-08 Saturday 16:54  oliver.grimm
 
@@ -283,9 +166,9 @@
 
 2002-06-08 Saturday 16:43  oliver.grimm
 
-	* aplibs/dosfind.cc (1.3), aplibs/file.cc (1.2), aplibs/harderr.cc
-	(1.3), fastlst/daydir.cc (1.3): Sync the complete sourcetree.
-	Should make no changes, but sure is sure ! :-)
+	* aplibs/: dosfind.cc (1.3), file.cc (1.2), harderr.cc (1.3): Sync
+	the complete sourcetree. Should make no changes, but sure is sure !
+	:-)
 
 2002-06-08 Saturday 16:39  oliver.grimm
 
@@ -294,44 +177,19 @@
 	In strto4Daddr() the arguments are incorrecly passed to sscanf() -
 	FIXED.
 
-2002-06-08 Saturday 16:32  oliver.grimm
-
-	* fastlst/fastlst.cc (1.4): Now MsgLogArea & MsgRemArea can be
-	used.
-	
-	smapi uses atexit(), so if fastlst want to write messages via smapi
-	in his own exit-funcs, these funcs must added to the exit-func-list
-	after smapi initialisation.
-
-2002-06-08 Saturday 15:28  oliver.grimm
-
-	* include/max/: utime.h (1.2), utime.hhh (1.1): utime.h is a
-	system-include and no longer needed here (renamed to utime.hhh)
-
 2002-06-08 Saturday 15:25  oliver.grimm
 
-	* aplibs/comprcfg.cc (1.2), fastlst/misc.cc (1.3),
-	include/max/Makefile.am (1.2), include/max/Makefile.in (1.4): More
-	changes to get archiver work correctly.
-
-2002-06-08 Saturday 14:06  oliver.grimm
-
-	* fastlst/daydir.cc (1.2): My first try to get fastlst working with
-	archives - seem's to run perfectly !
-
-2001-01-05 Friday 11:53  tobi
-
-	* makefls/Makefile (1.2): fixed husky makefile
+	* aplibs/comprcfg.cc (1.2): More changes to get archiver work
+	correctly.
 
 2001-01-05 Friday 11:46  tobi
 
-	* README (1.3), makefls/Makefile (1.1): Added huskymak.cfg Makefile
+	* README (1.3): Added huskymak.cfg Makefile
 
 2001-01-05 Friday 11:38  tobi
 
-	* aplibs/dosfind.cc (1.2), aplibs/harderr.cc (1.2), aplibs/misc.cc
-	(1.2), fastlst/fastlst.cc (1.3), include/apgenlib.hpp (1.3),
-	include/defines.hpp (1.2): portability fixes
+	* aplibs/: dosfind.cc (1.2), harderr.cc (1.2), misc.cc (1.2):
+	portability fixes
 
 2001-01-03 Wednesday 13:57  sms
 
@@ -342,28 +200,14 @@
 
 	* AUTHORS (1.2), COPYING (1.2), Makefile.in (1.3), NEWS (1.2),
 	README (1.2), configure (1.3), configure.in (1.3),
-	aplibs/Makefile.in (1.3), aplibs/include/Makefile.in (1.3),
-	fastlst/Makefile.in (1.3), fastlst/fastlst.cc (1.2),
-	include/Makefile.in (1.3), include/max/Makefile.in (1.3): released
-	fastlst 2.0.3
+	aplibs/Makefile.in (1.3): released fastlst 2.0.3
 
 2000-09-04 Monday 01:41  sms
 
 	* Makefile.in (1.2), configure (1.2), configure.in (1.2),
-	aplibs/Makefile.in (1.2), aplibs/include/Makefile.in (1.2),
-	aplibs/include/bbsgenlb.hpp (1.2), aplibs/include/fb.hpp (1.2),
-	aplibs/include/fblib.hpp (1.2), aplibs/include/v7lib.hpp (1.2),
-	fastlst/Makefile.in (1.2), fastlst/crc16.cc (1.2), fastlst/misc.cc
-	(1.2), include/Makefile.in (1.2), include/addrs.hpp (1.2),
-	include/apgenlib.hpp (1.2), include/bbsgenlb.hpp (1.2),
-	include/config.h.in (1.2), include/data.hpp (1.2),
-	include/fblib.hpp (1.2), include/misc.hpp (1.2),
-	include/msgapier.hpp (1.2), include/response.hpp (1.2),
-	include/v7lib.hpp (1.2), include/max/Makefile.in (1.2),
-	include/max/newarea.h (1.2): * fixed CRC calculation of chars >
-	ASCII 127 * configure now looks for both libsmapi.so and
-	libsmapilnx.so in order to find   smapi * changed includes for
-	smapi
+	aplibs/Makefile.in (1.2): * fixed CRC calculation of chars > ASCII
+	127 * configure now looks for both libsmapi.so and libsmapilnx.so
+	in order to find   smapi * changed includes for smapi
 
 2000-09-04 Monday 00:47  sms
 
@@ -383,61 +227,6 @@
 	aplibs/parsetxt.cc (1.1), aplibs/runcmd.cc (1.1),
 	aplibs/sqnetscn.cc (1.1), aplibs/sqtagpat.cc (1.1),
 	aplibs/strlst.cc (1.1), aplibs/timers.cc (1.1), aplibs/v7lib.cc
-	(1.1), aplibs/wordstore.cc (1.1), aplibs/writelog.cc (1.1),
-	aplibs/include/Makefile.am (1.1), aplibs/include/Makefile.in (1.1),
-	aplibs/include/anumlst.hpp (1.1), aplibs/include/apctrl.hpp (1.1),
-	aplibs/include/apspc1.hpp (1.1), aplibs/include/bbsgenlb.hpp (1.1),
-	aplibs/include/defines.h (1.1), aplibs/include/fb.hpp (1.1),
-	aplibs/include/fbd.hpp (1.1), aplibs/include/fblib.hpp (1.1),
-	aplibs/include/mutex.h (1.1), aplibs/include/namelist.hpp (1.1),
-	aplibs/include/timer.h (1.1), aplibs/include/uclass.h (1.1),
-	aplibs/include/v7.h (1.1), aplibs/include/v7lib.hpp (1.1),
-	fastlst/COPYING (1.1), fastlst/Makefile.am (1.1),
-	fastlst/Makefile.in (1.1), fastlst/addrs.cc (1.1),
-	fastlst/cfgdata.cc (1.1), fastlst/common.cc (1.1), fastlst/crc16.cc
-	(1.1), fastlst/data.cc (1.1), fastlst/daydir.cc (1.1),
-	fastlst/edit.cc (1.1), fastlst/export.cc (1.1), fastlst/fastlst.cc
-	(1.1), fastlst/field.cc (1.1), fastlst/filesbbs.cc (1.1),
-	fastlst/flstdat.cc (1.1), fastlst/inmem.cc (1.1), fastlst/inpblk.cc
-	(1.1), fastlst/inpbprep.cc (1.1), fastlst/iocur.cc (1.1),
-	fastlst/misc.cc (1.1), fastlst/msgapier.cc (1.1), fastlst/outblk.cc
-	(1.1), fastlst/parse.cc (1.1), fastlst/parsecfg.cc (1.1),
-	fastlst/parsecia.cc (1.1), fastlst/parsecil.cc (1.1),
-	fastlst/parsecin.cc (1.1), fastlst/parsecio.cc (1.1),
-	fastlst/parsecsa.cc (1.1), fastlst/parsecsl.cc (1.1),
-	fastlst/parseglb.cc (1.1), fastlst/parsetyp.cc (1.1),
-	fastlst/phtrans.cc (1.1), fastlst/response.cc (1.1),
-	include/Makefile.in (1.1), include/.hpptrans.h (1.1),
-	include/Makefile.am (1.1), include/addrs.hpp (1.1),
-	include/apcom.hpp (1.1), include/apctrl.hpp (1.1),
-	include/apgenlb2.hpp (1.1), include/apgenlib.hpp (1.1),
-	include/apspc1.hpp (1.1), include/bbsgenlb.hpp (1.1),
-	include/cfgdata.hpp (1.1), include/common.hpp (1.1),
-	include/config.h.in (1.1), include/crc16.hpp (1.1),
-	include/crc16tab.hpp (1.1), include/data.hpp (1.1),
-	include/daydir.hpp (1.1), include/defines.h (1.1),
-	include/defines.hpp (1.1), include/edit.hpp (1.1),
-	include/export.hpp (1.1), include/fblib.hpp (1.1),
-	include/field.hpp (1.1), include/filesbbs.hpp (1.1),
-	include/flstdat.hpp (1.1), include/inmem.hpp (1.1),
-	include/inpblk.hpp (1.1), include/iocur.hpp (1.1), include/misc.hpp
-	(1.1), include/msgapier.hpp (1.1), include/outblk.hpp (1.1),
-	include/parse.hpp (1.1), include/parsecfg.hpp (1.1),
-	include/parsecia.hpp (1.1), include/parsecil.hpp (1.1),
-	include/parsecin.hpp (1.1), include/parsecio.hpp (1.1),
-	include/parsecsa.hpp (1.1), include/parsecsl.hpp (1.1),
-	include/parseglb.hpp (1.1), include/parsetyp.hpp (1.1),
-	include/phtrans.hpp (1.1), include/pmlib.hpp (1.1),
-	include/response.hpp (1.1), include/stamp-h.in (1.1),
-	include/typedefs.h (1.1), include/types.hpp (1.1), include/v7.hpp
-	(1.1), include/v7lib.hpp (1.1), include/winctl.hpp (1.1),
-	include/max/Makefile.am (1.1), include/max/Makefile.in (1.1),
-	include/max/alc.h (1.1), include/max/callinfo.h (1.1),
-	include/max/compiler.h (1.1), include/max/fb.h (1.1),
-	include/max/max.h (1.1), include/max/max_u.h (1.1),
-	include/max/newarea.h (1.1), include/max/option.h (1.1),
-	include/max/prm.h (1.1), include/max/prog.h (1.1),
-	include/max/typedefs.h (1.1), include/max/uclass.h (1.1),
-	include/max/uni.h (1.1), include/max/utime.h (1.1): Initial
+	(1.1), aplibs/wordstore.cc (1.1), aplibs/writelog.cc (1.1): Initial
 	revision
 
