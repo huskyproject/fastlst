@@ -33,7 +33,6 @@
          <QPG:Add permissions="0644" file="./NEWS" install="/usr/doc/husky/fastlst/"/>
          <QPG:Add permissions="0644" file="./README" install="/usr/doc/husky/fastlst/"/>
          <QPG:Add permissions="0644" file="./doc/Fastlst.Doc" install="/usr/doc/husky/fastlst/original/"/>
-         <QPG:Add permissions="0644" file="./doc/Fastlst.Ico" install="/usr/doc/husky/fastlst/original/"/>
          <QPG:Add permissions="0644" file="./doc/V7Plus.Doc" install="/usr/doc/husky/fastlst/original/"/>
          <QPG:Add permissions="0644" file="./doc/Whatsnew.Txt" install="/usr/doc/husky/fastlst/original/"/>
          <QPG:Add permissions="0644" file="./doc/Compress.Cfg" install="/usr/doc/husky/fastlst/samples/"/>
