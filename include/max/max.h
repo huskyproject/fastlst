@@ -477,4 +477,3 @@ struct _restart
 
 #endif /* __MAX_H_DEFINED */
 
-

@@ -180,8 +180,13 @@ typedef long timer_t;
 #define WILDCARD_ALL     "*"
 #endif
 
+#ifndef UNIX
 #define PATH_DELIM       '\\'   /* Default separator for path specification */
 #define PATH_DELIMS      "\\"   /* string format */
+#else
+#define PATH_DELIM       '/'   /* Default separator for path specification */
+#define PATH_DELIMS      "/"   /* string format */
+#endif
 #define _PRIVS_NUM         12   /* Maximum priv levels for Maximus         */
 #define CHAR_BITS           8   /* Number of bits in a `char' variable     */
 #define MAX_DRIVES         26   /* Maximum number of drives on system;     *
