@@ -192,6 +192,7 @@ time_t dates2unix (char *dates, byte DFovr)
             break;
         case DF_JAPAN:
         case DF_SCIENT:
+	default:		// use scientific as default
             yr = tok[0];
             mo = tok[1];
             da = tok[2];
