@@ -94,7 +94,7 @@ int MAXACS::Read (char *acsname)
     if (!f)
         return -1;
     long fsize = filelength (fileno (f)); 
-    if ((fsize == -1) || (fsize < sizeof (CLSHDR))) {
+    if ((fsize == -1) || (fsize < (long)sizeof (CLSHDR))) {
         fclose (f);
         return -1;
     }
