@@ -1,0 +1,3167 @@
+        **************************************************************
+        *                                                            *
+        *                                                            *
+        *   *******   **     ****   ******  ****     ****   ******   *
+        *    **   *  ****   **  **  * ** *   **     **  **  * ** *   *
+        *    ** *   **  **  **        **     **     **        **     *
+        *    ****   **  **   ****     **     **      ****     **     *
+        *    ** *   ******      **    **     **   *     **    **     *
+        *    **     **  **  **  **    **     **  ** **  **    **     *
+        *   ****    **  **   ****    ****   *******  ****    ****    *
+        *                                                            *
+        *                                                            *
+        *                         Version 2.00                       *
+        *                                                            *
+        *              Der beste V7+-Nodelist Ersteller              *
+        *                                                            *
+        *                                                            *
+        **************************************************************
+        *                                                            *
+        *        (C) Copyright 1992-1997  by  Alberto Pasquale       *
+        *                                                            *
+        *            A L L E  R E C H T E  V O R B E H A L T E N     *
+        *                                                            *
+        **************************************************************
+        
+        
+
+                FastLst 2.00 Benutzer-Handbuch von Alberto Pasquale
+                öbersetzung von Roland Schiradin.
+                Erweiterungen sind mit RS: markiert.
+                Ich danke Robert Bashe 2444/8008, Harald Kamm 2490/3045
+                Hans J. Lehmann 2465/309.7 fÅr die Mitarbeit.
+                Es gibt spezielle Konditionen fÅr deutsche Registrierungen,
+                siehe Register.DOC
+        
+        
+        
+                                 EINLEITUNG
+        
+        
+        -> Weitere Information zur Lizenz stehen in der Datei License.Doc.
+        
+        Vielen Dank fÅr Deine Entscheidung FastLst zu benutzen, den
+        ultimativen V7+-Nodelist-Ersteller (mÑchtig, schnell und gut).
+        
+        Version 7 ist ein definiertes Format fÅr binÑre Nodelisten, welche
+        von vielen Mailern, Maileditoren und anderen Programmen benîtigt
+        werden.
+        
+        Version 7+ ist voll kompatibel mit V7, aber beinhaltet eine Menge
+        schîner Mîglichkeiten fÅr V7+-Anwendungen.
+        
+        
+                           Wichtige Eigenschaften
+        
+        
+        - Erstellt eine Nodeliste im Version7+-Format.
+        
+        - UnterstÅtzung fÅr Version7.
+        
+        - UnterstÅtzung fÅr die alte "Fidouser.Lst" Sysop-Liste.
+        
+        - Erstellung mehrerer Ausgabe-Nodelisten (NODEX.*) mit nur einem
+          Konfigurations-File.
+        
+        - Die komplette Verwaltung von archivierten Nodelisten und Diff's wird
+          durch eine flexibele FastList-interne Konfiguration erreicht. Keine
+          umstÑndlichen Batch-Files werden dazu benîtigt.
+        
+        - Du kannst Deine eigene "Squish-Format" Compress.cfg benutzen
+        
+        - FastList kann per Event Åber ein Batchfile aufgerufen werden. Eine
+          Verarbeitung erfolgt nur, falls nîtig.
+        
+        - Multitasking-UnterstÅtzung
+        
+        - Die OS/2 Version ermîglicht eigene PrioritÑts-Steuerung durch
+          das CFG-File.
+        
+        - Ergebnisse kînnen in eine FIDO oder Squish-MSG-Base
+          gepostet werden
+        
+        - Volle 4D (Point) UnterstÅtzung durch "Point,.." bzw. "Boss,..."
+          Anweisungen.
+        
+        - Interne UnterstÅtzung der deutschen Pointliste.
+        
+        - Einfache Erweiterung der Nodelist, mittels "Node,<address>,..."
+          in einer privaten Liste (z.B. Network-File)
+        
+        - Einfache Angaben von Telefon-Nummern die bleiben wie sie sind, z.B.
+          fÅr Internet-Adressen and Skript-Namen.
+        
+        - Im Falle von Multiline-Sysops werden sÑmtliche Namens- und Adress-
+          eintrÑge im Sysop-Index aufgefÅhrt.
+        
+        - Benutzer-Kosten (fÅr User-Netmails) kînnen unahbÑngig von
+          den Anruf-Kosten gesetzt werden.
+        
+        
+        
+                                 DANKSAGUNGEN
+        
+        FastLst benutzt den Squish "MsgAPI" Code, Copyright 1991-1994
+        von Lanius Communications. "Squish" und "Maximus" sind eingetragene
+        Warenzeichen von Lanius Communications.
+        
+        Binkley ist Copyright von Bit Bucket Software
+        
+        4OS2 ist Copyright von JP Software Inc.
+        
+        Die in dieser Dokumentation erwÑhnten Packer sind Copyright (Alle
+        Rechte vorbehalten) und/oder Trademark (eingetragenes Warenzeichen)
+        des jeweiligen Autors.
+        
+        VMODEM und SIO sind Copyright von Raymond L. Gwinn.
+        
+        "U.S. Roboticy" and "I-modem" sind eingetragene Warenzeichen von
+        U.S. Robotics Access Corporation.
+
+        
+                            ALLGEMEINE BESCHREIBUNG
+        
+        
+        FastLst kann von einem Batch oder einem CMD-File aufgerufen
+        werden. Dies kann zu frei definierbaren Zeiten erfolgen, beispiels-
+        weise wenn neue Nachrichten oder Files eingetroffen sind (neue
+        Nodediff). Sollten neue, gepackte oder ungepackte Nodelisten bzw.
+        -diff's erkannt werden, verarbeitet FastLst diese der Konfiguration
+        entsprechend (Abschluss mit Errorlevel 0). Andernfalls wird FastLst
+        sofort wieder mit Errorlevel 100 beendet.
+        
+        Falls FastLst eine énderung des Konfig- oder Passwort-Files
+        feststellt, werden sÑmtliche betroffenen Nodelisten verarbeitet.
+        
+        Wenn Du alle Nodelisten neu erstellen willst - auch wenn keine
+        neuen vorhanden sind - kann der Befehlszeilenparameter -F oder -I
+        verwendet werden.
+        
+        FÅr jeden "Output-Block" im Konfig-File:
+        
+        - Neue komprimierte Listen oder Diffs werden erkannt, entpackt
+          und auf Wunsch in ein anderes Format neu archiviert.
+        
+        - Neue Diffs werden erkannt und in die entsprechende Nodeliste
+          eingebunden, die anschliessend archiviert werden kann. Vor dem
+          Einbinden der neuen Diffs wird der Tag und der CRC der alten
+          Nodelist mit dem der neuen Diff verglichen. Nach dem Einbinden
+          wird der CRC der neuen Nodelist ÅberprÅft.
+        
+        - Neue Listen werden erkannt und die entsprechenden Ausgabedateien
+          erstellt. Sollten keine neuen Listen fÅr ein gegebenen "output block"
+          gefunden werden, wird die entsprechende Ausgabedatei nicht erstellt,
+          es sei denn, FastList wird mit dem -f oder -i Befehlszeilenparameter
+          aufgerufen.
+        
+        Befehle auf Betriebssystemebene kînnen vor oder nach jeder Aktion
+        von FastLst ausgefÅhrt werden. Beispielsweise kînnte man das gerade
+        erstellte Archiv-File der Nodeliste "hatchen".
+        
+        ACHTUNG:
+        
+        - Bei jeder énderung der Konfig-File erstellt FastLst alle
+          Ausgabedateien neu, als sei er mit dem Befehlszeilenparameter -f
+          aufgerufen worden.
+        
+        - Bei jeder énderung des Passwort-Files werden nur die zugehîrigen
+          V7-Nodelisten neu erstellt.
+        
+        - Das Datum von gepackten Files wird von FastLst identisch mit dem
+          gleichen Wert wie das entsprechende File (s. ArcDate) behandelt.
+
+        
+                             EINGABE NODELIST FORMAT
+        
+        
+        Die FIDO-Nodelist und Nodediff mÅssen im  "St. Louis" Format
+        vorliegen (beschrieben in FTS-0005). FastLst erlaubt auch einige
+        Erweiterungen zu diesem Format fÅr  "4D"-Points, "German-3D-point
+        list", die einfache Handhabung fÅr einzelne Nodes und "wortgerechte"
+        Telefon-Nummern.
+        
+        
+        
+                   4D Point UnterstÅtzung: POINT und BOSS Anweisungen
+        
+        
+        Erste Mîglichkeit:
+        
+        Points werden in der Nodelist direkt nach dem Boss eingetragen
+        Jeder Eintrag beginnt mit der Anweisung "Point,<point>"
+        
+        Beispiel:
+        
+        ...
+        ...
+        ,504,Videl,Modena_I,Roberto_Zanasi,39-59-450600,9600,CM,XA,V32B,V42B
+        Point,1,Pasquale,Modena_I,Alberto_Pasquale,-!Unpublished-,9600,
+        Point,2,SysOp,Modena_I,Roberto_Zanasi,-!Unpublished-,2400,
+        Point,3,Carta,Modena,Francesco_Carta,-!Unpublished-,2400,
+        ...
+        ...
+        
+        
+        Zweite Mîglichkeit:
+        
+        Points werden in der Nodelist nach der Anweisung
+        "Boss,<adresse>" eingetragen.
+        
+        Beispiel:
+        
+        ...
+        ...
+        Boss,2:332/504
+        ,1,Pasquale,Modena_I,Alberto_Pasquale,-!Unpublished-,9600,
+        ,2,SysOp,Modena_I,Roberto_Zanasi,-!Unpublished-,2400,
+        ,3,Carta,Modena,Francesco_Carta,-!Unpublished-,2400,
+        ...
+        ...
+
+        
+        
+                              Deutsche Point-Liste
+        
+        Hierbei handelt es sich um eine "normale" 3D nodelist, wobei jeder
+        Bosnode als "Fakennet" Host gelistet und seine wirkliche Nodenummer
+        nach der "Fakenet"-Nummer als "Systemname" eingetragen ist. Diesem
+        Eintrag folgen seine Points im Nodelist-Format.
+        
+        Beispiel:
+        
+        Das folgende Beispiel zeigt wie man Points 2:2400/1.1 .2 .3 listet:
+        
+        Host,20000,2400/1,City,Sysop_Name,49-951-999999,9600,CM,V34
+        ,1,System_Name_1,City_1,Sysop_Name_1,49-951-999999,9600,
+        ,2,System_Name_2,City_2,Sysop_Name_2,49-951-999999,9600,
+        ,3,System_Name_3,City_3,Sysop_Name_3,49-951-999999,9600,
+
+        
+        
+                                Die NODE Anweisung
+        
+        
+        Eine andere Erweiterung der FTS-0005 dient dem einfachen Einbinden
+        von Nodes aus einer kleinen eigenen Liste.
+        
+        Wenn es notwendig sein sollte, einen Node einer Nodeliste hinzuzufÅgen,
+        um diesen Node anrufen zu kînnen oder ein Passwort einzutragen, kann
+        die Anweisung "Node,<adresse>[<region>[<hub>]],..." benutzt werden.
+        Damit umgeht man die die Notwendigkeit Zonen- und/oder Host-Angaben
+        anzugegeben.
+        
+        Die angegebene Adresse muss aber eine korrekte 4D-Adresse (Pointnummer
+        auf Wunsch als Zusatz) darstellen.
+        
+        Jeder folgende Eintrag benutzt die aktuelle Adresse als ersten
+        Teil des Points.
+        
+        z.B.: Du willst 9:888/777.3 in der Region 88 Hub 700 einfÅgen
+        
+        Bedenke das die Region- und Hub-Angabe bei der Node oder Boss-
+        Anweisung nicht unbedeingt erforderlich ist, da:
+        
+        - falls der Boss von dem Point bereits Åber andere Nodelisten
+          eingebunden ist, dann werden diese Angaben Åbernommen.
+        
+        - falls der Boss von dem Point nicht in der Nodelist steht, dann
+          wird der Point aus den Indizes gelîscht (In diesem Fall braucht
+          man zwei EintrÑge fÅr den Boss und den Point).
+        
+        
+        Mit "Node,...":
+        ...
+        ...
+        Node,9:888/777.3,System,Stadt,Sysop,1-234-555-6666,9600,CM
+        ...
+        ...
+        
+        Mit "Boss,...":
+        ...
+        ...
+        Boss,9:888/777
+        ,3,System,Stadt,Sysop,1-234-555-6666,9600,CM
+        ...
+        ...
+        
+        Mit der herkîmmlichen Methode:
+        ...
+        ...
+        Zone,9,...
+        Region,88,...
+        Host,888,...
+        Hub,700,...
+        ,777,...
+        Point,3,System,Stadt,Sysop,1-234-555-6666,9600,CM
+        ...
+        ...
+        
+        
+        Und nun fÅgen wir 8:101/611 und 8:101/612 ein:
+        
+        Mit "Node,...":
+        ...
+        ...
+        Node,8:101/611 10 600,System,Stadt,Sysop,1-234-555-6666,9600,CM
+        ,612,System,Stadt,Sysop,1-234-555-6667,9600,CM
+        ...
+        ...
+        
+        Mit der normalen Methode:
+        ...
+        ...
+        Zone,8,...
+        Region,10,...
+        Host,101,...
+        Hub,600,...
+        ,611,System,City,SysOp,1-234-555-6666,9600,CM
+        ,612,System,City,SysOp,1-234-555-6667,9600,CM
+        ...
+        ...
+
+        
+        
+                            Wortwîrtliche Telefonnummern
+        
+        Falls Telefonnummern keine numerischen Zeichen beinhalten, werden
+        die als wortwîrtliche Telefonnummern angesehen (Keine Anruf-Umsetzung
+        fÅr die LÑndervorwahl oder andere Vorwahlen).
+        
+        Anruf- und Benutzer-Kosten Grundwerte werden in der CostVerbatimPhone
+        Anweisung eingetragen.
+        
+        Diese Art von Telefonnummer-Angabe ist Åberall mîglich (fÅr jede Art
+        von EintrÑgen in der Nodelist, Åberschreiben von Telefonnummern).
+        
+        Hinweis: Es kannn sein das Du die Punkte '.' bei Internet-Adressen
+        in einen Stern '*' umwandeln musst, um zu vermeiden das Dein Mailer
+        Mailer (z.B. Binkley) diese umsetzt. Siehe dazu unter TypeDef nach.
+        
+        Beispiele:
+        
+        Internet Adresse:
+        
+        ,6,System,Stadt,Sysop,Fantasy.Com,9600,CM,VMP
+        
+        IP Adresse:
+        
+        ,6,System,Stadt,Sysop,123.456.789.012,9600,CM,VMP
+        
+        Skript-Namen:
+        
+        ,6,System,Stadt,Sysop,"Fantasy.Scr",9600,CM,V34
+        
+        Siehe auch unter der Phone Anweisung.
+        
+        
+        
+                                 WEITERE INFO
+        
+        
+                                Multiline Sysops
+        
+        
+        Falls ein Sysop mehrere Nodenummern hat, werden sÑmtliche
+        Namen-/Adressenpaare in den Sysop-Index eingetragen.
+        
+        
+        
+                               Umgeleitete Systeme
+        
+        
+        Systeme ohne gÅltige Telefonnummer (z.B. unverîffentlichte Nummer oder
+        System auf Hold) werden umgeleitet, sofern die Umleitung mit der
+        Anweisung "NoReDir" in der Konfig-File nicht ausgeschlossen wurde.
+        
+        Diesen umgeleiteten Systemen werden die Telefon-Nummer, Baud-Rate,
+        Modem-Typ, Kosten und Flags von dem darÅberliegenden Coordinator.
+        Dem System-Namen wird ein '-R-' vorangestellt.
+        
+        Hast Du mit einem solchen System (also dem umgeleiteten System oder
+        das System zu dem umgeleitet wird) ein Session-Passwort vereinbart,
+        wird keine Umleitung vorgenommen. So wird ein Passwort-Fehler ver-
+        mieden, fÅr den Fall das Dich eines dieser Systeme anruft.
+        
+        Points werden niemals umgeleitet.
+        
+        Nodes/Systeme mit keiner gÅltigen Telefon-Nummer und Umleitung
+        bekommen eine leere Telefon-Nummer zugeordnet. Dadurch kann Dein
+        Mail-System nicht irgendwelche Modem-Befehle an Dein Modem schicken
+        um diese Systeme anzurufen, sollte so etwas in Deinem Outbound
+        auftauchen
+        
+        Aber Achtung: Wenn solche Nodes/Systeme ohne Telefon-Nummer bzw. den
+        entsprechenden Koordinator direkt angerufen werden sollen, mÅssen diese
+        mittels der "Phone <Addr> <NewNumber>" Anweisung in der Konfig-File eine
+        Telefonnummer bekommen.
+        
+
+        
+        
+                                  INSTALLATION
+        
+        
+        1) Es gibt 3 Versionen von FastLst:
+        
+           OS/2, W32, DOS 32 (mit DOS4GW Dos Extender), diese werden in
+           verschiedenen Archiven verbreitet (s.a. Readme.1st).
+        
+           Benutze das fÅr Dich passende.
+        
+        
+        2) Erstelle Deine FastLst.Cfg.
+           FÅr neue Benutzer: Benutze die mitgelieferten Beispiele
+           Fast_*.CFG und lese die Befehls-Referenz dieser Dokumentation.
+        
+        
+        3) ErgÑnze Dein Batch-File um einen Aufruf von FastLst, wann immer
+           eventuell vorhandene neue Nodelisten/-diff's eingebunden werden
+           sollen. Wenn beim Aufruf von FastLst kein Pfadnamen als
+           Befehlszeilenparameter angegeben wird, muss die FastLst.CFG
+           im aktuellen Verzeichnis vorhanden sein.
+        
+        
+        4) (OS/2): öberprÅfe, ob sich das File MSGAPI32.DLL (32 bit Version)
+             oder MSGAPI.DLL (16 bit Version) in einem Verzeichnis befindet,
+             welches auch im LIBPATH steht. MSGAPI32.DLL und MSGAPI.DLL sind
+             im Squish 1.11 Archiv enthalten (SQSHP111.LZH).
+        
+           (W32): öberprÅfe, ob sich das Files MSGAPINT.DLL in einem Verzeichnis
+             steht, welches auch im PATH steht. MSGAPINT.DLL ist im Max 3.01 fÅr
+             Windows Archiv enthalten (MAX301N.ZIP).
+        
+           (DOS32):öberprÅfe, ob sich das Programm DOS4GW.EXE Dos extender
+             von Tenberry Software Inc.) im Path befindet.
+        
+             Das Programm DOS4GW extender benîtigt einen via CONFIG.SYS
+             installierten XMS oder DPMI-Speicher-Treiber. z.b. HIMEM.SYS oder
+             QEMM (by QuarterDeck Office Systems Inc).
+        
+        5) FastLst benîtigt eine ganze Menge Speicher um grosse Nodelisten
+           zu verarbeiten.
+        
+           Ein Satz von Eingabe-Nodelisten mit 60.000 EintrÑgen benîtigt
+           ungefÑhr 12MB fÅr die V7+ "Im Speicher" Compilierung, 7MB bei
+           Compilierung des DTP "auf Platte" und 4,5 MB fÅr die einfache
+           V7-Nodelist.
+        
+           Du musst Dich entscheiden, ob Du die "LinkOnDisk"-
+           Anweisung einsetzen willst. Falls genÅgend physikalischer Speicher
+           vorhanden ist, dann nutze den Grundwert "Im Speicher-Modus". Auf
+           der anderen Seite empfiehlt sich der Einsatz von "LinkOnDisk",falls
+           FastLst erheblich langsam ist oder der physikalische Speicher sehr
+           gering ist.
+        
+           (DOS): Auch wenn der "Im Speicher"-Modus gewÑhlt wurde,
+             schaltet FastLst automatisch um sofern der Speicher nicht zur
+             VerfÅgung steht.
+        
+             Sofern "out of memory"-Probleme auftreten, dann musst Du den
+             den DOS4GM virtuellen Speicher-Modus durch die DOS4GM-Umgebungs-
+             variable einschalten (z.B. SET DOS4GVM=VirtualSize#16384 fÅr
+             16 MB).
+        
+             Das geht nur unter richtigem DOS, falls Du OS/2 DOS-Sitzungen
+             verwendest dann setze die DPMI_MEMORY_LIMIT in den DOS-Ein-
+             stellungen.
+        
+             FastLst zeigt im auf dem Bildschirm, im Log und in den Reports
+             den verbleibenen Speicher, diese Info kann dann benutzt werden
+             um die Einstellungen zu Ñndern bevor das "out of memory"-Problem
+             auftritt.
+        
+        
+        
+                               Befehlszeilenparameter
+        
+        
+        -c<cfg>
+                FastLst benutzt das File <cfg> anstatt FastLst.CFG
+                (Pfade sind mîglich)
+        
+        -f
+                FastLst erstellt in jedem Fall neue Nodelisten, auch
+                wenn keine neuen Listen/Diff's erkannt werden.
+        
+        -i
+                Ignoriert FastLst.Dat, lÑuft als sei es das erste Mal.
+                Alle Nodelisten werden verarbeiten, alle Export-Listen
+                erstellt.
+        
+        -p
+                Mit diesem Parameter werden neue Nodelisten und Diffs
+                entpackt, die Diffs eingebunden und die Archivierung
+                gestartet. FastLst erstellt  k e i n e  Nodelisten
+                (*.NDX).
+        
+        -r
+                Wenn ein Diff-File von FastLst eingebunden wird,
+                erstellt FastLst nur dann eine neue Nodeliste, falls
+                kein CRC-Fehler festgestellt wurde. Mit diesem Schalter
+                kann diese PrÅfung ausgeschaltet werden und die
+                Nodelisten werden ganz normal erstellt.
+        
+        
+        -h or -?
+                fÅr die Hilfe
+        
+        
+        
+                                  ERRORLEVELS
+        
+        
+          0 - Normales Ende, irgendetwas verarbeitet
+          1 - Hilfe wurde verlangt
+          2 - Fehler beim ôffnen einer File (Datei)
+          3 - Abnormales Ende
+          4 - Festplatte voll
+          5 - FastLst kann die Konfig-File nicht finden
+          6 - Fehler in der Knfiguration
+          7 - Zuwenig Speicher, s.a LOG-File
+          8 - Lese Fehler beim Einbinden der Diff, Diff fehlerhaft
+          9 - CRC Fehler (beim Einbinden der Diff)
+         10 - CRC Fehler (beim Erstellen der Ausgabe-Nodelist)
+         11 - Abbruch durch Benutzer
+         12 - Fehler beim Umbennen der neuen Nodelist-Files
+         13 - Fehler beim ôffnen der Nodelist-File
+         14 - ZeitÅberschreitung beim Warten auf V7+ Semaphore
+         15 - Zuviele Nodelisten im INBOUND Verzeichnis
+         16 - Nichts gefunden nach dem Entpacken einer festen Nodelist
+         17 - Fehler beim Linken der Ausgabefiles
+        
+        100 - Normales Ende, aber nichts verarbeitet
+        
+        250 - MsgApi: Initialisierungs Fehler
+        251 - MsgApi: Fehler beim Area-Erîffnen
+        252 - MsgApi: Fehler beim Area-Lock
+        253 - MsgApi: Fehler beim Area-Schliessen
+
+        
+        
+                            KONFIGURATION
+        
+        
+        Vor der LektÅre dieser Dokumentation Åber die einzelnen
+        Anweisungen, sollten der folgende Teil aufmerksam durchgelesen
+        werden, da es sich um die Grundlagen von FastLst handelt.
+        
+        Solltest Du frÅher einen anderen Nodelist-Ersteller benutzt haben,
+        dann vergiss einfach das bisherige und fang von vorne an.
+        
+        FastLst.Cfg besteht aus verschiedenen logischen Blîcken, wobei die
+        Reihenfolge mancher Konfig-Anweisungen eine grosse Rolle spielen.
+        Nicht jede Anweisungen kann Åberall eintragen werden, da manchmal
+        auf verhergehende direkter Bezug genommen wird.
+        
+        Am Anfang mag so manches in der FastLst-Konfiguration komisch er-
+        scheinen, sobald aber die dahinterstehende Logik etwas transparenter
+        wird, wirst Du sicherlich alles verstehen und auch die flexible und
+        einfache Handhabung schÑtzen lernen.
+        
+        So schlimm ist es auch nicht, und fÅr Probleme steht Roland
+        Schiradin 2:2454/169 oder diverse Echo's zur VerfÅgung.
+        
+        Zu Beginn der Konfig-File steht der "Allgemeine"-Teil, welcher
+        fÅr alle eingetragenen Nodelisten gilt.
+        
+        Danach folgen ein oder mehrere "Output Blîcke", wobei jeder "Output
+        Block" fÅr die Erstellung einer einzelnen Nodelist steht (z.b,NODEX.*)
+        
+        Jeder "Output Block" hat auch eine "Output section" (mit Anweisungen
+        die auf den gesamten Index Einfluss nehmen kînnen) und eine oder mehrere
+        "Input Blocks", die Einfluss auf die Erstellung jeder Liste nehmen.
+        
+        Der erste "Output Block" kann ein spezieller Block sein. Ein
+        "NoCompile" Block, dessen "Input Blocks" die zu verarbeitenden
+        Nodelisten (z.B. wenn Diffs kommen) beschreiben, wobei keine
+        <Nodex>.*-Liste erstellt wird. Dieser Block ist dann gewissermassen ein
+        reiner Verwaltungsblock.
+        
+        Einige Anweisungen kînnen nur in besonderen Blîcken benutzt werden,
+        andere an verschiedenen Stellen auftauchen, abhÑngig von der Nodelist
+        und von dem was Du damit erreichen willst.
+        RS: In der Orignial-Doc steht as the rule of thumb, in Deutschland
+            bedeutet das soviel wie PI mal Daumen, also mîglicherweise
+            probieren es kînnte funktionieren.
+        Du kannst jede Anweisung an jeder fÅr Dich logischen Stelle eintragen.
+        
+        Falls Du Dich durch diese allgemeine ErklÑrung etwas unsicher fÅhlst,
+        dann sieh Dir einfach mal die Beispiel Fast*.cfg an und auch Du wirst
+        feststellen das es doch nicht so schwierig ist wie es aussieht.
+        
+        Um Dein eigenes Konfig-File zu erstellen, empfiehlt sich die Ver-
+        wendung eines passenden Beispiels und dessen Anpassung an die
+        persînlichen BedÅrfnisse. FÅr Schnellumsteiger von 1.3n ist ein
+        unmittelbarer Vergleich der alten Konfigurationsdatei mit den
+        Beispielskonfigurationen angesagt.
+        
+        So und nun kommen wir endlich zur Beschreibung aller Anweisungen
+        die FastLst erlaubt bzw. erkennt.
+
+        
+        
+                             KONFIG-REFERENZ
+        
+        
+        - Parameter zwischen den eckigen Klammern [<feld>] sind optional
+        
+        - Einige wenige Anweisungen oder Teile davon sind sind unabhÑngig
+          von der Gross- bzw. Kleinschreibung.
+        
+        - Sofern ein Pfad eingetragen werden muss oder kann, ist der letzte
+          Backslash "\" optional.
+        
+        - Das ';' Zeichen steht fÅr einen Kommentar, jeder nachfolgende Text
+          wird ignoriert. Dies gilt nicht fÅr Strings-Befehle.
+        
+        - Die maximale LÑnge jeder Zeile in der Konfig-File ist 254
+          Zeichen. Bedenke das Du Adressen (Nodenummern) verkÅrzen kannst
+        
+        - In der OS/2 Version kann jeder zulÑssige OS/2 Dateiname in AbhÑngig-
+          keit vom verwendeten Dateisystem (FAT/HPFS) verwendet werden, falls
+          notwendig, in AnfÅhrungszeichen gesetzt.
+        
+        
+        Vergiss nicht, die Reihenfolge einiger Konfig-Anweisungen unterliegen
+        einer logischen Folge. Um Probleme zu vermeiden bzw. um Dich vor
+        Fehlern zu schÅtzen, empfiehlt sich die genaue LektÅre der Beispiel-
+        Konfiguration und diese Dokumentation.
+        
+        Bedenke, da· die Benutzung einiger Anweisungen (z.B. zum Erstellen
+        von Text-Files wie FidoTxt, FidoPrn oder FidoUserLst) die Verarbeit-
+        ungsgeschwindigkeit teilweise erheblich reduziert.
+        Benutze diese Anweisungen nur dann, wenn sie wirklich benîtigt werden.
+
+        
+        
+        Include <filename>
+        
+          Damit kann die Konfiguration in mehrere Files gesplitttet werden.
+          Diese Anweisung kann an allen Stellen verwendet werden und
+          Auch in diesen Files erneut. Es gibt kein Limit.
+        
+        
+        
+                                  G L O B A L
+        
+        
+        Die folgenden Anweisungen kînnen im globalen Teil des KonfigFile
+        benutzt werden. Einige kînnen auch an anderer Stelle auftauchen.
+        Sofern dies zutrifft, wurden diese Teile auch an den entsprechenden
+        Stellen beschrieben/dokumentiert.
+        
+        
+        
+                                  G L O B A L
+        
+                                    Teil A
+        
+        
+        Die folgenden Konfig-Anweisungen kînnen im globalen Teil
+        der FastLst.Cfg benutzt werden.
+        
+        
+        RegKey <RegKey>
+        
+                Nur fÅr registrierte Benutzer: <RegKey> ist der Registrierungs-
+                schlÅssel (ohne <>), unabhÑngig von Gross-Klein-Schreibung
+        
+            Beispiel:
+        
+                RegKey dfhyuwru6274623
+        
+        
+        
+        Priority <type> [<level>]
+        
+                VerÑndert die Laufzeit-PrioritÑt des FastLst-Prozesses
+                (nur fÅr OS/2).
+        
+                Keine Verwendung bei den NT und den DOS Versionen.
+        
+                <type> kann sein: Idle Regular High
+        
+                <level> ist eine Zahl zwichen 0...31, die Grundeinstellung
+                ist 0.
+        
+                Bei Nichtverwenden dieses SchlÅsselworts wird
+                die Grundeinstellung "Regular 0" gesetzt.
+        
+            Beispiele:
+        
+                Priority High 31
+        
+                  Dadurch wird FastLst die hîchste PrioritÑt fÅr
+                  "nicht zeitkritische" Prozesse zugewiesen. FastLst lÑuft
+                  schnell, auch bei Ablauf im Hintergrund und AktivitÑt
+                  anderer Prozesse.
+        
+        
+                Priority Idle
+        
+                  Ordnet FastLst die kleinste PrioritÑt zu, dadurch wird das
+                  laufende System so wenig wie mîglich behindert. FastLst
+                  wird merkbar langsamer, besonders wenn es im Hintergrund
+                  lÑuft und andere rechnerintensive Prozesse aktiv sind.
+        
+        
+        
+        StatusLog <LogFile>
+        
+                <LogFile> ist der Name des Files in dem das Programm alle
+                durchgefÅhrten Aktionen protokolliert. Das <LogFile>
+                ist im "Binkley" Ñhnlichen Format und kann auch einen
+                Pfad enthalten.
+        
+                In Multitasking-Umgebungen sollte sichergestellt werden, da·
+                diese File von keinem anderen Prozess zur gleichen Zeit be-
+                nutzt werden kann. Zum Beispiel: Wenn (bei Deinem System)
+                FastLst lÑuft wÑhrend Binkley aktiv ist, dann solltest Du ver-
+                schiedene Files benutzen.
+        
+                Kommentiere diese Anweisung aus, wenn kein Log-File erstellt
+                werden soll.
+        
+            Beispiel:
+        
+                StatusLog d:\bbs\log\Fastlst.log
+        
+        
+        
+        CompressCfg <filename>
+        
+                Hierbei handelt es sich um eine Datei, in welcher die
+                Packprogramme im Squish-Format festgelegt werden.
+        
+                Solltest Du Ent-/Packer-Programme (z.B. OS/2 ZIP/UNZIP)
+                benutzen die nur mit Grossbuchstaben arbeiten kînnen,
+                sollten die korrekten Schalter in der <compress_cfg>
+                gesetzt, bzw. die Angaben beim SchlÅsselwort
+                <Nodelist> und <Nodediff> hinsichtlich Gross- oder Klein-
+                schreibung angepasst werden.
+        
+                Im FastLst-Paket befindet sich ein Beispiel einer compress.cfg,
+                die als <compress_cfg> vorgeschlagen wird.
+        
+                Falls bereits Squish und/oder Maximus benutzt werden,
+                kînnen Namen und Pfad dieser compress.cfg eingetragen werden.
+                (PrÅfe ob diese auch die entsprechenden Schalter fÅr die
+                Gross-Kleinschreibung beinhaltet).
+        
+                FÅr weitere Informationen, siehe unter "Komprimierungs
+                Definitions File" am Ende dieser Dokumentation.
+        
+        
+        
+        InputPath <NodeDir>
+        
+                Trage hier den Pfad der Eingabe-Dateien ein
+                (Nodelisten/Nodediff's). Dieser Eintrag kann spÑter
+                bei den Eingabe-Blîcken Åberschreiben werden.
+        
+                FastLst legt das Verzeichnis an, falls es nicht existieren
+                sollte.
+        
+            Beispiel:
+        
+                InputPath d:\bbs\nodelist\
+        
+        
+        
+        ArctPath <NodeDir>
+        
+                Trage hier den Pfad der archvierten Nodelisten ein.
+                Am besten ist es, wenn der Pfad angegeben wird, wohin Dein
+                TIC-Prozessor die eingehenden Nodelisten verschiebt.
+        
+                Dieser Eintrag kann spÑter bei den Eingabe-Blîcken
+                Åberschreiben werden.
+        
+            Beispiel:
+        
+                ArcPath d:\bbs\file\nodelist\
+        
+        
+        
+        ArcDate Write|Creation
+        
+            (OS/2)
+                Bestimmt das Datum das benutzt wird um das Alter von
+                bestimmten archivierten Nodelist-Files zu vergleichen.
+        
+                Diese Einstellung sind interessant fÅr HPFS (das verschiedene
+                Daten fÅr Erstellung und énderung inne hat) und werden bei FAT
+                ignoriert.
+        
+                Ohne Angabe wird "Erstellung" angenommen.
+        
+                Achtung: Um Probleme, fÅr den Fall das das Datum wÑhrend
+                der öbertragung verÑndert, zu vermeiden. Die beste Mîglichkeit
+                ist es das gleiche Datum zu verwenden, welches Dein Mailer
+                als "receive/upload" setzt oder welches Dein TIC-Verarbeiter
+                anfasst.
+        
+            Beispiele:
+        
+               ArcDate Write       ; Benutze das énderungsdatum
+               ArcDate Creation    ; gleich wie der Grundwert
+        
+        
+        
+        MultiLineDesc <nnn> [<c>]
+        
+                Als Grundwert gilt: Die files.bbs Beschreibung muss eine
+                einzelne Zeile sein. Mit dieser Anweisung aktiviert man
+                die UnterstÅtzung fÅr mehrzeilige Beschreibungen.
+        
+                <nnn> ist die Anzahl der Leerzeichen die vor den Fort-
+                setzungszeilen angenommen werden.
+        
+                <c> ist das Fortsetzungszeichen.
+        
+                Falls <c> NICHT angegeben ist, wird angenommen das
+                Fortsetzungszeilen mit <nnn> Leerzeichen beginnen.
+        
+                Falls <c> ANGEGEBEN ist, wird angenommen das Fortsetzungs-
+                zeilen <nnn> Leerzeichen und dann das <c> Zeichen mit
+                einem weiteren Leerzeichen inne haben.
+        
+                Ein kleines Beispiel: Du hast eine zweite und folgende
+                Beschreibungszeile in der files.bbs auf der Position 32.
+                Dann setze:
+        
+                MultiLineDesc 31
+        
+                Eine Beschreibung in der files.bbs sieht so aus:
+        
+                Test.Zip Das ist die erste Beschreibungszeile
+                                               das ist die zweite Zeile
+                                               das ist die dritte Zeile
+                ^                             ^^
+                1                           31  32
+        
+                Um eine Fortsetzungszeile mit einem vorangestellten
+                '|' zu haben:
+        
+                MultiLineDesc 29 |
+        
+                Eine Beschreibung in der files.bbs sieht so aus:
+        
+                Test.Zip Das ist die erste Beschreibungszeile
+                                             | das ist die zweite Zeile
+                                             | das ist die dritte Zeile
+                ^                           ^  ^
+                1                          29  32
+        
+        
+        
+        
+        KillAfter
+        
+                Alte Ausgabe-Index-Files werden erst gelîscht, wenn die neuen
+                fehlerfrei erstellt wurden.
+        
+                Die neuen Index-Files werden unter einem temporÑren Namen
+                erstellt, dann werden die alten gelîscht und die neuen
+                umbenannt. (Sollten beim Umbenennen Fehler auftreten, versucht
+                FastLst dieses Umbenennen 15 Sekunden lang)
+        
+                Dadurch hast Du immer einen funktionierende Nodelist-Index, auch
+                wenn die Verarbeitung fehlerhaft war oder die Verarbeitung
+                abgebrochen wurde. Andererseits kann Dein multitasking System
+                weiterlaufen, wÑhrend FastLst arbeitet.
+                Bei Verwendung dieses SchlÅsselwortes sollte gewÑhrleistet
+                sein, da· genug Platz fÅr die alten und die neuen Nodelisten
+                vorhanden ist.
+        
+        
+        
+        KillSource
+        
+                Durch diese Anweisung lîscht FastLst alle unkomprimierten
+                Nodelisten am Ende der Verarbeitung (diese sind ja in
+                dem archivierten Format vorhanden).
+        
+                FastLst lîscht nur dann eine Nodelist, wenn Du auch die
+                Arclist-Anweisung angegeben hast.
+        
+                Wenn das NodeDiff-Anweisung aktiviert ist, muss eine ArcMethod
+                Anweisung angegeben werden, erst dadurch wird FastLst
+                dir Nodelisten lîschen.
+        
+                Sofern du keine NodeDiff-Anweisung angegeben hast, geht
+                FastLst davon aus das diese unkomprimierten Nodelisten
+                aus einem entsprechenden Archiv geholt wurden.
+        
+        
+        
+        BeforeKillSource <command>
+        
+                Mittels dieser Anweisung ruft FastLst nach der Verarbeitung,
+                aber vor dem Lîschen der unkomprimierten Nodelisten,
+                ein Programm oder Batch/CMD-File Deiner Wahl auf.
+        
+                <command> wird auch bei Nichtverwendung von "KillSource"
+                ausgefÅhrt. Sofern dies zutrifft wird dieser <command>
+                gewissermassen zum letztmîglichen Exit, bevor FastLst beendet
+                wird.
+        
+                Sofern bei diesem <command> Nodelisten benîtigst werden,sollte
+                immer die Anweisung "NeededBeforeKill" fÅr diese Nodelisten
+                angegeben werden. Wenn einige dieser "NeededBeforeKill"-Node-
+                listen neu sind, wird der <command> nach dem Entpacken auf-
+                gerufen, sofern die "NeededBeforeKill"-Anweisung gesetzt ist.
+        
+                WICHTIG: <command> wird nur ausgefÅhrt wenn neue Nodelisten
+                mit der "NeededBeforeKill"-Anweisung verbunden sind.
+        
+                <command> kann jeder Befehl sein, den Dein Befehls-
+                Interpreter (z.b. 4DOS, 4OS2) mittels COMSPEC-Umgebungs-
+                Variablen versteht.
+        
+                Wenn hinter dem <command> ein ausfÅhrbares Programm steht,
+                wird es geladen und direkt ausgefÅhrt. ansonsten   der
+                Befehls-Interpreter aufgerufen, und Du kannst ein Batch-/CMD-
+                File oder einen anderen Befehl ausfÅhren.
+        
+                Es werden keine variablen Parameter unterstÅtzt.
+        
+        
+        
+        Dash2Comma
+        
+                éndert das Minus-Zeichen '-' in ein Komma ','.
+        
+                Kînnte fÅr diejenigen von Bedeutung sein, die mittels
+                Puls-Wahl an einer digitalen Vermittlungsstelle hÑngen.
+        
+        
+        
+        NoReport
+        
+                Verhindert das Erstellen statistischer Reports/Listen
+        
+        
+        
+        NoRedir
+        
+                Nodes mit einer mîglicherweisen falschen Telefonnummer
+                (Hold, Unpublished) werden normalerweise auf ihren
+                Coordinator umgeleitet,
+        
+                Sofern Du diese Anweisung aktivierst, wird FastLst diese
+                Umleitung nicht eintragen, sondern diesen Nodes eine
+                leere Telefon-Nummer zuordnen. Dadurch wirst Du niemals
+                eine Telefon-Nummer anrufen, die nicht dem gewollten
+                System entspricht.
+        
+                Einige Anmerkungen (auch wenn diese Anweisung nicht aktiv ist)
+                - Points werden niemals umgeleitet.
+                - wenn Du ein Passwort mit genau diesem System oder
+                  dem mîglichen Coordinator vereinbart hast,
+                  dann erfolgt auch keinerlei Umleitung.
+        
+        
+        
+        V7BugFix
+        
+                Fehler in der V7 nodelist von Binkley.
+                (und mit Sicherheit auch in anderen Programmen die die Such-
+                funktion vom Binkley-Source Åbernommen haben) die manche Teile
+                in der V7 Nodelist verschwinden lÑsst. Im Zweifelsfall sollte
+                sollte dieser Schalter aktiviert werden.
+        
+                Binkley 2.60 ist korrekt, aber vieleicht andere Programme
+                nicht.
+        
+        
+        
+        MsgLogArea <path> [-$]
+        
+                Einige Informationen aus der Verarbeitung kînnen auch
+                in einer FIDO oder Squish-Message-Area protokolliert werden.
+        
+                <path> zeigt auf den Pfad der entsprechenden Area
+        
+                -$     zeigt an, ob es sich um eine Squish-Area handelt,
+                       ohne diesen Zusatz wird *.MSG angenommen.
+        
+                Mittels der "MsgLog"-Anweisung und "LogStas"
+                werden weitere Informationen gezeigt, die in der Grundeinstellung
+                nicht verfÅgbar sind.
+        
+            Beispiele:
+        
+                MsgLogArea \bbs\mail\net -$
+                MsgLogArea \bbs\mail\net\
+        
+        
+        
+        MsgRemArea <path> [-$]
+        
+                Bestimmte Kommentare in der erstellten Nodeliste kînnen
+                in einer FIDO oder Squish-Message-Area protokolliert werden.
+        
+                <path> zeigt auf den Pfad der entsprechenden Area
+        
+                -$     zeigt an, ob es sich um eine Squish-Area handelt,
+                       ohne diesen Zusatz wird *.MSG angenommen.
+        
+                Mittels der "MsgRem" Anweisung (s.a. Global Teil C) MUSST Du
+                angeben welche Kommentare Du protokolliert haben willst.
+        
+                Ohne "MsgRem" werden KEINE Kommentare protokoliert.
+        
+            Beispiele:
+        
+                MsgRemArea \bbs\mail\net -$
+                MsgRemArea \bbs\mail\net\
+        
+        
+        
+        MsgFromNode <address>
+        MsgToNode <address>
+        
+                Gibt an, welche Nodenummer in neu erstellten Nachrichten
+                eingetragen werden soll.
+        
+                <address> ist eine 4D-Nummer.
+        
+            Beispiel:
+        
+                MsgFromNode 2:332/504
+                MsgToNode   2:332/504.1
+        
+        
+        
+        MsgTo <name>
+        
+                Gibt an, welcher Name in neu erstellten Nachrichten
+                eingetragen werden soll.
+        
+            Beispiel:
+        
+                MsgTo Alberto Pasquale
+        
+        
+        
+        MsgAttr <attributes>
+        
+                Gibt an, welche Arttribute eine neu erstellte Nachricht haben
+                soll.
+                <attributes> kann folgende (Gross- oder Kleinbuchstaben) Werte
+                haben:
+        
+                P : Privat          (Privat)
+                K : Kill/Sent       (Lîschen nach dem Senden)
+                C : Crash           (Sofort versenden)
+                H : Hold            (Warten bis derjenige anruft)
+                D : Direct          (Direkt bedeutet Crash und Hold bei Squish)
+        
+            Beispiele:
+        
+                MsgAttr P
+                MsgAttr pk
+        
+        
+        
+        MsgSize <bytes>
+        
+                Die maximale Grîsse einer Nachricht kann <bytes> betragen.
+                Sofern diese Grenze Åberschritten wird, wird die Nachricht
+                in mehrerere Teil-Nachrichten unterteilt.
+        
+                Die Grundeinstellung ist 7K. Grîssere Angaben sind mîglich
+                und erwÅnscht, denn dadurch wird vermieden, da· zuviele
+                Teil-Nachrichten erstellt werden. Limit:
+        
+        
+            Beispiel:
+        
+                MsgSize 60000
+        
+
+        
+        
+        CostNullPhone <Cost> [<Ucost>]
+        
+                Gibt an, welche Kosten fÅr Nodes mit leerer (nicht îffentliche)
+                Telefonnummer gelten.
+        
+                <Cost> sind die Anrufkosten.
+                <UCost> sind die Benutzerkosten (Betrag fÅr Netmails)
+        
+                Wenn diese Anweisung nicht aktiviert ist wird als
+                Grundwert fÅr <Cost> 65535 und fÅr <UCost> 0 gesetzt.
+        
+            Beispiel:
+        
+                NullPhoneCost 1000 0
+        
+            Anmerkung:
+        
+                Einige Programme haben scheinbar Probleme mit solchen
+                hohen Inhalten, wie zum Beispiel mit dem Grundwert von
+                65535. Sofern solche Probleme mit Nodes ohne Telefonnummer
+                auftreten dann versuch einen kleineren Wert durch die
+                Anweisung CostNullPhone zu setzen, z.B. CostNullPhone 900 0.
+        
+        
+        
+        CostVerbatimPhone <Cost> [<UCost>]
+        
+                Gibt an welche Kosten fÅr Nodes gelten die einen ent-
+                sprechenden Eintrag in der "verbatim phone" Anweisung haben.
+        
+                <Cost> sind die Anrufkosten.
+                <UCost> sind die Benutzerkosten (Betrag fÅr Netmails)
+        
+                Der <UCost> Grundwert ist identisch mit <Cost>.
+        
+                Ohne Angabe sind beide Kostenwerte auf 0.
+        
+            Beispiel:
+        
+                CostVerbatimPhone 10 0
+        
+        
+        
+                        Kosten und Anruf-Umsetzungstabelle
+        
+        
+        Damit werden die Kosten und Anruf-Umsetzung in einer Tabelle
+        fÅr bestimmte Telefonnummern definiert.
+        
+        Hinweis: Diese Tabellen gelten nicht fÅr die "Verbatim Phones".
+        
+        Die Tabelle beginnt mit "Dial" und endet mit der "End"-Anweisung.
+        
+        Jeder Eintrag hat folgenden Aufbau:
+        
+        <PartPhone> <PreSuf> [<Costs>]
+        
+        
+        Die folgenden zwei Anweisungen erlauben die Gruppierung von Umsetzungen
+        die dann fÅr bestimmte EintrÑge benutzt werden kînnen:
+        
+        
+        LocalValues <PartPhone> <PreSuf> [<Costs>]
+        
+                Diese Anweisung ist nur zur Vereinfachung: Es wird genauso
+                wie eine Angabe ohne das vorangestellte "LocalValues"
+                behandelt.
+        
+        
+        LocalExchanges <num> ...
+        
+                Liste aller Nahbereiche denen die Angaben unter "LocalValue"
+                zugeordnet werden.
+        
+                Bedenke: Die ZeilenlÑnge ist auf 254 Zeichen begrenzt
+        
+                Werden mehr als 254 Zeichen benîtigt oder bevorzugt man
+                generell kÅrzere Zeilen, kann man mehrere "LocalExchanges"-
+                Zeilen angeben.
+        
+                Alle Nummern die mit der <num> anfangen (nach <PartPhone>
+                lîschen) werden als Nahbereiche angenommen.
+                Sind z.B. 220, 221, 222, 223, 224, 225, 226, 227,
+                228, 229 alles Nahbereiche, kann man alle mit dem Eintrag
+                22 als <num> gleichzeitig einschliessen.
+        
+        
+        Die Benutzung dieser beiden Anweisungen, anstelle einer langen Anruf-
+        öbersetzungs-Tabelle (fÅr jede Vorwahl im Nahbereich eine Zeile),
+        erhîht die Verarbeitung jener NodeeintrÑge, die nicht im eigenen
+        Nahbereich eingetragen sind.
+        
+        
+        
+        <PartPhone>
+                ist ein Teil eine Telefonnummer und wird mit den Nummern
+                der NodelisteintrÑge verglichen, wobei die Minuszeichen
+                ignoriert werden. Der letzte Eintrag sollte ein einzelnes
+                Minuszeichen sein, wodurch alle restlichen Nummern
+                die hier angegebenen Kosten Åbernehmen.
+        
+        <PreSuf>
+                kann folgende AusprÑgung haben:
+                    a: <Prefix>
+                    b: /<Suffix>
+                    c: <Prefix>/<Suffix>
+                    d: /
+        
+                <PartPhone> ist der Teil der verschwindet, sofern eine öber-
+                einstimmung erkannt wird. <PreSuf> ist der Teil der voran oder
+                am Ende angefÅgt wird.
+        
+                Fall a: <Prefix> wird vorangestellt
+                        z.B.: "39- 0"
+                        die "39-" verschwindet und die "0" wird vorne
+                        der Telefonnummer vorangestellt.
+        
+                Fall b: <Suffix> wird angefÅgt.
+                        z.B.: "39-59- /!"
+                        entfernt die "39-59-" vorn und fÅgt das "!" am Ende an.
+        
+                Fall c: <Prefix> wird vorangestellt <Suffix> wird angefÅgt.
+                        z.B.: "39- 0/!"
+                        die "39-" verschwindet, die "0" wird vorne,
+                        das "!" wird am Ende angefÅgt.
+        
+                Fall d: Nichts wird vorangestellt oder am Ende eingefÅgt.
+                        Z.B.: "/"
+                        Der SchrÑgstrich wird fÅr die richtige Interpretation
+                        der nachfolgenden mîglichen Parameter benîtigt, sofern
+                        diese Tabelle als kombinierte Tabelle benutzt wird.
+        
+                Zwischen dem Prefix, Suffix und dem Trennzeichen SchrÑgstrich
+                sind keine Leerzeichen erlaubt.
+        
+        <Costs>
+        
+        Du kannst bis zu 4 Kosten-Felder angeben:
+        
+        <Cost> [<UCost> [<DigCost> [<DigUCost>]]]
+        
+        Jeder davon kann zwischen 0-65535 sein.
+        
+        <Cost>     sind die Anruferkosten, Grundwert: 65535.
+        <UCost>    sind die Benutzer-Kosten, Grundwert: <Cost>.
+        <DigCost>  sind die digitalen Anrufkosten, Grundwert: <Cost>.
+        <DigUCost> sind die digitalen Benutzerkosten
+        
+        <DigUCost> Grundwert ist <DigCost> sofern angegeben, ansonsten
+        gilt <UCost>.
+        
+        Falls kein Limit fÅr Netmail-Kosten Deiner User besteht, dann setze
+        <UCost> und <DigUCost> auf 0.
+        
+        FastLst sucht den Parameter <PartPhone> sequentiell, d.h. der erste
+        passende Eintrag wird benutzt. Haben nun verschiedene EintrÑge ge-
+        meinsame AnfÑnge, mÅssen sie in der Reihenfolge vom lÑngstem zum
+        kÅrzesten Eintrag angegeben werden. Also Åberlege Dir genau, in
+        welcher Reihenfolge Du die EintrÑge erstellst.
+        Am besten fÑngst Du mit dem lÑngsten Eintrag an.
+        
+        Warnung: Diese Tabelle kann nicht komplett weggelassen werden, es
+        muss zumindest der Grundwert durch die "- [<PreSuf>]" angegeben werden.
+        
+        
+            Beispiel 1a/b/c (Aus der nordamerikanischen Sicht):
+        
+                Habe ich nicht ins deutsche Åbersetzt, da es keinen gro·en
+                Sinn macht.
+        
+        
+            Beispiel 2 (europÑische Sicht):
+        
+                Nun differenzieren wir noch zwischen Nah- und Regionalzone
+                und zwischen europÑischen und aussereuropÑischen Anrufen.
+        
+                Dial
+                  LocalValues 39-59- / 5
+                  LocalExchanges 2 3 4 56 81 82    ; Nah
+                  39-59- /      30   ; Regional
+                  39-    0      60   ; Fernzone
+                  43     0043- 100   ; ôstereich
+                  32     0032- 100   ; Belgien
+                  45     0045- 100   ; DÑnemark
+                  33     0033- 100   ; Frankreich
+                  49     0049- 100   ; Deutschland
+                  44     0044- 100   ; GB
+                  31     0031- 100   ; Niederlande
+                  34     0034- 100   ; Spanien
+                  46     0046- 100   ; Schweden
+                  41     0041- 100   ; Schweitz
+                  1      001-  200   ; USA/Kanada
+                  -      00    300   ; andere
+                End
+        
+        
+            Beispiel 3 (Unterschiedliche Kosten fÅr Analog/Digital):
+        
+                FÅr Leute die unterschiedliche Kosten fÅr analoge und digitale
+                Anrufe bezahlen, erlaubt FastLst die Angabe von unterschied-
+                lichen digitalen Kosten (diese werden dann fÅr die Nodes be-
+                nutzt, die durch die ModemType als Digital markiert
+                sind.)
+        
+                Angenommen sind keinen Benutzer-Kosten und die digitalen Kosten
+                sind doppelt so hoch wie die analogen.
+        
+                Dial
+                  LocalValues 39-59- / 5 0 10 0
+                  LocalExchanges 2 3 4 56 81 82    ; Nahzone
+                  39-59- /      30 0  60 0  ; Region
+                  39-    0      60 0 120 0  ; Fernzone
+                  -      00    300 0 600 0  ; International
+                End
+        
+        
+            Beispiel 4:
+        
+                Minimale Anruf-Umsetzung fÅr Benutzer die die Anrufum-
+                setzung an anderer Stelle vornehmen.
+        
+                Dial
+                  -
+                End
+
+        
+        
+                                Tabelle der Modemtypen
+        
+        
+        Diese Tabelle ermîglicht, bestimmte Modemtypen, Kosten und Anruf-
+        öbersetzungen auf Grundlage der Flags in der Nodelist zu Ñndern.
+        
+        Jeder Eintrag in der Typen-Tabelle hat folgenden Aufbau:
+        
+        TypeDef
+          <Flag> <ModemType> [<Cost> <UCost> [<DialTrans>]]
+          <Flag> <ModemType> [Digital|Analog]
+          ...
+        End
+        
+        <Flag> ist ein Nodelist-Flag (max. 49 Zeichen),
+        <ModemType> ist eine Nummer zwischen  0 und 255.
+        
+        FastLst sucht nach allen Nodes, die dieses <Flag> haben in der gleichen
+        Reihenfolge wie angegeben.
+        
+        Diese Suche erfolgt genau nach dem diesem Text. Beispiel: Falls Du
+        als <Flag> V32 definiert hast, markiert FastLst nur diese Nodes
+        und nicht jene mit einem V32B-Flag. Es liegt keine öbereinstimmung vor
+        <Flag> kann gross- oder kleingeschrieben werden.
+        
+        Das ModemType Feld in der compilierten Nodelist wird durch den ersten
+        Treffer festgelegt: Falls Du X75 vor V34 definierst, bekommt ein Node
+        mit beiden EintrÑgen V34 und X75 auch nur das X75 Feld.
+        
+        Falls <Flag> fÅr ein PSTN System ist, kannst optional entschieden
+        werden ob es DIGITAL oder ANALOG (Der Grundwert) ist. Ds ist wichtig
+        um Kosten fÅr digitale Verbindungen zuzuweisen, sofern diese in der
+        Anruf/Kosten-Tabelle definiert sind.
+        
+        Falls <Flag> fÅr ein Nicht-PSTN System (z.B. Internet) angegeben wurde,
+        dann kînnen die Kosten (Åberschreibt CostVerbatimPhone) und
+        Anruf-Umsetzungen hier angegeben werden.
+        
+        <Cost>  Die Anruf-Kosten, Bereich: 0-65535
+        <UCost> Die Bneutzer-Kosten, Bereich: 0-65535
+        
+        <DialTrans> Die Anruf-Umsetzung fÅr "wortwîrtliche" Nummern.
+        
+            Diese Anrufumsetzung hat KEINEN Einfluss auf den Index-Eintrag (in
+            <NODEX>.PDX) und dient nur als Umgehung fÅr die Anruf-Umsetzung
+            von dem Mailer oder Modem-Emulator.
+        
+            Der Eintrag benîtigt eine Menge von Zeichenketten in den TypeDef-
+            Zeilen, die dann fÅr das angebene "Modem Flag" gelten.
+        
+            Das erste Zeichen von jeder Zeichenkette wird durch die
+            verbleibenden Zeichen ersetzt.
+        
+            Eine Zeichenkette mit einen Leerzeichen ' ' or Semikolon ';' MUSS
+            in AnfÅhrungszeichen stehen. Falls das AnfÅhrungszeichen in der
+            Zeichenkette gebraucht wird, dann muss es doppelt eingetragen
+            werden.
+        
+            15 Zeichenketten bis zu 5 Zeichen sind mîglich.
+        
+            ACHTUNG: Diese Mîglichkeit gibt es nur im normalen (kein
+            BitType) Modus.
+        
+            Beispiel:
+        
+            Du brauchst folgende Umsetzung '.' nach '*', ':' nach ' ', 'v'
+            nach 'V'; Anrufer-Kosten=100, Benutzer-Kosten=0:
+        
+            Typedef
+              [...]
+              VM 200 100 0 .* ": " vV
+              [...]
+            End
+        
+            Du brauchst folgende Umsetzung '.' nach '\.',':' nach ', ', 'v'
+            nach 'V'; Anrufer-Kosten=150, Benutzer-Kosten=100:
+        
+            Typedef
+              [...]
+              VM 200 150 100 .\. ": " vV
+              [...]
+            End
+        
+        
+            Empfohlene Anrufumsetzung fÅr Binkley und VMODEM:
+        
+            -\- .* vV ~\~ ": "
+        
+        
+        Komplettes Beispiel einer TypeDef Tabelle:
+        
+                fÅr USR Courier I-modem + VMODEM:
+        
+        
+                TypeDef
+                  X75   1   Digital
+                  ISDNC 1   Digital
+                  V120  2   Digital
+                  V120H 2   Digital
+                  V120L 3   Digital
+                  V34   4   Analog
+                  VFC   5   Analog
+                  V32T  6   Analog
+                  H16   7   Analog
+                  V32B  8   Analog
+                  ZYX   8   Analog ; ZYX impliziert V32B
+                  Z19   8   Analog
+                  Z16   8   Analog
+                  H14   9   Analog
+                  V32   10  Analog
+                  HST   11  Analog
+                  VM    200 100 0 -\- .* vV ~\~ ": " ; VMODEM
+                End
+        
+        
+            Setze folgendes in der Binkley.Cfg fÅr I-modem:
+        
+        
+                ModemTrans   0
+                ModemTrans   1 AT*V2=6D/    ; X75
+                ModemTrans   2 AT*V2=1D/    ; V120
+                ModemTrans   3 AT*V2=1D/    ; V120L
+                ModemTrans   4 AT*V2=3B0D/  ; V34
+                ModemTrans   5 AT*V2=3B0D/  ; VFC
+                ModemTrans   6 AT*V2=3B0D/  ; V32T
+                ModemTrans   7 AT*V2=3B1D/  ; H16
+                ModemTrans   8 AT*V2=3B0D/  ; V32B
+                ModemTrans   9 AT*V2=3B1D/  ; H14
+                ModemTrans  10 AT*V2=3B0D/  ; V32
+                ModemTrans  11 AT*V2=3B1D/  ; HST
+                ModemTrans 200
+        
+            Setze folgendes in der Binkley.Cfg fÅr VMODEM:
+        
+        
+                ModemTrans   0
+                ModemTrans   1
+                ModemTrans   2
+                ModemTrans   3
+                ModemTrans   4
+                ModemTrans   5
+                ModemTrans   6
+                ModemTrans   7
+                ModemTrans   8
+                ModemTrans   9
+                ModemTrans  10
+                ModemTrans  11
+                ModemTrans 200 ATDT#/   ; VMODEM
+
+        
+        
+                           Benutzer Flags Table
+        
+        
+        Das ist eine optionale Tabelle um die "benutzer definierbaren" Bits
+        in das Flag in der kompilierten Nodelist zu setzen.
+        
+        Die Bits kînnen die Werte 5,6,7,8,9,A,B,D,E,F anehmen, wobei Bit 5
+        fÅr das 6. Bit und F fÅr das 16. Bit steht.
+        
+        Mittels dieser Tabelle kannst Du bestimmte eigene Nodelist-Flags in
+        der binÑren Nodelist abbilden.
+        
+        Die Tabelle beginnt mit der "FlagDef"- und endet mit der "End"
+        Anweisung. Jede Zeile hat das Format "<sFlag> <bFlags>", wobei
+        <sFlag> fÅr eine bis zu 9 Zeichen lange Zeichenkette in der
+        Source-Nodelist und <bFlags> fÅr eins oder mehrere benutzer-defi-
+        nierten Bits im Benutzer-Flag der V7-Nodelist steht.
+        
+            Beispiel:
+        
+                FlagDef
+                  V42B  AB  ; V42B -> Benutzer Bits A und B
+                  V32B  DE  ; V32B -> Benutzer Bits D und E
+                End
+        
+        
+        Um weitere Flags auf Nodenummernbasis einzufÅgen, benutzte die
+        "Flags <Addr> <Flags>" Anweisung.
+        
+        Um bestimmte Flags auf Nodenummernbasis zu lîschen, benutzte die
+        "NodeFlags <Addr> <NodeFlags>" Anweisung.
+        
+        
+                                  G L O B A L
+        
+                                    Teil B
+        
+        
+        Die Anweisungen in diesem Teil haben direkten Einfluss auf die
+        Verarbeitung aller "OUTPUT-Blîcke" und damit natÅrlich auch auf die
+        aller "INPUT-Blîcke" (Quell-Nodelisten).
+        
+        Diese Anweisungen kînnen auch im "OUTPUT" Teil eines "OUTPUT-
+        Blocks" oder innerhalb eines "INPUT Blocks" verwendet werden.
+        In diesem Fall beeinflussen sie nur die Abarbeitung des jeweiligen
+        Blockes, in dem sie eingetragen sind.
+        
+        FÅr den Fall, das diese Anweisung bereits in einem hîher gelegenen
+        Block benutzt wird, behandelt FastLst sie als temporÑres öber-
+        schreiben.
+        
+        
+        
+        NeededBeforeKill
+        
+                Gibts an das die Nodeliste(n) noch fÅr den Befehl
+                in der "BeforeKillSource" Anweisung genîtigt werden.
+        
+                Die "BeforeKillSource" Anweisung gibt Dir die Mîglichkeit
+                einen Befehl (ausfÅhrbar oder Batch-File), nach der Erstell-
+                ung aller Nodelisten auszufÅhren, bevor FastLst endet und
+                (sofern "KillSource" aktiv ist) damit vor dem Lîschen aller
+                unarchivierten Nodelisten (die dann in archivierten Form vorliegen)
+        
+                Die mit "NeededBeforeKill" verbundenen Listen werden,
+                sofern diese nicht extisieren, aus dem Archiv wiederhergestellt,
+                bevor der Befehl mittels "BeforeKillSource" ausgefÅhrt wird.
+        
+        
+        
+        ArcMethod <meth>[,<f>] ...
+        
+                Weist FastLst an, sicherzustellen, da· alle neuen
+                Nodelisten mit der angegebenen Methode archiviert werden.
+                Das ursprÅngliche Archiv wird NICHT gelîscht oder verÑndert.
+        
+                SelbstverstÑndlich, wird eine neue Nodelist nicht nochmal mit
+                seiner ursprÅnglichen Methode archiviert.
+        
+                <meth> ist der Name eines in der compress.cfg definierten
+                Packers.
+        
+                <f> bietet die Mîglichkeit, den ersten Buchstaben fÅr
+                die variable Archiv-Erweiterung (Name *.<F>*) anzugeben.
+                Ohne diese Angabe Åbernimmt FastLst als ersten Buchstaben
+                der Erweiterung den entsprechenden Packer-Åblichen Erstbuchstaben.
+        
+                Es sind mehrere "ArcMethod" Anweisungen mîglich.
+        
+        
+            Beispiel 1:
+        
+                ArcMethod ZIP LH,H
+        
+                NodeList.Z48 kommt an und wird mittels dem LH-Packer auch
+                als Nodelist.H48 archiviert.
+        
+        
+            Beispiel 2:
+        
+                ArcMethod ZIP LH
+        
+        
+                NodeDiff.Z48 kommt an und wird als NodeList.Z48 mittels ZIP-
+                Packer und als Nodelist.H48 mittels LH-Packer als Nodelist.L48
+                archiviert.
+        
+        
+        
+        ArcDiffMethod <meth>[,<f>] ...
+        
+                Weist FastList an, sicherzustellen, da· alle neuen
+                Nodediffs mit der angegebenen Methode archiviert werden.
+                Das ursprÅngliche Archiv wird NICHT gelîscht oder verÑndert.
+        
+                SelbstverstÑndlich wird eine neue Nodediff nicht nochmals
+                mit seiner ursprÅnglichen Methode archiviert.
+        
+                <meth> ist der Name eines in der compress.cfg definierten
+                Packers.
+        
+                <f> bietet die Mîglichkeit, den ersten Buchstaben fÅr
+                die variable Archiv-Erweiterung (Name *.<F>*) anzugeben.
+                Ohne diese Angabe Åbernimmt FastLst als ersten Buchstaben
+                der Erweiterung den entsprechenden Packer-Åblichen Erstbuchstaben.
+        
+                Es sind mehrere "ArcDiffMethod" Anweisungen mîglich.
+        
+        
+            Beispiel:
+        
+                ArcDiffMethod ZIP LH,H
+        
+                NodeDiff.Z48 kommt an und wird mittels LH-Packer als
+                Nodelist.H48 archiviert.
+        
+        
+        
+        
+                               EXTERNE BEFEHLE
+        
+        Die folgenden Anweisungen ermîglichen die AusfÅhrung externer
+        Befehle.
+        
+        <command> kann dabei jeder gÅltige Betriebssystem-Befehl sein:
+        Der Name eines ausfÅhrbaren Programmes, eine Batch-File oder
+        jeder andere Befehl, den Dein Kommando-Interpreter versteht
+        (OS/2's CMD, 4OS, usw.).
+        
+        Sofern es sich bei <command> nicht um ein ausfÅhrbares Programm
+        handelt, ruft FastLst den von Dir (via COMSPEC Umgebungs-Variable)
+        gesetzten Kommando-Zeilen-Interpreter auf.
+        
+        
+        
+                  Kommandos in Verbindung mit dem Archivieren
+        
+        Die folgenden Anweisungen haben eine gemeinsame Syntax:
+        
+        Zwei Parameter sind im <command> mîglich:
+        
+        %a wird durch den Namen der Archiv-File incl. vollem Pfad ersetzt
+        
+        %f wird durch den Namen des neuen oder entpackten File ersetzt..
+           (Keine Pfad-Angabe).
+        
+        
+        <command> wird aus dem Verzeichnis aufgerufen, in das %f hineingehîrt.
+        
+        
+        
+        BeforeArcList <command>
+        
+                Dieses Kommando wird vor der Archivierung einer Nodelist
+                ausgefÅhrt.
+        
+        
+        AfterArcList <command>
+        
+                Dieses Kommando wird nach der Archivierung einer Nodelist
+                ausgefÅhrt.
+        
+        
+        BeforeUnArcList <command>
+        
+                Dieses Kommando wird vor dem Entpacken einer Nodelist
+                ausgefÅhrt.
+        
+        
+        AfterUnArcList <command>
+        
+                Dieses Kommando wird nach dem Entpacken einer Nodelist
+                ausgefÅhrt.
+        
+        
+        BeforeArcDiff <command>
+        
+                Dieses Kommando wird vor dem Archivieren einer Nodediff
+                ausgefÅhrt.
+        
+        
+        AfterArcDiff <command>
+        
+                Dieses Kommando wird nach dem Archivieren einer Nodediff
+                ausgefÅhrt.
+        
+        
+        BeforeUnArcDiff <command>
+        
+                Dieses Kommando wird vor dem Entpacken einer Nodediff
+                ausgefÅhrt.
+        
+        
+        AfterUnArcDiff <command>
+        
+                Dieses Kommando wird nach dem Entpacken einer Nodediff
+                ausgefÅhrt.
+        
+        
+                              Beispiel
+        
+        
+        Beispiel, um eine neue Nodelist weiterzureichen (Hinweis:
+        Du musst wahrscheinlich den kompletten Pfad zur Konfig-Datei
+        angeben, da dieses Kommando aus dem Verzeichnis, in dem sich %f
+        befindet, aufgerufen wird):
+        
+          AfterArcList Hatch %a NODELIST "Neue Nodelist"
+        
+        
+        
+                   Kommandos in Verbindung mit der Nodediff
+        
+        Die folgenden Anweisungen akzeptieren folgende Paramter:
+        
+        %l wird durch den Namen der Nodelist incl. vollem Pfad ersetzt.
+        
+        %d wird durch den Namen der Nodediff incl. vollem Pfad ersetzt.
+        
+        Der <command> wird von aktuellen Verzeichnis aufgerufen.
+        
+        
+        
+        BeforeEdit <command>
+        
+                Dieses Kommando wird vor dem HinzufÅgen der Nodediff
+                ausgefÅhrt.
+        
+        
+        AfterEdit <command>
+        
+                Dieses Kommando wird nach dem HinzufÅgen der Nodediff
+                ausgefÅhrt.
+        
+        
+        
+                                  G L O B A L
+        
+                                     Teil C
+        
+        
+        Die Anweisungen in diesem Teil haben direkten Einfluss auf die
+        Verarbeitung aller "OUTPUT-Blocks" und damit natÅrlich auch
+        auf alle "INPUT-Blocks" (Quell-Nodelisten).
+        
+        Diese Anweisungen kînnen auch im "OUTPUT" Teil eines "OUTPUT-
+        Blocks" (Ausnahme bei der "NoCompile"-Anweisung) oder innerhalb
+        eines "INPUT block" stehen. In diesem Fall haben sie nur Ein-
+        fluss auf den jeweiligen Block, in dem diese eingetragen sind.
+        
+        FÅr den Fall, das diese Anweisung bereits in einem hîher gelegenen
+        Block benutzt wird, behandelt FastLst sie als temporÑres öber-
+        schreiben.
+        
+        
+        
+        MsgRem [<string>]
+        
+                Wenn die MsgRemArea-Anweisung aktiv ist, protokolliert FastLst
+                folgendes:
+        
+                Keine MsgRem Anweisung: nichts;
+        
+                MsgRem ohne <string>: alles;
+        
+                MsgRem mit <string>: nur die Kommentare, die mit ";<l>" beginnen,
+                wobei <l> einer der Buchstaben im <string> sein muss.
+        
+                Das Zeichen ";" im Parameter <string> gibt an, da· Kommentare,
+                die mit mit "; " oder ";<word>" beginnen, protokolliert werden.
+        
+                Vereinbarte Typen von Kommentar-Zeilen:
+        
+                ;S Das ist ein Kommentar fÅr Sysops
+                ;U Das ist ein Kommentar fÅr User/Benutzer
+                ;F Dieser Kommentar soll in formatierten Fido-Listen erscheinen
+                ;A Das ist ein Kommentar von allgemeinem Interesse
+                ;E Dieser Kommentar ist eine Fehlermeldung
+        
+            Beispiel:
+        
+                "MsgRem SE"
+        
+                Dadurch werden nur Kommentare fÅr Sysops und Fehlermeldungen
+                protokolliert (Diese Zeilen beginnen mit ";S " und ";E").
+        
+        
+        
+        MsgLog [NullPhone] [Redirected] [Points]
+        
+                Einige Åbliche Situationen (keine wirklichen Fehler) werden
+                der Grundeinstellung nicht in der "MsgLogArea" protokolliert.
+                Mit dieser Anweisung kannst Du diese trotzdem aktivieren, be-
+                denke dabei jedoch, dass die Reports recht gross werden
+                kînnen.
+        
+                "NullPhone": Systeme mit leerer Telefon-Nummer werden
+                             protokolliert.
+        
+                "Redirected": Zum Coordinator umgeleitete Systeme werden
+                              protokolliert (z.B. Hold, unverîffentlicht).
+        
+                "Points": Points mit leerer Telefonnummer werden protokolliert.
+                          Bedenke, da· die meisten Pointliste Points mit
+                          unverîffentlichten (also leeren Telefon-Nummer)
+                          beinhalten.
+        
+          Beispiele:
+        
+                MsgLog Redirected
+                MsgLog Redirected NullPhone
+        
+        
+        
+        GermanPointList
+        
+                FastLst behandelt hiermit die aktuelle Nodelist als eine deutsche
+                3D-Pointliste. Sofern nicht in der Nodelist-Anweisung angegeben,
+                wird Zone 2 wird angenommen.
+        
+                Du solltest diese Anweisung nur im entsprechenden "INPUT-
+                Block" verwenden, dadurch hat es nur Einfluss auf die
+                aktuelle Nodelist (Pointlist).
+        
+                WARNUNG: Solltest Du diese Anweisung im globalen Teil
+                oder in einem "OUTPUT-Block" benutzen, wirkt es
+                auf alle darunterhÑngenden Nodelisten.
+        
+            Beispiel "INPUT-Block":
+        
+                NodeList Points24.???
+                  GermanPointList
+                  Nodediff Pr24Diff.???
+                  ArcList Points24.??? 1
+                  ArcDiff Pr24Diff.??? 5
+                  ArcListDesc R24 PointList fÅr Tag %d (%D), %a Format
+                  ArcDiffDesc R24 PointDiff fÅr Tag %d (%D), %a Format
+        
+        
+        
+        NoPointLstPhone
+        
+                Macht Sinn fÅr das _Entfernen_ von Telefonnummern in den
+                angegebene PointListen (Deutsche oder im  "Boss" Format)
+                und Ñndert diese auf "-Unpublished-".
+        
+                Sofern Du Squish und Binkley benutzt, dann willst Du sicherlich
+                die Point-EintrÑge mit der 'Boss' Telefonnummer haben (anderen-
+                falls muss eine Crsh-Messgae an den Point manuell auf den
+                Boss geÑndert werden)
+        
+                Falls Du jedoch einen Netmail-Manager (wie NmFwd) im Einsatz
+                hast, der Crash-Messages sowieso schon auf den Boss addressiert
+                sofern der Point keine Telefonnummer hat, dann solltest Du
+                diese Anweisung aktivieren.
+        
+        
+        
+        BeforeCompile <command>
+        
+                Dieses Kommando wird vor dem Erstellen der betreffenden
+                Nodelisten ausgefÅhrt.
+        
+                Diese Anweisung unterliegt den gleichen Regeln wie bereits
+                unter "Externe Kommandos" im Teil B beschrieben.
+        
+                Der %l Parameter wird ersetzt durch den vollen Namen der
+                Nodelist incl. Pfad.
+        
+        
+                <command> wird von aktuellen Verzeichnis aufgerufen.
+        
+        
+        
+        AfterCompile <command>
+        
+                Dieses Kommando wird nach dem Erstellen der betreffenden
+                Nodelisten ausgefÅhrt.
+        
+                Diese Anweisung unterliegt den gleichen Regeln wie bereits
+                unter "Externe Kommandos" im Teil B beschrieben.
+        
+                Der %l Parameter wird ersetzt durch den vollen Namen der
+                Nodelist incl. Pfad.
+        
+        
+                <command> wird von aktuellen Verzeichnis aufgerufen.
+        
+        
+        
+        FidoTxt [<FidoTxt>]
+        
+                Die Anweisung erstellt eine Text-Datei mit 80-Zeichen/Zeile
+                fÅr alle Nodes. Nodes, die via "Node,.."-Methode eingeschlossen
+                wurden, sowie alle Points erscheinen in der Text-Datei nicht.
+        
+                Den Dateinamen <FidoTxt> als Name der Text-Datei kann man weglassen.
+                Dann gilt der Standard-Name "Nodelist.txt". Sofern dieser Dateiname
+                bereits fÅr andere Nodelisten benutzt wird, fÅgt FastLst
+                die EintrÑge einfach am Ende dieser Datei an.
+        
+            Beispiel:
+        
+                FidoTxt
+        
+        
+        
+        FidoPrn [<FidoPrn>]
+        
+                Die Anweisung erstellt eine Text-Datei mit 80-Zeichen/Zeile
+                fÅr alle Nodes. Nodes, die via "Node,.."-Methode eingeschlossen
+                wurden, sowie alle Points erscheinen in der Text-Datei nicht.
+        
+                Den Dateinamen <FidoPrn> fÅr die Text-Datei kann man weglassen.
+                Dann gilt der Standard-Name "Nodelist.Prn". Sofern dieser Dateiname
+                bereits fÅr andere Nodelisten benutzt wird, fÅgt FastLst
+                die EintrÑge einfach am Ende dieser Datei an.
+        
+            Beispiel:
+        
+                FidoPrn
+        
+        
+        
+        IncCoord <CoordLev>
+        
+                Die Koordinatoren vom angegeben und hîheren Status werden
+                unabhÑngig von der "IncAddr"/"ExcAddr" in die Nodelist-Ausgabe auf-
+                aufgenommen.
+                <CoordLev> kann ZC, RC, NC, HC sein.
+        
+            Beispiel:
+        
+        
+                IncCoord NC
+        
+        
+        
+                             Globaler Export-Teil
+        
+        
+        Du kannst die im "Global-Teil Export" beschriebenen Anweisungen
+        fÅr den "Export Block" eines "INPUT-Blocks" auch hier verwenden.
+        
+
+        
+        
+                            O U T P U T   B L O C K
+        
+        
+        Die folgenden Anweisungen definieren die Erstellung einer
+        einzelnen binÑren V7-Nodelist.
+        
+        Der Block beginnt mit einem Ausgabe-Teil, der Einfluss auf die
+        Erstellung aller Eingabe-Nodelisten hat, gefolgt von einer Reihe von
+        "Input Blocks", die wiederum die Behandlung jeder Eingabe-Nodelist
+        bestimmen.
+        
+        Der erste "Output Block" kann ein spezieller Block sein, sofern
+        die "NoCompile" Anweisung anstatt "Version7+" benutzt wird. Dieser
+        Block ist dann quasi ein reiner Verwaltungsblock.
+        Die angegebenen Nodelisten werden dabei nicht verarbeitet.
+        
+        
+        
+        Version7[+] <Path> <Nodex> [<Sysop>[.<Ext>]]
+        
+                Diese Zeile beginnt einen Block von Anweisungen, die die
+                Erstellung einer Ausgabe-Nodeliste definieren. Du kannst eine
+                oder mehrere Nodelist-Ausgaben mit verschiedenen Namen und/
+                oder verschiedenen Pfaden erzeugen.
+                Jede "Version7"-Anweisung bestimmt den Anfang einer neuen
+                neuen Definition einer Ausgabe-Nodelist.
+        
+                Version7+ ist fÅr V7+ wÑhrend Version7 etwas Platz spart und
+                nur die V7-Files erstellt.
+        
+                <Path> ist das Verzeichnis, in dem die Ausgabedateien wie *.DAT
+                und die Index-Files erstellt werden.
+        
+                <Nodex> ist der Filename (ohne Erweiterung) fÅr die
+                die Ausgabe-Files
+        
+                <Sysop>.<Ext> ist der Dateiname (ohne Erweiterung) fÅr die Sysops-
+                Index-Datei .NDX. Falls keine Erweiterung angegeben wird .NDX
+                gesetzt, sofern <SysopNdx> vom <Nodex> abweicht, ansonsten
+                wird .SDX gesetzt.
+        
+                Falls <Sysop> bei Version7+ nicht angegeben wird, dann
+                wird <Nodex>.SDX angenommen
+        
+                Falls <Sysop> bei Version7 nicht angegeben wird, dann
+                wird kein Sysop-Index erstellt.
+        
+                Normalerweise sollte <Nodex> "NODEX" und <Sysop> "SYSOP"
+                heissen.
+        
+                Falls Du V7+ einsetzt und alle Deinen Anwendungen kînnen mit
+                <NODEX>.SDX als SysOp-Index leben, dann lass <Sysop> weg.
+        
+                Aus KompatibilitÑtsgrÅnden mit V7 Anwendungen die einen
+                "SYSOP.NDX" als SysOp-Index brauchen, ist "SYSOP" als <SysOp>
+                empfohlen.
+        
+                Alle folgenden Anweisungen, bis zur nÑchsten "Version7"-Zeile
+                (sofern vorhanden) beziehen sich auf die zuvor genannte
+                "Version7"-Ausgabe-Files.
+        
+        
+            Beispiele:
+                                                   ; Sysop-Index-Name
+                Version7+ d:\bbs\v7\ NODEX  SYSOP  ; SYSOP.NDX
+                Version7+ d:\bbs\v7\ NODEX  NODEX  ; NODEX.SDX
+                Version7+ d:\bbs\v7\ NODEX         ; NODEX.SDX
+                Version7  d:\bbs\v7\ NODEX  SYSOP  ; SYSOP.NDX
+                Version7  d:\bbs\v7\ NODEX  NODEX  ; NODEX.SDX
+                Version7  d:\bbs\v7\ NODEX         ; no index
+        
+            Version7 Ausgabe-Files:
+                <Nodex>.DAT     Nodelist Daten
+                <Nodex>.NDX     Address Index
+                <Sysop>.NDX     SysOp Index (optional)
+        
+                Einige Version7 Programme akzeptieren <Nodex>.SDX als den
+                SysOp-Index bereits heute.
+        
+            Version7+ Ausgabe-Files:
+                <Nodex>.DAT     Nodelist Data
+                <Nodex>.DTP     Weitere Daten
+                <Nodex>.NDX     Address Index
+                <Nodex>.SDX     SysOp Index
+                <Nodex>.PDX     Telefon-Index
+        
+                Version7+ Programme mÅssen konfigurierbar sein um <SysOp>.Ndx
+                als Sysop-Index zu benutzen. Das gewÑhrleistet KompatibilitÑt.
+        
+        
+        NoCompile
+        
+                Der erste "Output Block" kann anstatt mit der "Version7"-Anweisung
+                mit der Anweisung 'NoCompile' beginnen.
+        
+                Durch diese Anweisung wird der erste "Output-Block" zu einem
+                "NoCompile"-Block und damit zu einem reinen Verwaltungblock
+                der Nodelisten. Es wird keine V7-Nodeliste erstellt.
+        
+                Das ist die Methode, die Nodelist zu pflegen
+                (HinzufÅgen von Diff's, Archivieren mit anderen
+                Packern), aber ohne eine V7-Liste zu erstellen.
+        
+                Alle Anweisungen zur Nodelist-Erstellung (s.a Global Teil C)
+                sind natÅrlich im 'NoCompile'-Block unzulÑssig.
+        
+        
+        
+        
+                             O U T P U T   Block
+        
+        
+        Die folgenden Anweisungen haben nur Einfluss auf die Verarbeitung
+        des aktuellen "Output-Blocks" und mÅssen vor den Anweisungen
+        eines "Input-Blocks" stehen (dieser beginnt mit der Nodelist-Anweisung)
+        
+        
+        FidoUserLst [<FidoUserLst>]
+        
+                Erstellt eine "fidouser.lst"-Ñhnliche SysOp-Liste im Text-
+                format. <FidoUserLst> als Dateiname dafÅr kann weggelassen werden,
+                ohne seine Angabe gilt "FidoUser.Lst". Mehrere "Output"-Blîcke
+                benîtigen unterschiedliche Namen.
+        
+            Beispiel:
+        
+                Version7+ d:\bbs\v7 NODEX SYSOP
+                   FidoUserLst
+        
+        
+        
+        LinkOnDisk
+        
+                Erzwingt das DTP-Linking "auf Platte".
+        
+                Das ist wichtig um zu vermeiden das FastLst virtuellen Speicher
+                zur Erstellung des <NODEX>.DTP Files verwendet.
+        
+                Falls nicht genÅgend freier physikalischer Speicher (12MB fÅr
+                60,000 Nodes) verfÅgbar ist, dann ist "auf Platte" schneller.
+        
+            Beispiel:
+        
+                Version7+ d:\bbs\v7 NODEX
+                   LinkOnDisk
+        
+        
+        
+        LogStats
+        
+                Statistiken in die MsgLogArea.
+        
+                Dadurch schreibt FastLst die Statistiken der aktuellen
+                Ausgabe-Nodelist in eine Area die durch MsgLogArea
+                angegeben wurde.
+        
+            Beispiel:
+        
+                Version7+ ...
+                  LogStats
+        
+        
+        
+                                Output-Block Angaben
+        
+        Du kannst hier die gleichen Anweisungen verwenden, wie sie bereits
+        im "Global Teil B" (sofern es sich nicht um einen "NoCompile"-Block
+        handelt), "Global Teil C" und "Export Global Teil" (s.a Export Block
+        weiter unten) beschrieben wurden.
+        
+        
+        
+                             ADRESSEN-ZUSéTZE
+        
+        
+        Die folgenden Anweisungen definieren einen Adress-Zusatz (z.B.
+        Passwort) fÅr die zu erstellenden Nodelisten in dem aktuellen "Output-
+        Block". Diese Anweisungen sind in einem "NoCompile-Block" unzulÑssig.
+        
+        Wenn Du es lieber magst,kannst Du diese Anweisungen auch im sachlich
+        zugeordneten "Input-Block" angeben.
+        
+        WARNUNG: Benutze nur vollstÑndige Adressen (incl. Zone).
+        
+        
+        
+        Password <Addr> <Password>
+        
+                Ermîglicht die Angabe jeweils eines <Password> fÅr die <Addr>.
+        
+                Version 7 hat keine Begrenzng fÅr die LÑnge eines Passwortes,
+                leider berÅcksichtigen einige Programme nur 8 Zeichen. Einige
+                (sehr seltene) Programme haben auch mit 8 Zeichen ihre Probleme,
+                und benutzen nur 6 oder 7 Zeichen.
+        
+            Beispiel:
+        
+                Password 2:332/504.4 Password
+        
+        
+        
+        PasswordFile <PasswordFile>
+        
+                Bietet die Mîglichkeit ein Passwort-File anzugeben, wobei
+                auch hier pro Zeile nur ein Adresse/Passwort-Paar zulÑssig ist.
+        
+                In diesem File kannst Du die "Password"-Anweisung weglassen.
+        
+                Du kannst nach Belieben mehrere "Password"-Anweisungen in einem
+                oder mehreren "PasswordFile" eintragen.
+        
+                Die Angaben in diesem File gelten NUR fÅr den aktuellen
+                Output- oder Input-Block.
+        
+                FastLst protokolliert im Log-File welche Nodelisten oder
+                Ausgabe-Nodelisten das angegebene "PasswordFile" benutzt haben.
+                Bei irgendwelchen Unklarheiten hilft daher ein Blick in die Log-
+                Datei.
+        
+            Beispiel:
+        
+                PasswordFile fidonet.pwd
+        
+        
+        
+        Phone <Addr> <Phone> [<NodeFlags> [<Cost> [<UCost>]]]
+        
+                Gibt Dir die Mîglichkeit eine Telefon-Nummer und optional
+                die entsprechenden Flags und Kosten zu Åberschreiben.
+        
+                Falls <Phone> Nicht-Numerische Zeichen beinhaltet, dann gibt
+                das als wortwîrtlich
+        
+                Falls <Phone> nur Zahlen und Bindestriche '-' beinhaltet, ist
+                es eine normale PSTN-Nummer and MUSS wie eine normale Nummer
+                aus der Source-Nodelist behandelt werden (ganz normale
+                Anruf-Umsetzung ist gefragt).
+        
+                <NodeFlags> hat die gleiche Bedeutung wie in der NodeFlags
+                Anweisung. Benutze ein einzelnes Komma um ein <NodeFlag> nicht
+                zu Åberschreiben.
+        
+                <Cost> und <UCost> haben die gleiche Bedeutung wie in der Cost
+                Anweisung.
+        
+            Beispiel:
+        
+                Nur Åberschreiben der <Phone>:
+                Phone 2:332/501.1 39-59-399999      ; Normales umsetzen
+                Phone 1:106/2000  juge.com          ; Internet-Adressen
+                Phone 1:123/4567  123.456.789.012   ; IP-Adresse
+                Phone 2:245/6789  "Bob.scr"         ; Skript-Namen
+        
+                <Phone> und <NodeFlags> Åberschreiben:
+        
+                Phone 2:332/501.0 39-59-499999 V34,CM ; Setzen neuer Flags
+                Phone 2:332/501.1 39-59-399999 ,      ; Ohne neuer Flags
+        
+                <Phone>, <NodeFlags> und <Cost>/<UCost> Åberschreiben:
+        
+                Phone 2:332/501 39-59-499999 V34,CM 10 0
+                Phone 2:332/502 mega.com VM 0      ; <Cost> == <UCost>
+        
+        
+        
+        NodeFlags <Addr> <NodeFlags>
+        
+                Dadurch kannst Du bestimmte Flags fÅr jeden Eintrag <Addr>
+                in der Nodelist ersetzen.
+        
+                Wenn Du das CM-Flag oder den Modem-Typ (HST, V32B, ZYZ) usw.
+                Ñndern willst, benutze diese Anweisung. Vergiss nicht:
+                Alle vorhandenen Flags gehen verloren, deshalb trage alle
+                benîtigten Flags ein.
+        
+                Die <NodeFlags> kînnen auch leer sein.
+        
+            Beispiel:
+        
+                NodeFlags 2:332/501.0 CM,H16,V32b
+        
+        
+        
+        Flags <Addr> <Flags>
+        
+                Die "Flags"-Anweisung ermîglicht, selbstdefinierte bit-
+                orientierte Flags in der zu erstellenden Nodelist zu setzen.
+                Die Bit-Kominationen sind 5,6,7,8,9,A,B,C,D,E,F, wobei 5 dem
+                sechsten Bit und F dem sechzehnten Bit entspricht.
+        
+                Diese Bits werden "ORed" mit dem bereits Åber die "FlagDef"
+                Tabelle definierten Flags
+        
+                Falls Du einige Bits auf Null setzen willst, dann trage
+                diese Source-Flags unter der "NodeFlags" Anweisung ein.
+        
+            Beispiel:
+        
+                Flags 2:332/501.0 AB5   ; Setzt bit 5,A und B.
+        
+        
+        
+        Cost <Addr> <Cost> [<UCost>]
+        
+                <Cost> und <UCost> mÅssen im Bereich zwischen 0 und 65535
+                liegen. Dieser Eintrag Åberschreibt die Kosten- und Benutzer-
+                kostenfelder der <Addr> in der erstellten Nodelist. Fehlt die
+                <UCost>-Angabe wird sie identisch mit <Cost> gesetzt.
+        
+            Beispiel:
+        
+                Cost 2:332/501.0 150
+
+        
+        
+                               SEGMENT-AUSWAHL
+        
+        Die folgenden Anweisungen ermîglichen es, bestimmte Teile der <Node-
+        list> ein- oder auszuschliessen. Werden diese Angaben auf Kommentar
+        gesetzt werden, wird die komplette <Nodelist> erstellt. Der Ein- und/
+        oder Ausschluss von Teilen der Nodelist vermindert die Geschwindigkeit
+        von FastLst drastisch, da jede Adrese ÅberprÅft wird. Mîglicherweise
+        braucht FastLst dann lÑnger, als Du Dir vom Ausschluss grosser Teile
+        der Nodelist erwartet hast.
+        
+        Diese Anweisungen sind natÅrlich in einem "NoCompile"-Block nicht
+        mîglich.
+        
+        Wenn diese Anweisungen in einem "Input"-Block verwendet werden, so gilt
+        das nur fÅr die betreffende Nodelist.
+        
+        
+        
+        IncAddr <PartAddrLst>
+        
+                Falls Du nur bestimmte Adressen in der Nodelist haben willst,
+                dann benutze diese Anweisung. Es werden dann nur die Zonen/
+                Regionen/Netze/Hubbereiche/Nodes/Points, die Du in der <PartAddrLst>
+                -Anweisung angegeben hast, in der Nodelist-Ausgabe aufgenommen.
+                Du kannst Zonen, Regionen/Netze, Hub/Nodes und Point-Adressen
+                angeben.
+        
+            Beispiel:
+        
+                IncAddr 1 2:33 2:200/100 3:632 4:801/17
+        
+                  Erstellt: Zone 1, Region 33 der Zone 2, Hub 100 des Netzes
+                  200 der Zone 2, Netz 632 der Zone 3, Node 4:801/17
+        
+        
+        
+        ExcAddr <PartAddrLst>
+        
+                Will man bestimmte Nodelist-Segmente von der Verarbeitung
+                ausschliessen, werden sie unter <PartAddrLst> eingetragen,
+                wie bereits unter "IncAddr" beschrieben. Man kann "IncAddr"
+                oder "ExcAddr" oder beides verwenden, um bestimmte Teile
+                einzuschliessen und davon wieder einige Unter-Segmente auszuschliessen.
+                "ExcAddr" ist immer eine Untermenge von "IncAddr".
+        
+            Example:
+        
+                ExcAddr 2:332/500
+        
+                  Schliesst Hub 500 im Netz 332 der Zone 2 aus.
+        
+        
+
+        
+        
+                             I N P U T   B L O C K
+        
+        Der "Input"-Block beginnt mit einer "Nodelist"-Anweisung und setzt
+        sich bis zum Beginn eines "Input"- oder "Output"-Block ("NodeList" oder
+        "Version7"-Anweisung) oder dem Ende der Konfig-File fort.
+        
+        
+        
+        NodeList <NodeList> [<PartAddr> [<Region> [<Hub>]]]
+        
+                Diese Zeile beginnt einen Anweisungsblock, der die Behandlung
+                der angegebenen Nodelist definiert. Durch die Angabe von
+                mehreren Nodelisten kannst Du verschiedene Eingabe-Nodelisten in
+                die gleichen Ausgabe-Dateien (s.a. "Version7+"-Anweisung)
+                einbinden. Jede "NodeList"-Anweisung markiert den Anfang
+                eines neuen "Input"-Blocks mit seinen Verarbeitungs-Anweisungen.
+        
+                Falls die gleiche Nodenummer in mehreren <NodeList>-EintrÑge
+                vorkommt, z.B. weil Du die komplette Nodelist und das
+                aktuellere Region- und/oder Zonen-Segement einbindest, gewÑhr-
+                leistet FastLst, dass die gleiche Nodenummer nur einmal in den
+                entsprechenden Index-Files vorhanden ist (Jene aus der zuletzt
+                bearbeiteten Nodelist). Um immer die mîglichst aktuelle Nodelist
+                zu erstellen, musst Du lokale Segmente (Network, Region, Zone)
+                erst HINTER der grossen Liste eintragen.
+        
+                <NodeList> ist der Name der Eingabe-Nodelist.
+                Ohne besondere Pfad-Angabe wird <InputPath> angenommen.
+        
+                Wenn Du als Erweiterung ".???" eintrÑgst, werden alle Dateien
+                mit drei Zeichen in der Erweiterung untersucht und nur jene
+                mit der hîchsten Tagesangabe (des lfd. Jahres) darin
+                wird fÅr eine neue Erstellung berÅcksichtigt.
+        
+                Die mîgliche Angabe des <PartAddr>-Anweisung ist fÅr
+                all jene Nodelist-Segmente, die nicht die komplette Nummern-
+                Information inne haben. Beispiel: Ein Region-Segment beginnt
+                normalerweise mit dem Wort "Region," und beinhaltet keinerlei
+                Zoneninformationen. Es liegt an Dir, FastLst die entsprechende
+                Zone anzugeben. Genauso deshalb Du es mit der Zone und Netz-
+                Nummer fÅr Hub-Segmente handhaben.
+        
+                FÅr Netz-Segmente sollte auch die <Region> angegeben werden
+                udn fÅr einfachen Node- und/oder Point-Listen der <Hub>.
+        
+                FastLst ist intelligent genug um automatisch die Region und
+                Hub-Information zu setzen (sofern mîglich):
+        
+                - gleicher Node ist auch in grîsseren Segemt (Region und Hub)
+                - anderer Node mit gleicher Zone:Netz (nur die Region)
+                - Boss von dem point (Region und Hub)
+        
+                Hinweis: Points ohne Boss werden aus den Index-Files gelîscht.
+        
+            Beispiele:
+        
+               WICHTIG:
+                    Die folgenden Zeilen sind nur eine Liste mîglicher
+                    Kombinationen und KEIN Beispiel fÅr die Verarbeitung
+                    von mehreren Nodelisten.
+                    Nach jeder "NodeList"-Anweisung musst Du alle Anweisungen,
+                    die Einfluss auf die Verarbeitung dieser einzelnen
+                    Nodelist haben, eintragen.
+        
+        
+             1) NodeList nodelist.???     ; Fidonet Nodelist
+        
+             2) NodeList region.033 2     ; Region 33 Liste, Zone 2
+        
+             3) NodeList region24.??? 2   ; Region 24 Liste, Zone 2
+        
+             4) NodeList net.332 2 33     ; Netz Liste, Zone 2, Region 33
+        
+             5) NodeList hub.500 2:332 33 ; Hub Liste, Zone 2, Netz 332,
+                                          ; Region 33
+        
+             6) NodeList locnode.500 2:332 33 500
+                                          ; einige Nodes, Zone 2, Netz 332,
+                                          ; Region 33, Hub 500
+        
+             7) NodeList points.504 2:332/504
+                                          ; Points von 2:332/504 im
+                                          ; "Point," Format
+        
+             8) NodeList morenode.lst   ; Einige Nodes im "Node,"
+                                        ; Format. Keine <PartAddr> nîtig,
+                                        ; da die "Node," Zeile alle Infos
+                                        ; beinhaltet.
+        
+             9) NodeList ptlist.???     ; Point-Liste im "Boss," Format.
+                                        ; format. Keine <PartAddr> nîtig,
+                                        ; da die "Boss," Zeile alle Infos
+                                        ; beinhaltet.
+        
+        
+        
+                                 Input Block Angaben
+        
+        Die folgenden Anweisungen beeinflussen die Bearbeitung
+        jeder nach der letzten "Nodelist"-Anweisung angegebenen Nodelist
+        (fÅr den aktuellen "Input"-Block).
+        
+        
+        
+        NodeDiff <NodeDiff>
+        
+                <NodeDiff> ist der Name des Nodediff-File.
+                Ohne besondere Pfad-Angabe wird <InputPath> angenommen.
+        
+                <NodeDiff> sollte mit der Endung/Erweiterung ".???" ange-
+                geben werden. Durch diesen Eintrag sucht FastLst nach der
+                passenden <NodeDiff>, vorausgesetzt, ihre entsprechende
+                Endung/Erweiterung enthÑlt den Tag des Jahres.
+        
+            Beispiel:
+        
+                NodeDiff NODEDIFF.???
+        
+        
+        
+        ArcList <ArcList> [<Keep#>]
+        
+                Hier kannst Du den Namen des Archives angeben, in dem die
+                <Nodelist> steht. Dieser Parameter muss angegeben werden, sofern
+                Du das automatische Entpacken/Wiederherstellen benutzt. Des
+                weiteren kannst Du diese Anweisung zum Lîschen alter Files
+                benutzen.
+        
+                <ArcList>> wird benutzt, um aktuelle Nodelisten zu entpacken.
+                diese entsprechend der definierten "ArcMethod" zu packen
+                und um neue Nodelisten nach der ErgÑnzung durch
+                entsprechende Diff's zu packen.
+        
+                Wenn <ArcList> mit der Endung ".???" versehen ist, werden alle
+                Files entsprechend der Packer (.zip, .lzh usw.) oder mittels
+                der variablen Endung/Erweiterung (.z10, .z17, .l10, .l17 usw.),
+                berÅcksichtigt, wobei die letzten 2 Zahlen dem Tag des Jahres
+                entsprechen.
+        
+                Wenn Du die Suche auf bestimmte fest definierte oder
+                variable Endungen/Erweiterungen beschrÑnken willst, dann
+                benutze
+                "ArcList nodelist.zip", fÅr nur .zip;
+                "ArcList nodelist.z??", fÅr nur .z??.
+        
+                <Keep#> ist optional und gibt an, wieviele Archiv-Dateien auf-
+                gehoben werden, abhÑngig vom Tag im lfd. Jahr (das énderungs-
+                Datum wird auch berÅcksichtigt um die korrekte zeitliche
+                Abfolge zu gewÑhrleisten).
+        
+                Sofern Du mehrere Archive mit mehreren verschiedenen
+                Endungen/Erweiterungen (.z??, .l??, usw.) benutzt, dann
+                wÑchst die Zahl der Dateien, weil jede gleiche 'Tages'endung
+                mehrere Dateien archiviert.
+        
+                Die zu den gelîschten Dateien gehîrende Beschreibung
+                in der FILES.BBS wird entfernt.
+        
+            Beispiel:
+        
+                ArcList nodelist.??? 1
+        
+        
+        
+        ArcDiff <ArcList> [<Keep#>]
+        
+                Hier kannst du den Namen des Archives angeben, in dem die
+                <Nodediff> steht. Dieser Parameter muss angegeben werden, sofern
+                Du das automatische Entpacken/Wiederherstellen benutzt. Des-
+                weiteren kannst Du diese Anweisung zum Lîschen von alten Files
+                benutzen.
+        
+                <ArcDiff> sollte mit der Endung/Erweiterung ".???" angegeben
+                werden.
+        
+                Alle Dateien, die 2 Zahlen anstelle der letzten beiden  "?"
+                enthalten, werden geprÅft, wobei diese beiden Zahlen
+                wiederum als ein Tag im Jahr gelten.
+        
+                Wenn Du tatsÑchlich die Suche auf bestimmte Endungen/Erweiter-
+                ungen beschrÑnken willst, dann benutze "ArcDiff nodelist.z??"
+                um nur '.z??.' zu berÅcksichtigen.
+        
+                <Keep#> ist optional und gibt an, wieviele Archiv-Dateien auf-
+                gehoben werden, abhÑngig vom Tag im lfd. Jahr (das énderungs-
+                Datum wird auch berÅcksichtigt um die korrekte zeitliche
+                Abfolge zu gewÑhrleisten). Bei mehreren Archiv-Endungen gilt
+                das fÅr jede einzeln.
+        
+                Die zu den gelîschten Dateien gehîrende Beschreibung
+                in der FILES.BBS wird entfernt.
+        
+            Beispiel:
+        
+                ArcDiff nodediff.??? 5
+        
+        
+        
+        ArcListDesc <Desc>
+        ArcDiffDesc <Desc>
+        
+                Man kann hiermit fÅr die von FastList erzeugten neuen
+                Node-Listen und -Diffs eine Beschreibung in FILES.BBS eintragen.
+        
+                Folgende Parameter sind mîglich:
+        
+                %d : Die 3-stellige Nummer des Tages (ggf. mit fÅhrenden Nullen=
+                %a : Der Name des Packers
+                %D : Das Datum im US-Format (Feb 10, 1995)
+                %L : Das Datum im lokalen Format
+        
+            Beispiel:
+        
+                ArcListDesc Fido Nodelist fÅr Tag %d (%D), %a Format
+                ArcDiffDesc Fido Nodediff fÅr Tag %d (%D), %a Format
+        
+        
+        
+                                Lokale ZusÑtze
+        
+        Du kannst hier die gleichen Anweisungen verwenden, wie sie bereits
+        in den Abschnitten "Global-Teil B" (sofern es sich um einen "NoCompile"-
+        -Block handelt), "Global-Teil C" und "Global-Teil Export"
+        (s.a Export Block weiter unten) beschrieben wurden.
+        
+        
+        
+                             ADRESSEN-ZUSéTZE
+        
+        Man kann adress-spezifische Angaben (Z.B. Passwort) eintragen,
+        die nur fÅr die augenblickliche Quell-Nodeliste gelten.
+        Diese Anweisungen sind in einem "NoCompile-Block" nicht
+        zulÑssig/mîglich.
+        
+        Wenn Du diese Angaben bereits im "Output"-Block definiert hast,
+        kannst du diesen Teil Åberspringen.
+        
+        WARNUNG:
+        
+        Oftmals werden bestimmte Teile einer vorher erstellten Nodelist
+        nochmals eingebunden. Beispielsweise kînnte man einen Block
+        "NodeList nodelist.???" fÅr die weltweite Nodelist und dann noch
+        einen Block "Nodelist region.033" fÅr das Nodelist-Segment Deiner
+        Region verwenden.
+        
+        Die Mehrheit der EintrÑge in der letzteren sind mit Sicherheit
+        doppelte EintrÑge, da sie in der weltweiten Nodelist enthalten sind.
+        In diesem Fall vorhandener Duplikate werden nur die EintrÑge
+        des letzten Blockes "NodeList region.033" in die Index-Datei
+        Åbernommen und nur diese sind aktiv. Dadurch kann man die vollstÑndige
+        weltweite Nodeliste einbinden und gleichzeitig die eigene Teilliste
+        mit îrtlichen Segmenten auf dem neuesten Stand halten, weil Region-
+        Segmente schneller aktualisiert werden.
+        
+        Sofern Du bestimmte "Adress ZusÑtze" fÅr Nodes angibst, die in mehr
+        als in einer "Nodelist" vorkommen, musst Du diese "Adress ZusÑtze"
+        im letzten betroffenen "Nodelist"-Block angeben (oder natÅrlich im
+        Abschnitt "Output-Block"), sonst haben Deine EintrÑge keinerlei Wirkung.
+        
+        Eine Liste aller zulÑssigen Anweisungen steht unter "Adressen-ZusÑtze"
+        im Abschnitt "Output-Block" weiter oben.
+        
+        
+        
+                               SEGMENT-AUSWAHL
+        
+        
+        Du kannst hier die gleichen Anweisungen wie unter "Segment-Auswahl"
+        im Abschnitt "Output-Block" verwenden (sofern es sich nicht um einen
+        "NoCompile"-Block handelt).
+        
+        
+        
+                                 EXPORT Block
+        
+        FastLst kann Teile der Nodelist 'exportieren': Du kannst, z.B. die
+        komplette Region 25 aus der weltweiten Nodelist in ein File namens
+        "Region25.???" exportieren, wobei die '???' fÅr den Tag des Jahres      es.
+        stehen. Hinweis: Diese Mîglichkeit exportiert Teile der Nodelist
+        in eine bestimmte Datei. Will man dagegen nur bestimmte Nodelist-Teile
+        verarbeiten, muss man weiterhin die "Segment-Auswahl" im entsprechenden
+        Abschnitt der FastLst.cfg benutzen.
+        
+        Diese Export-Blîcke MöSSEN am Ende eines "Input Block"s angegeben werden;
+        man darf mehrere Export-Blîcke in einem einzigen "Input Block" angeben.
+        
+        SelbstverstÑndlich ist ein "Export Block" nur aus bereits erstellten
+        V7-Nodelisten mîglich, daher ist er in einem "NoCompile-Block" unzulÑssig.
+        
+        Das Exportieren erfolgt NUR, wenn neue Nodelisten vorgefunden werden
+        (oder wenn die zu exportierende Datei weder in unkomprimierter noch in
+        archivierter Form vorhanden ist), jedoch nicht, wenn die Konfig-Datei ge-
+        Ñndert wird. Dadurch kannst Du ohne weiteres die erstellten Dateien
+        mittels "AfterArcExport" weiterleiten. Du brauchst dabei nicht zu be-
+        fÅrchten, da· die Daten jedesmal, wenn Du das Konfig-File Ñnderst,
+        neuerlich 'gehatcht" werden. Solltest Du jedoch den "Export"-Block
+        wÅnschen, verwende den Befehlszeilen-Parameter -i.
+        
+        WICHTIG: Wenn Du den gleichen Exportdatei-Namen fÅr mehrere Quell-
+        Nodelisten verwendest, werden alle exportierten Teile nacheinander
+        am Ende angefÅgt. Wenn Du mîchtest, kannst Du dadurch FastLst an-
+        weisen, eine komplette "einfache" Nodelist-Datei zu erstellen,
+        die ganz verschiedene Quell-Nodelisten beinhaltet, die einfach nur
+        aneinander angehÑngt sind.
+        Einige Benutzer brauchen diese Mîglichkeit, um eine einzige
+        Eingabe-Nodelist fÅr andere Programme (Golded, ITRACK, TERMINATE u.a)
+        u erstellen. Damit diese Mîglichkeit auch richtig arbeitet, muss man den
+        Parameter '+' in der Export-Anweisung angeben (S.a. das Beispiel am Ende
+        des Abschnittes  "Global-Teil Export", der jetzt folgt).
+        
+        
+        
+        Export [+] <file> [<PartAddrLst>]
+        
+                Das '+' Zeichen muss angegeben werden, wenn Du eine verbundene
+                Liste durch Export aus mehreren Nodelisten in die gleiche
+                Exportdatei <file> erstellen willst. Dadurch wird die Exportdatei
+                bei einer neuen Nodelist-Verarbeitung jedesmal neu erstellt,
+                ihr Datei-Datum jedoch nicht dem Datum der Quell-Nodelist angepasst.
+        
+                <file> ist der Dateiname, in den Du die Teil(e) der Nodelist
+                exportierst.
+        
+                <PartAddrLst> ist die Teil-Adressen-Liste jener Segmente, die
+                exportiert werden sollen. öblicherweise handelt sich um eine
+                einfache Teil-Adresse. Sofern nicht angegeben, wird die kom-
+                plette Nodelist exportiert (nÅtzlich, um eine zusammen-
+                hÑngende Nodelist zu erstellen).
+        
+                Diese Anweisung markiert den Anfang eines "Export Block"s.
+                Mehrere "Export-Blîcke" im gleichen "Input-Block" sind erlaubt.
+        
+                Anmerkung: Die "Export-Blîcke" mÅssen am ENDE eines "Input"-
+                Blocks stehen (s.a. das Beispiel am Ende des "Export"-Blocks).
+        
+        
+            Beispiel:
+        
+                Export region25.??? 2:25
+        
+        
+        
+                                 Export Angaben
+        
+        Die folgenden Anweisungen dokumentieren die Parameter fÅr den Export,
+        der in der letzten "Export"-Anweisung angegeben wurde.
+        
+        
+        
+        ArcExport <arcfile> [Keep#]
+        
+                Hier kannst Du den Namen des Archives <arcfile> angeben, in das
+                Du die erstellte Export-Datei einkomprimieren willst.
+        
+                <Keep#> ist optional und gibt an, wieviele Archiv-Dateien auf-
+                gehoben werden, abhÑngig vom Tag im lfd. Jahr (das énderungs-
+                Datum wird auch berÅcksichtigt um die korrekte zeitliche
+                Abfolge zu gewÑhrleisten).
+        
+            Beispiel:
+        
+                ArcExport region25.??? 2
+        
+        
+        
+        ArcExportDesc <description>
+        
+                Die hier eingetragene Beschreibung <description> eines neu erstellten
+                stellten Archives wird von FastLst in die FILES.BBS eingetragen.
+        
+            Example:
+        
+                ArcExportDesc Region 25 %D, %a Format
+        
+        
+        
+        
+                             Export Globaler Teil
+        
+        
+        Die nachfolgenden Anweisungen kînnen im Export-Abschnitt eines
+        "Export Block"s, im Eingabe(Input)-Abschnitt eines "Input Block"s,
+        im Ausgabe(Output)-Abschnitt eines "Output Block"s, sowie im
+        "Globalen Teil" verwendet werden.
+        
+        Kurzgesagt, sind diese Anweisungen Åberall ausser im "NoCompile"-
+        Block erlaubt.
+        
+        AbhÑngig von ihrer Position, beeinflussen sie nur die betroffene
+        Nodelist.
+        
+        
+        
+        ArcExportDesc <description>
+        
+                <description> ist die Beschreibung die an die FILES.BBS
+                angefÅgt wird, wenn ein neues Archiv erstellt wird.
+        
+            Beispiel:
+        
+                ArcExportDesc Region 25 %D, %a format
+        
+        
+        
+        ArcExportMethod <meth>[,<f>] ...
+        
+                Dadurch werden die exportierten Dateien mit der/den angegebenen
+                Methode(n) archiviert.
+        
+                <meth>ist der in der Compress.cfg definierte Packername.
+        
+                <f> bietet die Mîglichkeit, den ersten Buchstaben fÅr
+                unterschiedliche Archiv-Erweiterungen (Name *.<F>*) zu bestimmen.
+        
+            Beispiel:
+        
+                ArcExportMethod zip lh,H
+        
+        
+        
+        BeforeArcExport <command>
+        AfterArcExport <command>
+        
+                Diese Kommandos werden vor/nach dem Archivieren
+                der exportierten Datei ausgefÅhrt.
+        
+                <command> kann jede Art von Kommando (ausfÅhrbare Programme,
+                Batch-File, internes Kommando, Alias usw.) sein, ausserdem
+                werden die Parameter %a (voller Archiv-Name) und %f (Name der
+                zu komprimierenden Datei ohne Pfad) erkannt, und es wird aus dem
+                Verzeichnis, das %f enthÑlt, ausgefÅhrt.
+        
+                WARNUNG:
+                Weil <command> aus dem Verzeichnis heraus aufgerufen wird,
+                in dem sich die zu komprimierenden Dateien befinden, kann
+                es nîtig sein, den Pfad der Konfig-Dateien anzugeben, die
+                von den durch <command> aufgerufenen Programmen benîtigt werden.
+        
+            Beispiel:
+        
+                AfterArcExport Hatch %a
+        
+        
+        
+        ExportNeededBeforeKill
+        
+                Gibt an, da· die exportierte Liste noch fÅr das Kommando
+                in der "BeforeKillSource" Anweisung gebraucht wird.
+        
+        
+        
+            Export Beispiel:
+        
+                NodeList nodelist.???
+                  NodeDiff nodediff.???
+                  ArcList  nodelist.??? 2
+                  ArcDiff  nodediff.??? 5
+                  ArcListDesc Fido Nodelist fÅr Tag %d (%D), %a Format
+                  ArcDiffDesc Fido Nodediff fÅr Tag %d,(%D), %a Format
+                  Export region25.??? 2:25
+                    ArcExport region25.??? 1
+                    ArcExportDesc Region 25 %D, %a Format
+                    ArcExportMethod zip lh
+                    AfterArcExport Hatch %a
+                  Export region24.??? 2:24
+                    ArcExport region24.??? 1
+                    ArcExportDesc Region 24 %D, %a Format
+                    ArcExportMethod zip
+        
+        
+            Komplettes Beispiel fÅr eine zusammenhÑngende Liste:
+        
+                NodeList nodelist.???
+                  NodeDiff nodediff.???
+                  ArcList  nodelist.??? 2
+                  ArcDiff  nodediff.??? 5
+                  ArcListDesc Fido Nodelist fÅr Tag %d (%D), %a Format
+                  ArcDiffDesc Fido Nodediff fÅr Tag %d,(%D), %a Format
+                  Export + megalist.Lst
+        
+                NodeList zonelist.???
+                  NodeDiff zonediff.???
+                  ArcList  zonelist.??? 2
+                  ArcDiff  zonediff.??? 5
+                  ArcListDesc Zonelist fÅr Tag %d (%D), %a Format
+                  ArcDiffDesc Zonediff fÅr Tag %d,(%D), %a Format
+                  Export + megalist.Lst
+                    ArcExport megalist.??? 1
+                    ArcExportDesc MegaList, %a Format
+                    ArcExportMethod zip lh
+        
+        
+
+        
+        
+                            COMPRESS DEFINITION FILE
+        
+        Das File, welches unter der CompressCfg Anweisung angegeben wird,
+        besteht aus einer Reihenfolge von Packer-Blîcken. Jeder Block beginnt
+        mit "Archiver" und endet mit der "End ArchiverAnweisung.
+        Ein entsprechendes Beispiel findest Du als Compress.Cfg im FastLst-Paket.
+        
+        Die Reihenfolge der Packer-Blîcke im <compress_cfg>-File kann
+        wichtig sein: Beim Versuch, eine komprimierte Datei zu entpacken,
+        erfolgt die Suche nach dem richtigen Packer in umgekehrter Reihenfolge
+        der EintrÑge in der <compress.cfg> (rÅckwaerts, von unten nach oben).
+        
+        Benutzen zwei Packer die gleiche Zeichenketten zur Identifizierung
+        am Datei-Anfang (z.B. ARC and PAK), mu· man folglich den Packer,
+        der beide Formate unterstÅtzt (hier PAK), unter dem anderen (ARC)
+        eintragen, der nur das eine Format unterstÅtzt .
+        
+        Die <compress.cfg>-Datei kann sowohl von DOS/NT- als auch von
+        OS/2-Anwendungen benutzt werden: Die "DOS/NT"- und "OS2"-Anweisungen
+        dienen zur Unterscheidung zwischen den Packern der beiden Betriebs-
+        systeme. Packer, die nicht unter beiden Systemen laufen, muss
+        die entsprechende Angabe "DOS" / "OS2" vorangestellt werden.
+        
+        WICHTIGER HINWEIS:
+        Die Dateizeilen, die mit "DOS" bzw. "OS2" beginnen, werden nur von
+        den jeweils entsprechenden DOS/NT- oder OS2-Versionen anerkannt. Sofern
+        Du unter FastLst/2 auch DOS/NT-Packer benîtigst, darfst Du diesen nicht
+        "DOS" voranstellen, da FastLst/2 diese Zeilen nicht verarbeitet. LÑsst
+        Du es richtigerweise weg, ruft FastLst/2 die DOS-Packer ganz normal auf
+        (vorausgesetzt das OS/2 DOS UnterstÅtzung installiert wurde).
+        
+        Siehe auch bei den Beispielen weiter unten.
+        
+        
+        Archiver <ARCname>
+        
+                Beginn eines Packer-Definitionsblockes.
+        
+                <ARCname> ist der Name des Packers.
+        
+            Beispiel:
+        
+                Archiver ZIP
+        
+        
+        
+        Extension  <ext>
+        
+                Legt die Grundeinstellung des Erweiterungsnamens (.<ext>)
+                des kompimierten File fest.
+        
+            Beispiel:
+        
+                Extension ZIP
+        
+        
+        
+        Ident <ofs>,<ID>
+        
+                <ofs> ist eine numerische Ganzzahl und zeigt an auf welchem
+                Aufsetzpunkt (offset) nach den Erkennungszeichen des
+                jeweiligen Packers mittels <id> gesucht werden soll.
+        
+                Bei negativen Zahlen beginnt diese Suche am Fileende eines
+                komprimierten File. -1 steht fÅr "letztes Byte", -2 steht
+                fÅr das "vorletzte Byte" und so weiter.
+        
+                <ID> ist eine Folge von hexadezimalen Zeichen.
+                Sie enthalten die markierende Zeichenkette des Packers,
+                die am angegebenen Aufsetzpunkt <ofs> in dem zu entpackendem
+                File gesucht wird.
+        
+            Beispiel:
+        
+                Ident 0,504b0304  ; "PK^c^d" Kennung fÅr ZIP
+        
+        
+        
+        Add <command>
+        
+                Gibt das Kommando an, um Files einem Archiv/Paket hinzuzufÅgen.
+                %a und %f werden durch den Namen des Archives und dem ent-
+                sprechenden Filenamen ersetzt.
+        
+            Beispiel:
+        
+                Add zip -jk %a %f
+        
+        
+        
+        Extract <command>
+        
+                Definiert das Kommando, um Archive auszupacken.
+                %a und %f werden durch den Namen des Archives und dem
+                File ersetzt.
+        
+            Beispiel:
+        
+                Extract unzip -qqnjC %a %f
+        
+        
+        
+        View <command>
+        
+                Diese Zeile hat keine Bedeutung, wird aber aus Kompatibili-
+                tetsgrÅnden akzeptiert und erkannt.
+        
+        
+        
+        End Archiver
+        
+                Diese Anweisung beendet einen Packer-Definitionsblock.
+        
+        
+                                    Beispiele
+        
+        
+            Komplettes Beispiel 1 (wenn du nur OS/2 brauchst):
+        
+        Archiver ZIP
+             Extension     ZIP
+             Ident         0,504b0304
+             Add           zip -jk %a %f
+             Extract       unzip -qqnjC %a %f
+             View          unzip -v %a
+        End Archiver
+        
+        
+            Komplettes Beispiel 2 (wenn du nur DOS brauchst):
+        
+        Archiver ZIP
+             Extension     ZIP
+             Ident         0,504b0304
+             Add           pkzip -a %a %f
+             Extract       pkunzip -n %a %f
+             View          pkzip -v %a
+        End Archiver
+        
+        
+            Komplettes Beispiel 3 (wenn du DOS und OS/2 brauchst):
+        
+        Archiver ZIP
+             Extension     ZIP
+             Ident         0,504b0304
+        OS2  Add           zip -jk %a %f
+        DOS  Add           pkzip -a %a %f
+        OS2  Extract       unzip -qqnjC %a %f
+        DOS  Extract       pkunzip -n %a %f
+        OS2  View          unzip -v %a
+        DOS  View          pkzip -v %a
+        End Archiver
+        
+        
+            Komplettes Beispiel 4 (Packer wird nur bei DOS benîtigt):
+        
+        DOS Archiver ZOO
+        DOS     Extension       ZOO
+        DOS     Ident           0,5a4f4f                        ; "ZOO"
+        DOS     Add             zoo a: %a %f
+        DOS     Extract         zoo e:O %a %f
+        DOS     View            zoo v %a
+        DOS End Archiver
+        
+        
+            Komplettes Beispiel 5 (DOS-Programm, kann ohne énderungen
+            unter DOS oder OS/2 laufen):
+        
+        Archiver ZOO
+             Extension       ZOO
+             Ident           0,5a4f4f                        ; "ZOO"
+             Add             zoo a: %a %f
+             Extract         zoo e:O %a %f
+             View            zoo v %a
+        End Archiver
+        
+
+        
+                              F E H L E R S U C H E
+        
+        
+                           Problem mit dem Auspacken
+        
+        Problem:
+                  FastLst packt nicht die korrekte Nodelist/Nodediff aus.
+        
+        Lîsung:
+                  Vieleicht sind einige Nodelisten/Nodediff mit einem falschen
+                  File-Datum. PrÅfe Deinen "ArcPath", pack die ent-
+                  sprechenden Nodelisten/NodeDiff manuell in den "InputPath"
+                  und lîsche das Archiv (oder setze das File-Datum auf das
+                  gleiche wie das darin enthaltene File). FastLst wird die
+                  Nodelist/NodDiff automatisch erneut archivieren, falls Du
+                  die "ArcMethod"/"ArcDiffMethod" eingetragen hast,
+                  ansonsten eben manuell.
+        
+        
+                                 Speicherende
+        
+        Problem:
+                  FastLst meldet Speicherende (Dos Versionen).
+        
+        Lîsung:
+                  - Stell FastLst mehr DPMI Speicher zur VerfÅgung
+        
+                  - aktiviere DOS4GW Virtual Speicher Mode durch die
+                    DOS4GVM Umgebungs-Varaiable (z.B. fÅr 16MB virtualen
+                    Speicher: SET DOS4GVM=VirtualSize#16384).
+        
+                    Das geht nur unter richtigem DOS: Bei der Verwendung von
+                    OS/2 Dos Sitzungen, muss die DPMI_MEMORY_LIMIT Angabe in
+                    den DOS Einstellungen angepasst werden.
+        
+        
+                 Probleme mit EintrÑgen von leeren Telefonnummern
+        
+        Problem:
+                  Einige Programme verhalten sich merkwÅrdig mit EintrÑgen
+                  die eine leere Telefonnummer beinhalten.
+        
+        Solution:
+                  Das Problem kann durch das Kostenfeld von Nodes mit
+                  leeren Telefon-Nummern (65535 als Grundwert) kommen.
+                  Benutze die "CostNullPhone" Anweisung um diesen
+                  einen kleiner Wert im Kostenfeld abzustellen
+        
+                  Beispiel:
+        
+                  CostNullPhone 900 0
+        
+        
+                            Langsame Verarbeitung
+        
+        Problem:
+                  FastLst arbeitet sehr langsam.
+        
+        Lîsung:
+                  Vieleicht erstellst Du sehr grosse Nodelist oder mehrere
+                  Nodelists auf einem System mit wenigen MegaBytes von freien
+                  physikalischem RAM, so das das OS unheimlich viel virtuellen
+                  Speicher braucht. Benutze die "LinkOnDisk" Anweisung
+                  virtual memory. Try using the "LinkOnDisk" statement
+                  in der Config.
+        
+        
+                         System Durchsatz Probleme
+        
+        Problem:
+                  FastLst beansprucht das System extrem, so das keine andere
+                  OS/2 Task noch funktioniert (OS/2 version).
+        
+        Lîsung:
+                  Benutze die "Priority Idle" Anweisung im Konfiguration-
+                  File, so das FastLst nur die Zeitscheiben erhaelt falls
+                  andere Prozesse mit hîherer PrioritÑt frei sind.
+        
+        
+                        Ich will maximale Geschwindigkeit
+        
+        Problem:
+                  FastLst lÑuft wÑhrend keine Kommunikation stattfindet, daher
+                  mîchte ich die mîglichste schnellste Geschwinigkeit haben
+                  auch im Hinterfrung und mit anderen aktiven Tasks (OS/2
+                  Version).
+        
+        Lîsung:
+                  Benutze die "Priority High 31" Anweisung in
+                  der Konfiguration, so das FastLst die maximale PrioritÑt
+                  fÅr "nicht zeitkritische" Prozesse bekommt.
+        
+        
+                     Archivierte Diffs werden nicht eingebunden
+        
+        Problem:
+                  FastLst bindet die archivierten Diffs nicht ein.
+        
+        Lîsung:
+                  Vergiss nicht das der "InputPath <path>" der normale
+                  Pfad fÅr Listen und Diffs ist, wÑhrend "ArcPath <path>" der
+                  fÅr Archive ist.
+        
+                  Bitte vergleiche Deine Compress.cfg mit dem Beispiel,
+                  ÅberprÅfe die Pfade und versuch diese Kommando manuell
+                  auszufÅhren.
+        
+                  öberprÅfe die Tages-Erweiterung und die Zeitstempel der
+                  betroffenen Files.
+        
+        
+                        Dos/32 DOS4GW Ausnahmebedingung
+        
+        Problem:
+                  Die Dos/32 Version von FastLst bricht mit einer Dos
+                  Extender Ausnahmebedingung ab.
+        
+        Lîsung:
+                  Probiere es mit einer "sauberen" config.sys und
+                  autoexec.bat.
+                  (Der Dos Extender ist mîglicherweise inkompatible mit
+                  einigen Deiner geladenen Treibern oder TSR).
+        
+        
+                       Anwahl-Skripts und VMODEM Adressen
+        
+        Problem:
+                  Wie kann ich Namen von Skripts oder Internet-Adressen
+                  anstatt der Telefonummer einstellen?
+        
+        Lîsung:
+                  Bnutze die "Phone" Anweisung.
+        
+                  Beispiel:
+        
+                  Lass uns annehmen Du hast folgende Typen-Tabellen
+                  definiert:
+        
+                  TypeDef
+                    ISDNC  1
+                    V34    2
+                    VMP    3
+                  End
+        
+                  Du benutzt ein Telefon-Nummer Åberschreiben in etwas so:
+        
+                  Phone 2:345/678 domain.com VM,CM 10 0
+        
+                  Und ein ModemTrans (fÅr Binkley's VMODEM Line):
+        
+                  ModemTrans   0
+                  ModemTrans   1
+                  ModemTrans   2
+                  ModemTrans   3 ATDT#  ; Vmodem
+        
+        
+        
+                        Region und Export auf Zonen-Ebene
+        
+        Problem:
+                  Wie kann ich ein Region-Segment zusammen mit den
+                  Zonen EintrÑgen exportieren?
+        
+        Lîsung:
+                  Die Zonen-EintrÑge haben das Region/Netz Feldd identisch
+                  mit der Zone-Nummer; daher kannst Du die Export
+                  Anweisung folgendermassen einsetzen:
+        
+                  export MyR33.??? 1:1 2:2 2:33 3:3 4:4 5:5 6:6
+        
+        
+                                   Support ?
+        
+        Problem:
+                  Ich kann keine Lîsung fÅr mein Problem finden
+        
+        Lîsung:
+                  - Bestelle das APWORKS UnterstÅtzungsecho (englisch)
+                  - Bestelle das APWORKS.GER UnterstÅtzungsecho (deutsch)
+                  - Frage Deinen lokalen Anbieter
+                  - Sprich den Autor direkt an
+                  Du findest die Adressen im ReadMe.1st File.
+        
+        
+                               S H A R E W A R E
+        
+        
+        Falls Dir dieses Programm gefÑllt und Du es weiterhin benutzen mîchtest,
+        solltest Du fairerweise auch den Autor fÅr seine Arbeit bezahlen,
+        wie es das Shareware-Konzept auch vorschreibt.
+        
+        Bitte weitere Information in LICENSE.DOC und REGISTER.DOC einsehen.
+        
+        Danke fÅr Dein Interesse an ApWorks Programmen.
+        

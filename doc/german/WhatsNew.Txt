@@ -1,0 +1,860 @@
+        
+                                  FastLst
+        
+                         énderungen und Erweiterungen
+        
+        
+        
+        2.00   ôffentliches Release, 18. Juni 1997
+        
+              - WARNUNG: Diese Version kann nicht einfach als Ersatz fÅr
+                die alte benutzt werden. Einige Anweisungen wurden gelîscht.
+        
+           Neue Features (Mîglichkeiten)
+        
+              - UnterstÅtzung fÅr das neue V7+ Nodelist Format mittels
+                "Version7+"-Anweisung.
+        
+                Zur Aktivierung einfach "Version7+" anstatt "Version7"
+                verwenden.
+        
+                Version7+ <path> <nodex> [<sysop>[.<ext>]]
+        
+                Beispiele:
+        
+                Version7+ \bbs\v7 NODEX SYSOP
+                Version7+ \bbs\v7 NODEX
+        
+                Ohne SysOp Angabe wird <NODEX>.SDX angenomen.
+        
+                Erstellte Files:
+        
+                <nodex>.DAT
+                <nodex>.NDX
+                <nodex>.DTP V7+ Daten File
+                <nodex>.PDX Telefon-Index
+                <nodex>.SDX oder wie unter <sysop> angegeben.
+        
+        
+              - Das DTP-File wird normalerweise "im Speicher" erstellt.
+                Da das eine Menge an Speicher braucht, schaltet FastLst
+                automatisch in den "auf Platte" Modus um, sofern der ent-
+                sprechende Speicher nicht ausreicht.
+        
+        
+              - Neue LinkOnDisk Anweisung (nach Version7) um FastLst
+                die Erstellung des DTP-FIles auf Platte zu erzwingen.
+        
+                Version7+ \bbs\v7 NODEX
+                  LinkOnDisk
+        
+        
+              - Neuer Errolevel 17 "Error Linking"
+        
+        
+              - Erweiterte Argumente fÅr die "Nodelist" Anweisung:
+                Nodelist <list> [PartAddr [<region> [<hub>]]]
+        
+                Da FastLst die "Fidonet" Hierarchie erstellt ist es
+                wichtig die Region und den Hub anzugeben, sofern das
+                Segment diese Informationen nicht beinhaltet.
+        
+        
+              - Erweiterte Argumente fÅr die "NODE" Anweisung:
+        
+                Node,<4Daddr>[ <region>[ <hub>]],...
+        
+        
+              - Is ist jetzt mîglich die Anruf- und Benutzerkosten in
+                AbhÑnigkeit von dem Typ der "wortwîrtlichen" Telefonnummern
+                anzugeben.
+        
+                Bei den Typedef-Zeilen kann folgendes bei den Kosten angegeben
+                werden:
+        
+                Typedef
+                    [...]
+                    VMODEM 200 100 0
+                    [...]
+                End
+        
+                Die Anruf-Kosten sind 100, die Benutzer-Kosten sind 0.
+        
+        
+              - Es ist jetzt mîglich spezielle Anruf-Umsetzungen fÅr
+                Nicht-PSTN "Telefon-Nummern" anzugeben, diese werden
+                von FastLst normalerweise als "wortwîrtliche" erkannt.
+        
+                Diese Anrufumsetzung hat KEINEN Einfluss auf den Index-Eintrag
+                (im <NODEX>.PDX) und dient nur als Umgehung fÅr die Anruf-
+                Umsetzung von dem Mailer oder Modem-Emulator.
+        
+                Der Eintrag benîtigt eine Menge von Zeichenketten in den
+                TypeDef-Zeilen, die dann fÅr das angebene "Modem Flag" gelten.
+        
+                Das erste Zeichen von jeder Zeichenkette wird durch die
+                verbleibenden Zeichen ersetzt.
+        
+                Eine Zeichenkette mit einen Leerzeichen ' ' or Semikolon ';'
+                MUSS in AnfÅhrungszeichen stehen. Falls das AnfÅhrungszeichen
+                in der Zeichenkette gebraucht wird, dann muss es doppelt ein-
+                getragen werden.
+        
+                15 Zeichenketten bis zu 5 Zeichen sind mîglich.
+        
+                ACHTUNG: Diese Mîglichkeit gibt es nur im normalen (kein
+                BitType) Modus.
+        
+                Example:
+        
+                Du brauchst folgende Umsetzung '.' nach '*', ':' nach ' ', 'v'
+                nach 'V'; Anrufer-Kosten=100, Benutzer-Kosten=0:
+        
+                Typedef
+                  [...]
+                  VMODEM 200 100 0 .* ": " vV
+                  [...]
+                End
+        
+                Du brauchst folgende Umsetzung '.' nach '\.',':' nach ', ', 'v'
+                nach 'V'; Anrufer-Kosten=150, Benutzer-Kosten=100:
+        
+                Typedef
+                  [...]
+                  VMODEM 200 150 100 .\. ": " vV
+                  [...]
+                End
+        
+        
+                Empfohlene Anrufumsetzung fÅr Binkley und VMODEM:
+        
+                -\- .* vV ~\~ ": "
+        
+        
+              - Neue "digitale" Kosten.
+                FÅr Leute mit unterschiedlichen Kosten fÅr analog und digital.
+        
+                In der Anruf- oder Kosten-Tabelle kînnen zwei weitere Felder
+                angegeben werden; siehe auch am Beispiel der Koste-Tabelle:
+        
+                Prefix Neuer   Anruf  Benutzer Kommentar
+                der    Prefix  Kosten Kosten
+                passt
+        
+                43     0043-   4      0    ; Austria
+        
+                Ohne Angabe der der neuen optionalen Felder, gelten die
+                Angaben fÅr didital und analog.
+        
+        
+        
+                43     0043-   4      0    8    0  ; Austria
+        
+                Bei dieser Zeile:
+                Analoge Anruf-Kosten     = 4
+                Analoge Benutzer-Kosten  = 0
+                Digitale Anruf-Kosten    = 8
+                Digitale Benutzer-Kosten = 0
+        
+                Die Benutzer-Kosten sind identisch mit den Anrufer-Kosten
+                sofern diese weggelassen werden.
+        
+        
+                Wie kann FastLst die digitalen Kosten erkennen ?
+        
+                Durch ein neuen Parameter in Typedef-Anweisung:
+        
+                Typedef
+                  X75  1 DIGITAL            ; X75  digitale PSTN
+                  V120 2 DIGITAL            ; V120 digitale PSTN
+                  V34  3 ANALOG             ; V34  analoge  PSTN
+                  V32  4                    ; V32  analoge  PSTN
+                  VM   5 5 0 .* vV ": "     ; VMODEM mit Kosten und Anruf-
+                                            ; Umsetzung
+                End
+        
+        
+                Die ANALOG Angabe ist optional.
+        
+        
+              - Mehrfache PasswordFile Anweisungen sind ohne Einschraenkung
+                mîglich.
+        
+        
+              - Neue Anweisung "Include <filename>" um den Einschluss von
+                Files in der FastLst-Konfiguration zu ermîglichen.
+        
+        
+              - Neue Anweisung: NoPointLstPhone.
+                Kann im Eingabe-, Ausgabeblock oder global verwendet werden.
+                Macht Sinn fÅr das _Entfernen_ von Telefonnummern in den
+                angegebene PointListen (Deutsche oder im  "Boss" Format)
+                und Ñndert diese auf "-Unpublished-".
+        
+                Sofern Du Squish und Binkley benutzt, dann willst Du sicherlich
+                die Point-EintrÑge mit der 'Boss' Telefonnummer haben (anderen-
+                falls muss eine Crsh-Messgae an den Point manuell auf den
+                Boss geÑndert werden)
+        
+                Falls Du jedoch einen Netmail-Manager (wie NmFwd) im Einsatz
+                hast, der Crash-Messages sowieso schon auf den Boss addressiert
+                sofern der Point keine Telefonnummer hat, dann solltest Du
+                diese Anweisung aktivieren.
+        
+        
+              - Neue Anweisung: LogStats.
+                Kann im Ausgabe-Block verwendet werden.
+                Der Statistik-Teil von FastLst fÅr diese (Ausagbe) Nodelist
+                kommt in die MsgLogArea.
+        
+                Beispiel:
+        
+                Version7...
+                  LogStats
+        
+           Eingestellte UnterstÅtzung
+        
+              - Dos 16 Bit Version eingestellt.
+        
+                Die 32 Bit Version hat folgende Speicher-Anforderungen:
+                100K von Basis-Speicher, 7MB von DPMI fÅr 60000
+                Nodes.
+        
+              - Jetzt werden Indizes immer im Speicher erstellt. UnterstÅtzung
+                fÅr den "FileMode"uand "TmpPath" bzw. dem "-t" Koammando-Zeilen
+                parameter wurde eingestellt.
+        
+              - UnterstÅtzung fÅr SysOpLst, SysDup und IncSysOp-Anweisung
+                engestellt: Der SysOp-Index beinhaltet alle Eintraege die
+                auch im <nodex>.dat stehen.
+        
+              - NoDash Anweisung eingestellt: Kein Bedarf
+        
+              - Das '#' gilt nicht mehr fÅr wortwîrtliche Telefonnummern.
+                Jetzt werden alle Telefonnummern mit Nicht-Numerischen Zeichen
+                als wortwîrtliche angenommen.
+        
+              - Das Entfernen von Flags in der Kosten/Anruf-Umsetzungstabelle
+                wird nicht mehr unterstÅtzt.
+        
+              - ACHTUNG: Die "separate Kosten-Tabelle" und die "BitType"
+                Options wird in dieser Version von FastLst noch unter-
+                stÅtzt, aber die Verwendung ist nicht mehr empfohlen und
+                wird in Zukunft nicht mehr unterstÅtzt.
+        
+        
+          GeÑndertes Verhalten
+        
+              - Sofern eine ZeitÅberschreitung durch die BSY-Semahhore
+                auftritt, macht FastLst mit dem nÑchsten "Ausgabe Block"
+                weiter (frÅher wurde es beendet).
+        
+              - FÅr den Fall das FastLst mit Errorlevel 12 oder 14 endet,
+                erfolgt eine erneute Generierung wie erwartet.
+                (frÅher musste der Parameter -f im Fall von Errorlevel 12
+                benutzt werden).
+        
+          Fehler Korrekturen
+        
+              - Falls die Version7 einen Punkt im Pfad beinhaltet, dann
+                hat FastLst nicht den Grundwert  ".NDX" als Erweiterung
+                im Filenamen des Sysop-Index eingesetzt.
+                Behoben.
+        
+        
+        
+        1.36   ôffentliches Release, 18. July 1996
+        
+              - "LocalValues" kann nun wiederholt verwendet werden,
+                fÅr Benutzer die Åber mehrer Areas-Codes verteilt sind.
+                Siehe auch unter "Dial Table" in der Doku.
+        
+              - Die "Phone" Anweisung wurde erweitert:
+        
+                Phone <Addr> [#]<Phone> [<NodeFlags> [<Cost> [<UCost>]]]
+        
+              - Telefon-Angaben die mit einem '#' Zeichen beginnen werden
+                wortgerecht behandelt (Keine Anruf-Umsetzung, keine Kosten-
+                öbersicht); das ist interessant fÅr Internet-Adressen und
+                Skript-Namen.
+        
+              - Neue "CostVerbatimPhone <cost> <ucost>" Anweisung um die
+                Kosten fÅr "wortgerechte" Telefonnummern anzugeben.
+        
+        
+        
+        1.34   ôffentliches Release, 1. July 1996
+        
+             - OS/2: Neue "ArcDate Write|Creation" Anweisung um zu
+               wÑhlen welches Datum FastLst zum Vergleich des Alters von
+               archivierten Nodelisten benutzt wird; Grundwert ist Creation,
+               Wird bei den nicht-OS2 Versionen ignoriert.
+        
+             - Neuer Errorlevel 16: Nichts gefunden nach dem auspacken von
+               einer fest definierten Nodelist.
+        
+             - Faslls mit fest definierenten Nodelisten gearbeitet wird,
+               dann setzt FastLst jetzt das Archiv-Datum identisch mit dem
+               beinhalteten File.
+        
+             - Unter bestimmten Bedindungen haben die alten Versionen von
+               Fastlst die original Nodelist erneut archiviert, so dass es
+               mîglicherweise zu einem Fehler bei der TIC CRC-PrÅfung von
+               weitergeleiteten Files kam.
+        
+               Das Problem tratt nur auf, wenn folgende Bedingungen zur
+               gleichen Zeit erfÅllt waren:
+               - neues Nodelist-Archiv
+               - neue Konfiguration
+               - zipmethod includes the original archive type
+               - Das Original-Archiv war ein ZIP-Archiv
+        
+             - öberarbeitete Dokumentation.
+        
+        
+        
+        1.33
+        
+             - OS/2: Version 1.32 ruft den Kommando-Prozessor auf um
+               externe Kommandos ohne Erweiterung .exe oder .com aus-
+               zufÅhren, anstatt das ausfÅhrbare Programm direkt
+               zustarten.
+        
+               Das war wegen eines Fehler in der DosExecPgm OS/2 API, die
+               benutzt wurde um die KompatibilitÑt fÅr den Fall von Er-
+               setzungs-Parameter die "spezielle" OS/2 Zeichen zu gewÑhr-
+               leisten
+        
+               Nun versucht FastLst das angegebenen Kommando auszufÅhren, dann
+               mit der angehÑngten .COM Erweiterung und zu guter Letzt mit
+               .EXE.
+        
+        
+        
+        1.32
+        
+             - Neue "MultiLineDesc <nnn> [<c>]" Anweisung um die Unter-
+               stÅtzung fÅr mehrzeilige Beschreibungen zu aktivieren.
+        
+             - Neue "FlagDef" Tabelle um Nodelisten-Flags in den "benutzer
+               definierbaren" Bits abzubilden.
+        
+             - Bei der "Version7 <path> <Nodex> <SysopNdx>" Anweisung kann
+               man eine Erweiterung fÅr den <SysopNdx> angeben.
+               Falls keine Erweiterung angegeben wird dann gilt ".NDX"
+               sofern <SysopNdx> nicht mit <Nodex> Åbereinstimmt, ansonsten
+               wird die Erweiterung ".SDX" gesetzt.
+        
+             - Neue <nodex>.BSY V7 Semaphore um gegenseitig ausschliessende
+               Zugriffe auf die Nodelist wÑhrend dem Erstellen zu vermeiden.
+        
+             - Neuer Errorlevel 14 bei ZeitlimitÅberschreitung durch die
+               V7 Semaphore.
+        
+             - Eine "MsgRem" ohne Parameter schreibt alle Kommentarzeile
+               weg, aber nicht mehr die leeren.
+        
+             - Benutzung der "Phone <addr> <newnumber>" fÅr Scripts und
+               Internet Adressen (nicht neu, nur erklÑrt):
+        
+                 Beispiele:
+        
+                Beispiele fÅr Leute die in Modena (Rgional-Vorwahl 59),
+                Italien (Landesvorwahl 39) leben:
+        
+                Phone 1:106/2000  39-59-#juge*com   ; VMODEM Adresse
+                Phone 1:123/4567  39-59-12*34*56*78 ; Telnet IP Adresse
+                Phone 2:245/6789  39-59-"Bob.scr"   ; Scriptname
+        
+             - Einige Konfigurations-Fehler werden besser erkannt.
+        
+             - V7 Packungsalgorythmus beschleunigt.
+        
+             - OS/2 16 Bit Version gelîscht.
+        
+             - Neue NT Version. UnglÅcklicherweise funktioniert es nicht
+               unter W95 (die externen Kommandos funktionieren nicht, so da·
+               die Nodelisten nicht gepackt/ausgepackt werden kînnen).
+               Vieleicht werde ich auch W95 unterstÅtzen, sofern ich
+               den Watcom-Compiler erweitere.
+        
+             - Neues Icon FastLst2.Ico fÅr OS/2.
+        
+             - Neue Registration-Sites.
+        
+        
+        
+        1.31
+        
+             - Neue "CostNullPhone <cost> [<ucost>]" Anweisung um die
+               Kostenfelder fÅr Nodes ohne Telefonnummer zu setzen.
+        
+               <ucost> Grundwert ist <cost>.
+        
+               Wenn die CostNullPhone-Anweisung nicht benutzt wird dann
+               wird als Grundwert fÅr <cost> 65535 und 0 fÅr <Ucost>
+               angenommen.
+        
+               Beispiel:
+        
+                        CostNullPhone 1000 0
+        
+               Einige Programme haben Probleme mit solchen hohen Inhalten
+               in den Kostenfeldern (wie mit dem Grundwert 65535). Sofern
+               Probleme mit EintrÑgen ohne Telefonnummer auftreten, dann
+               setze einen kleineren Wert, z.b "CostNullPhone 900 0".
+        
+             - Vor dem Einbinden einer Diff wird der CRC der alten Liste
+               (wie in der 1. Zeile aufgefÅhrt) mit dem der Diff verglichen.
+               In der vorherigen Version wurde dies erst spÑter geprÅft,
+               so das es vorkommen konnte dass eine Diff zu einer falschen Nodelist
+               (z.B. die europÑische Diff zu einer amerikanischen Nodelist)
+               angefÅgt wurde und erst dann der Fehler beim CRC-Check fest-
+               gestellt wurde.
+        
+             - PrÅfungen fÅr nicht vorhandene Kosten oder Anruf-öbersetzungs-
+               Tabellen eingefÅgt. Die vorherige Version bekam einen Loop.
+        
+             - Keine Zugriffs-Verletzung mehr wenn "ArcDiff" ohne "NodeDiff"
+               benutzt wird (eine merkwÅrdige Konfiguration, aber es ist
+               jetzt mîglich).
+        
+             - Zugriffs-Verletzung behoben beim Einbinden einer Diff mit
+               "NodeDiff" ohne "Arcdiff" (Benutze FastLst besser fÅr alle
+               Funktionen fÅr die es auch entstanden/geschrieben ist)
+        
+             - Die Anzahl der aufzuhebenden Nodelisten (wie angegeben
+               in der "ArcList" Anweisung) wird nun nochmal nach der Nodediff-
+               Einbindung ÅberprÅft. Daher sollte die Anzahl jetzt genau
+               Anzahl Archive in der <kept> Åbereinstimmen. Vorher
+               war nach der Nodediff-Einbindung ein Archiv mehr als angegeben.
+        
+             - Bei der Angabe von <ArcKeep> 0 in "ArcList"-Anweisung wurde
+               bisher eine Version archiviert und dann gelîscht.
+        
+             - GeÑnderte Compress.Cfg fÅr OS/2 RAR.
+        
+             - Die Dos-Versionen haben jetzt den geleichen Namen wie die
+               OS/2-Versionen: FASTLST.EXE (32 bit) und FASTL16.EXE (16 bit).
+        
+        
+        
+        1.30
+        
+             - WARNUNG: FastLst v 1.30 ist kein richtiger Ersatz fÅr die
+               vorherigen Versionen, es mÅssen Anpassungen in der Konfig
+               vorgenommen werden.
+        
+             - FÅge die "CompressCfg <squish_compress_cfg_file>" Anweisung
+               im "Globalen Teil" Deine FastLst.cfg ein.
+        
+             - Lîsche alle "Arc" und "UnArc" Anweisungen.
+        
+             - In jedem "Input Block", wo Du die Mîglichkeit hast neue
+               Nodelisten zu archivieren (z.B. wo Nodediffs verarbeitet
+               werden und "Arc"-Anweisung steht), musst Du eine oder
+               mehrere "ArcMethod <meth>,[<f<]"-Anweisungen einfÅgen.
+               Wobei der <meth>-Parameter fÅr eine der Packer-Methoden,
+               definiert durch deine <squis_compress_cfg_file> (z.B. ZIP,
+               LH usw), steht. Der optionale Parameter <f> steht fÅr den
+               ersten Buchstaben des enstprechenden Archiv's, entgegen
+               der Definition deiner <squish_compress_cfg-file>.
+        
+             - Weitere Information beihaltet die Fastlst.doc
+        
+             - DOS: Es gibt eine neue 32 bit Version mit dem DOS4GW
+               extender.
+        
+             - OS/2: Es gibt eine neue 16 bit Version fÅr OS/2 1.3.
+        
+             - OS/2 32: Mit "Priority" Anweisung kannst du die PrioritÑt
+               fÅr die FastLst-Verarbeitung bestimmen.
+        
+             - Die 32 bit Versions kînnen auch mit temporÑren Auslagerungs-
+               dateien, im Gegensatz zu dem Arbeitsspeicher-Modus, arbeiten.
+               Benutze die "FileMode"-Anweisung oder den Befehlszeilenparameter
+               "-t" um den entsprechenden Modus zu Ñndern.
+        
+             - Der Code der 32 bit Versionen fÅr den "Speicher-Modus"
+               wurde unter dem Aspekt der wenigeren Specherverbrauchs
+               komplett neu entwickelt. Daher benîtigt FastLst v 1.30
+               nur noch einen viertel des Speichers, den FastLst v 1.20
+               gebraucht hat. Diese ist sicherlich eine wichtige Neuigkeit
+               fÅr Systeme mit wenig Arbeitsspeicher.
+        
+             - Die "TmpPath" Anweisung wird nicht mehr benîtigt:
+               FastLst benutzt die entsprechende Umgebungsvariable, sofern
+               keine "TmpPath" Anweisung angegeben ist.
+        
+             - Wenn FastLst alle unkomprimierten Nodelisten (ausgenommen
+               sind Nodelisten die nicht komprimiert werden) lîschen soll,
+               fÅge eine "KillSource" Anweiung in deiner Konfig ein.
+        
+             - Alle "ArcList" und "Arcdiff" Anweisungen funktionieren
+               auch OHNE der Angabe des ersten Buchstaben der Erweiterung,
+               z.B. "ArcList NodeList.z??" kann durch "ArcList Nodelist.???"
+               und "ArcDiff NodeDiff.z??" kann durch "ArcDiff Nodediff.???"
+               ersetzt werden. FastLst behandelt alle Mîglichkeiten ent-
+               sprechend dem "ArcList"-Verzeichnis.
+        
+             - Es kînnen gleiche Nodelisten/Diffs in verschiedene Packer-
+               formate archiviert werden. Die entsprechenden Arten fÅr eine
+               NodeDiffs kînnen durch die "ArcDiffMethod <meth>,[<f>]"-An.
+               weisung eingetragen werden.
+        
+             - Die "Block"-Struktur der Konfig-File bleibt erhalten, aber
+               es wird erheblich flexibler. Die meisten Anweisungen kînnen
+               nun an beliebiger Stelle eingetragen, aber dadurch haben
+               diese, abhÑnigig von der Position, Einfluss auf die ver-
+               schiedenen Nodelisten. Z.B. Die nummernbezogene "PasswordFile"-
+               Anweisung kann im "Output-Nodelist-Block" und/oder im "Input-
+               Nodelisten-Block" verwendet werden. Sofern es nach der "Version7"
+               Anweisung, aber vor der "Nodelist"-Anweisung eingetragen ist,
+               gilt es fÅr alle Nodelisten in diesem "Output-Block". Sofern
+               es nach der "Nodelist"-Anweisung eingetragen ist, gilt es
+               (genauso wie frÅher) nur fÅr diese Nodelist. Andere nicht
+               nummernbezogene Anweisungen (z.B. "ArcMethod") kînnen Åberall
+               (globaler, Output-Block und/oder Input-Block) eingetragen werden.
+               Diese Anweisungen haben dann nur entsprechend der Position
+               (globaler: alle Nodelisten, output: fÅr alle Nodelisten in
+               diesem Output-Block, input: nur die aktuelle Nodelist) Einfluss.
+        
+             - "NoRedir"-Anweisung: Umgeleitete Nodes bekommen eine leere
+               Telefonnumme. So bist Du sicher niemals ein anderes System
+               anzurufen, als das welches Du denkst.
+        
+             - Einige neue Anweisungen unterstÅtzen externe Kommandos.
+               Die Name sind selbsterklÑrend.
+        
+        
+               BeforeArcList
+               AfterArcList
+               BeforeUnArcList
+               AfterUnArcList
+               BeforeUnArcDiff
+               AfterUnArcDiff
+               BeforeArcDiff
+               AfterArcDiff
+        
+               Alle diese Anweisungen kînnen den %a (kompletter Archiv-
+               Name) und %f (neuer/auszupackender Filename, kein path)
+               Parameter enthalten.
+        
+        
+               BeforeEdit
+               AfterEdit
+        
+               Alle diese Anweisungen kînnen den %l (kompletter Name der
+               Nodelist) und %d (kompletter Name  der Nodediff) Parameter
+               enthalten.
+        
+        
+               BeforeCompile
+               AfterCompile
+        
+               Diese Anweisungen kînnen nur den %l Parameter enthalten.
+        
+        
+               BeforeKillSource
+        
+               Diese Anweisung unterstÅtzt keinerlei Parameter. Sie wird
+               auch ausgefÅhrt, wenn die "KillSource"-Anweisung nicht
+               benutzt wird. FÅr alle, bei diesem Befehl benîtigten
+               Nodelisten muss die "NeededBeforeKill"-Anweisung eingetragen
+               werden.
+        
+               Weitere Informationen stehen in der FastLst.doc
+        
+             - Ein neuer Konfig-Teil "NoCompile" ist mîglich. Dies steht
+               fÅr die Verwaltung einer NodeList (verarbeiten Nodediffs,
+               Archivieren usw.) aber ohne die Version7 zu erstellen.
+        
+             - Die 3D deutsche PointList wird intern von FastLst unterstÅtzt.
+               Benutz die "GermanPointList"-Anweisung in dem entsprechenden
+               Block.
+        
+             - Wenn alles richtig klappt, beendet sich FastLst mit dem Error-
+               level 0 wenn etwas erstellt, und mit 100 wenn nichts erstellt
+               wurde.
+        
+             - Neue Verarbeitung fÅr Zeitermittlung bei variablen Er-
+               weiterungen: Das File-Datum wird mit den letzten 2 Stellen
+               der Erweiterung verglichen. Dadurch kannst Du mehrere Ñlterer
+               Archive behalten, sogar wenn das Jahr Åberschritten wird.
+        
+             - File Beschreibungen in FILES.BBS werden von FastLst verwaltet
+               (gelîscht oder eingefÅgt). Neue Anweisungen:
+        
+               ArcListDesc <description>
+               ArcDiffDesc <description>
+        
+               <description> kann folgende Parameter enthalten:
+        
+               %d Tag
+               %a Packer
+               %D Datum, USA Format
+               %L Lokales Datum
+        
+             - Der Bindestrich (Minuszeichen) hat keinen Einfluss mehr auf
+               die Anruf und Kosten öbersetzung.
+        
+             - Im Falles eines Konfig-Fehlers zeigt FastLst die Zeilenummer.
+        
+             - Einige Informationen Åber die Verarbeitung kînnen auch
+               in einer Fido/Squish Mail protokolliert werden: s. FastLst.Doc
+               fÅr die Beschreibung der "MsgLogArea", "MsgRemArea"-Anweisungen.
+        
+             - FastLst arbeitet besser in einer Multitasking-Umgebung: z.B.
+               versucht FastLst 15 Sekunden lang alte Nodelisten zu lîschen
+               und die neuen umzubennen.
+        
+             - Neue Export Mîglichkiet: FastLst kann bestimmte Teile der
+               Nodelist in eine Datei exportierten: s. "Export" Anweisung in
+               der Dokumentation.
+        
+             - Die Anruf und Kosten-Tabelle kînnen zusammengefÅhrt werden.
+               Die alte Art wird weiterhin unterstÅtzt, aber es kann auch
+               die neue Mîglichkeit fÅr die Anruf und Kosten-Tabelle benutzt
+               werden. EuropÑer kînnen die alte Art (wer es will) benutzen,
+               wÑhrend die Amerikaner die neue Mîglickeit (weil eine
+               grîssere Anruf-öbersetzung gebraucht wird) benutzen.
+        
+             - Fehler beseitigt: Trap, wenn keine "StatusLog"-Anweisung
+               angeben wurde.
+        
+        
+        
+        1.20
+        
+             - WARNUNG: FastLst v 1.20 ist kein richtiger Ersatz fÅr die
+               vorherigen Versionen, es mÅssen Anpassungen in der Konfig
+               vorgenommen werden.
+        
+             - Um einige tolle Eigenschaften ohne grosse unÅbersichtliche
+               Batches zu ermîglichen wurden einige obsolete Eigenschaften
+               gelîscht und die Methoden fÅr zu erstellenden Files wurden
+               erheblich geÑndert.
+        
+             - FastLst ist schneller wie nie zuvor: Auf meinem System mit
+               meiner Konfiguration ist die OS/2 Version ca. 25% schneller
+               als die v 1.16. Falls Du es selbst ÅberprÅftst, dann bedenke
+               das die OS/2-Version die Speicheranforderungen (und Geschwin-
+               digkeit) auf vorhergehenden LÑufen beruht, daher ist es beim
+               ersten Mal langsamer mit einer neuen cfg.
+        
+             - Die antike "Version6" Nodelist UnterstÅtzung wurde
+               eingestellt. Aber die manchmal benutzbare fidouser.lst ist
+               weiterhin verfÅgbar.
+        
+             - Die "MergeList" und "Kill999" Optionen wurden gelîscht.
+               Mit Version7 kannst du einfach weitere Teile nach der
+               komplettten Liste einfÅgen, die folgenden EintrÑge Åber-
+               schrieben die vorhergehenden.
+        
+             - UnterstÅtzung fÅr die Erstellung von mehrere V7-Nodelisten
+               unter verrschiedenen Namen.
+        
+             - UnterstÅtzung fÅr das automatische Entpacken von Nodelisten
+               und Nodediffs: keine komplexen Batches mehr nîtig.
+        
+             - FastLst erstellt eine Nodelist-Ausgabe nur wenn sich
+               bei den Eingabe-Listen geÑndert hat: Um eine Erstellung zu
+               erzwingen gibt es den -f Kommandozeilen-Parameter.
+        
+             - Pass auf: Mit Version 1.14 wurde eine énderung in der
+               Erstellung der V7 Indizes durchgefÅhrt,um einen Fehler
+               in den Binkley 2.50 V7 Such-Funktionen zu umgehen.
+               Mit Binkley 2.58 sollte der Fehler behoben sein, so
+               da· FastLst zurÅck zum "korrekten" V7 Index gehen kann.
+               Eine neue Cfg Anweisung wurde hinzufÅgt um diesen "Fehler"
+               weiterhin auszuschalten: siehe "V7BugFix" in der Bei-
+               spiel Konfiguration.
+        
+               *************************************************************
+               * Falls Du eine Ñltere Binkley-Version, oder einige         *
+               * Programme die Teile von den Binkley 2.50 Sourcen Åber-    *
+               * nommen, einsetzt und Du "Adresse nicht gefunden"-Probleme *
+               * hast. Dann aktiviere die "V7BugFix"-Einstellung in der    *
+               * FastLst.cfg.                                              *
+               *************************************************************
+        
+             - Die "KillOld" und "AutoErase" Anweisungen wurden gestrichen.
+               Alte Nodelisten und Nodediffs werden immer gelîscht.
+               Du kannst die Anzahl der zu behaltenen archivierten
+               Nodelisten mittels den neuen Archiv Anweisungen einstellen.
+        
+             - Die -o -s -l -g -m -p -b Kommandozeilen-Parameter wurden
+               gestrichen da sie nunmehr unbrauchbar sind.
+        
+             - Die "include" Anweisung un der -i Kommandozeilen-Parameter
+               wurden gestrichen.
+               Du kannst weiterhin die Liste von Passwîrtern in einem
+               eigenen File mittels der "PasswordFile" Anweisung einschlies-
+               sen. Bei diesem File kannst Du die "Password"-Anweisung am
+               Anfang weglassen.
+        
+             - Nachdem sehr hÑufig die Bedeutung und das Verhalten der
+               "Address"-Anweisung nicht verstanden wurde, habe ich
+               beschlossen das zu streichen.
+               Heutzutage ist es nicht brauchbar (in einem Nodelist
+               Compiler), das viele Systeme verschiedenen Adressen
+               haben und wir sollten diese Adressen aus GrÅnden der
+               öberschneidung in vollem 4D-Format angeben.
+               Einige Konfig-Anweisungen benîtigen eine Adresse oder
+               eine Teil davon, in diesem Fall musst Du alle die
+               benîtigten Felder angeben. Am Anfange steht die Zonen-
+               numer, es wird keine Annahme fÅr Deine zone/net/node
+               getroffen.
+        
+             - Die unnîtigen "MaxBaud" und "Baud" Anweisungen wurden ge-
+               strichen. Solltest Du eine altes 2400 Modem ohne Fehler-
+               korrektur das gleiche DTE und DCE Raten brauchen, dann
+               ÅberprÅfe ob Dein Mailer so konfiguriert ist das er
+               die eigene maximale Baudrate nimmt und nicht die
+               von dem Anzurufenden (AutoBaud in der Binkley.cfg).
+        
+             - Die "Country" und "UCost" Anweisungen wurden gestrichen.
+               Die "Dial" und "Cost" Tabellen wurden etwas geÑndert um
+               die anzugebenen regionalen und internationalen Grundwerte
+               verstÑndlichen zu machen und fÅr die neue "UCost" Information.
+        
+             - Die "TypeExact" Anweisungen wurde durch die "BitType"
+               Anweisung ersetzt.
+               Der Default ist nun "Exact Type" und wird auch von
+               Binkley 2.55 und neuer benutzt.
+        
+             - Die "TypeCost" Anweisung wurde gestrichen.
+               Das wurde gebraucht um verschiedene Anrufkosten auf Basis
+               des Modemtyp zu setzen. Dadurch war es mîglich, in einer
+               Multi-Line Umgebung, das jede Leitung nur die passenden
+               Modemtypen angerufen hat.
+               Um das gleiche Ziel zu erreichen musst die Mîglichkeiten
+               zur Selektion im Mailer nutzen (ModemTrans in Binkley).
+        
+             - Die komplett unnîtigen "Name" und "Comments" Anweisungen
+               wurden gestrichen.
+        
+             - Die "Gated" Anweisung wurde gestrichen und die "GateAddr",
+               "GateCoord" Anweisungen wurden ersetzt durch "IncAddr",
+               "ExcAddr", "IncCoord".
+        
+             - Die "Interlist" Anweisung wurde gestrichen, bzw.
+               ersetzt durch die "IncSysOp" Anweisung.
+        
+             - Die "Type" und "CM" Anweisungen wurden gestrichen.
+               Die Funktionen sind nun sauberer durch die "NodeFlags"-
+               Anweisung eingebaut.
+        
+             - Die "TypeDef" Anweisung wurde in eine tabellarische
+               Form geÑndert, zur besseren öbersicht.
+        
+             - Die Adressen in der Fidouser.Lst haben nun immer die
+               Zonen-Nummer vorangestellt, auch wenn es die gleiche wie
+               Deine ist.
+        
+             - Kleiner Fehler behoben; manchmal wurde Cfg-Anweisungen
+               die nach einem Kommentar eingetragen wurde nicht erkannt.
+        
+        
+        
+        1.16
+        
+             - Fehler in Register-Routine behoben. Einige Keys funktionierten
+               nicht (einer pro 256).
+        
+        
+        
+        1.15
+        
+             - Einige Programme Åberspringen den ersten Eintrag in V6
+               Nodelist, weil sie meinen das es einen Dummy-Eintrag ist
+               der nur die Version-Nummer der Nodelist enthÑlt. Diese
+               Programme kînnen die "Zonennummer" der ersten Zone
+               verlieren bzw. diese auf 0 setzen.
+               FastLst schreibt nun die "Version ID" am Anfang der
+               V6-Nodelist.
+        
+        
+        
+        1.14
+        
+             - Einige Programme lesen die V7 Indizes, wenn leere Node-
+               EintrÑge vorkommen, nicht richtig. (Das passiert wenn ein
+               Key keine grîsseren Keys in dem Lower Index Level hat, so
+               das er auf einen leeren Nodeeintrag zeigt).
+               Manchmal kînnen diese Programme komplette Teile der
+               V7 Nodelist nicht finden. Um das Problem zu vermeiden, fÅgt
+               fÅgt einen Dummy mit doppeltem Key ein.
+        
+             - Die neue "Node,<address>,..." Anweisung erlaubt das
+               HinzufÅgen von Nodes ohne Zone und Host-Zeilen.
+        
+             - Das Point-Flag in der Ausgabe-Nodelist wird nicht fÅr
+               Point 0 EintrÑge (nach der "Boss,..." Anweisung) gesetzt.
+        
+        
+        
+        1.13
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.12
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.11
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.10
+        
+             - Keine deutsche öbersetzung
+        
+        
+        1.06
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.05
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.04
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.03
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.02
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.01
+        
+             - Keine deutsche öbersetzung
+        
+        
+        
+        1.00
+        
+             - Keine deutsche öbersetzung
+        
+        
