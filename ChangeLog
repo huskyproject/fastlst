@@ -1,3 +1,21 @@
+2003-06-17 Tuesday 14:30  gerritkuehn
+
+	* doc/Whatsnew.Txt (1.2): Updating documentation: news for versions
+	>2.0.3 are in NEWS.
+
+2003-06-17 Tuesday 14:19  gerritkuehn
+
+	* NEWS (1.6): Updating maintainer information.
+
+2003-06-17 Tuesday 14:15  gerritkuehn
+
+	* NEWS (1.5): Readying for branching off 2.0.4-stable.
+
+2003-06-17 Tuesday 04:25  lmike
+
+	* fastlst.qpg (1.1): Added .qpg file for automative packaging for
+	QNX6.
+
 2003-05-03 Saturday 15:54  gerritkuehn
 
 	* aplibs/Makefile.in (1.5), aplibs/include/Makefile.in (1.5),
