@@ -1,0 +1,9 @@
+
+This program is derived from FastLst written by Alberto Pasquale, generously
+released with source spring 1999. See the file fastlst/COPYING and
+aplibs/COPYING for the copyright of the original archives. All the patches I
+have made can be used freely under the terms of the GPL or (at your option)
+the fastlst/aplibs license. My portion of the code is approximately from 1%
+to 10%, depending on the file we're talking about.
+
+See the file AUTHORS for contact information.

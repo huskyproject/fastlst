@@ -1,0 +1,590 @@
+# Makefile.in generated automatically by automake 1.4 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+CC = @CC@
+CXX = @CXX@
+MAKEINFO = @MAKEINFO@
+PACKAGE = @PACKAGE@
+RANLIB = @RANLIB@
+VERSION = @VERSION@
+
+DEFS = -DUNIX
+INCLUDES = -I../include -I../include/max
+bin_PROGRAMS = fastlst
+fastlst_SOURCES =  addrs.cc cfgdata.cc common.cc crc16.cc data.cc daydir.cc edit.cc export.cc fastlst.cc field.cc filesbbs.cc flstdat.cc inmem.cc inpblk.cc inpbprep.cc iocur.cc misc.cc msgapier.cc outblk.cc parse.cc parsecfg.cc parsecia.cc parsecil.cc parsecin.cc parsecio.cc parsecsa.cc parsecsl.cc parseglb.cc parsetyp.cc phtrans.cc response.cc 
+
+LDADD = ../aplibs/libap.a
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_HEADER = ../include/config.h
+CONFIG_CLEAN_FILES = 
+PROGRAMS =  $(bin_PROGRAMS)
+
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+fastlst_OBJECTS =  addrs.o cfgdata.o common.o crc16.o data.o daydir.o \
+edit.o export.o fastlst.o field.o filesbbs.o flstdat.o inmem.o inpblk.o \
+inpbprep.o iocur.o misc.o msgapier.o outblk.o parse.o parsecfg.o \
+parsecia.o parsecil.o parsecin.o parsecio.o parsecsa.o parsecsl.o \
+parseglb.o parsetyp.o phtrans.o response.o
+fastlst_LDADD = $(LDADD)
+fastlst_DEPENDENCIES =  ../aplibs/libap.a
+fastlst_LDFLAGS = 
+CXXFLAGS = @CXXFLAGS@
+CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@
+DIST_COMMON =  COPYING Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = tar
+GZIP_ENV = --best
+SOURCES = $(fastlst_SOURCES)
+OBJECTS = $(fastlst_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .cc .o .s
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps fastlst/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-binPROGRAMS:
+
+clean-binPROGRAMS:
+	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+
+distclean-binPROGRAMS:
+
+maintainer-clean-binPROGRAMS:
+
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo "  $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`"; \
+	     $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	  else :; fi; \
+	done
+
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	done
+
+.c.o:
+	$(COMPILE) -c $<
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+fastlst: $(fastlst_OBJECTS) $(fastlst_DEPENDENCIES)
+	@rm -f fastlst
+	$(CXXLINK) $(fastlst_LDFLAGS) $(fastlst_OBJECTS) $(fastlst_LDADD) $(LIBS)
+.cc.o:
+	$(CXXCOMPILE) -c $<
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = fastlst
+
+distdir: $(DISTFILES)
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+addrs.o: addrs.cc ../include/addrs.hpp ../include/defines.hpp \
+	../include/config.h ../include/typedefs.h ../include/misc.hpp \
+	../include/apgenlib.hpp ../include/defines.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/types.hpp ../include/v7.hpp ../include/phtrans.hpp \
+	../include/outblk.hpp ../include/inpblk.hpp \
+	../include/daydir.hpp ../include/iocur.hpp \
+	../include/response.hpp ../include/parse.hpp
+cfgdata.o: cfgdata.cc ../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/data.hpp ../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h \
+	../include/typedefs.h ../include/v7.hpp ../include/phtrans.hpp \
+	../include/response.hpp ../include/misc.hpp \
+	../include/apgenlib.hpp ../include/defines.h \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/inpblk.hpp \
+	../include/daydir.hpp ../include/iocur.hpp
+common.o: common.cc ../include/common.hpp ../include/apgenlib.hpp \
+	../include/defines.h ../include/typedefs.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h
+crc16.o: crc16.cc ../include/defines.hpp ../include/config.h \
+	../include/typedefs.h ../include/types.hpp ../include/addrs.hpp \
+	../include/v7.hpp ../include/phtrans.hpp \
+	../include/crc16tab.hpp
+data.o: data.cc ../include/data.hpp ../include/types.hpp \
+	../include/addrs.hpp ../include/defines.hpp ../include/config.h \
+	../include/typedefs.h ../include/v7.hpp ../include/phtrans.hpp \
+	../include/response.hpp
+daydir.o: daydir.cc ../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/daydir.hpp ../include/defines.hpp \
+	../include/config.h ../include/typedefs.h \
+	../include/cfgdata.hpp ../include/types.hpp \
+	../include/addrs.hpp ../include/v7.hpp ../include/phtrans.hpp \
+	../include/outblk.hpp ../include/inpblk.hpp \
+	../include/iocur.hpp ../include/misc.hpp \
+	../include/apgenlib.hpp ../include/defines.h \
+	../include/apgenlb2.hpp ../include/response.hpp \
+	../include/parse.hpp ../include/filesbbs.hpp
+edit.o: edit.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/edit.hpp ../include/types.hpp \
+	../include/addrs.hpp ../include/defines.hpp ../include/config.h \
+	../include/v7.hpp ../include/phtrans.hpp ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/inpblk.hpp \
+	../include/daydir.hpp ../include/iocur.hpp \
+	../include/response.hpp ../include/data.hpp \
+	../include/crc16.hpp ../include/parse.hpp
+export.o: export.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/data.hpp ../include/types.hpp \
+	../include/addrs.hpp ../include/defines.hpp ../include/config.h \
+	../include/v7.hpp ../include/phtrans.hpp \
+	../include/response.hpp ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/inpblk.hpp \
+	../include/daydir.hpp ../include/iocur.hpp \
+	../include/export.hpp ../include/parsetyp.hpp \
+	../include/parse.hpp ../include/filesbbs.hpp
+fastlst.o: fastlst.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/msgapier.hpp \
+	../include/misc.hpp ../include/apgenlb2.hpp \
+	../include/cfgdata.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp \
+	../include/data.hpp ../include/flstdat.hpp \
+	../include/parsetyp.hpp ../include/parse.hpp \
+	../include/parsecfg.hpp ../include/export.hpp
+field.o: field.cc ../include/field.hpp
+filesbbs.o: filesbbs.cc ../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp \
+	../include/data.hpp ../include/filesbbs.hpp
+flstdat.o: flstdat.cc ../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h \
+	../include/typedefs.h ../include/v7.hpp ../include/phtrans.hpp \
+	../include/misc.hpp ../include/apgenlib.hpp \
+	../include/defines.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/apgenlb2.hpp \
+	../include/cfgdata.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp
+inmem.o: inmem.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/inmem.hpp ../include/types.hpp \
+	../include/addrs.hpp ../include/defines.hpp ../include/config.h \
+	../include/v7.hpp ../include/phtrans.hpp ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/inpblk.hpp \
+	../include/daydir.hpp ../include/iocur.hpp ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/response.hpp \
+	../include/data.hpp
+inpblk.o: inpblk.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/crc16.hpp \
+	../include/defines.hpp ../include/config.h ../include/data.hpp \
+	../include/types.hpp ../include/addrs.hpp ../include/v7.hpp \
+	../include/phtrans.hpp ../include/response.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/parse.hpp ../include/field.hpp \
+	../include/parsetyp.hpp ../include/export.hpp \
+	../include/inmem.hpp
+inpbprep.o: inpbprep.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/cfgdata.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/response.hpp \
+	../include/edit.hpp ../include/filesbbs.hpp \
+	../include/export.hpp
+iocur.o: iocur.cc ../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h \
+	../include/typedefs.h ../include/v7.hpp ../include/phtrans.hpp \
+	../include/iocur.hpp ../include/inpblk.hpp \
+	../include/daydir.hpp ../include/misc.hpp \
+	../include/apgenlib.hpp ../include/defines.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/response.hpp \
+	../include/inmem.hpp
+misc.o: misc.cc ../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h \
+	../include/typedefs.h ../include/v7.hpp ../include/phtrans.hpp \
+	../include/misc.hpp ../include/apgenlib.hpp \
+	../include/defines.h ../include/apgenlb2.hpp \
+	../include/cfgdata.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp \
+	../include/parse.hpp ../include/data.hpp
+msgapier.o: msgapier.cc ../include/msgapier.hpp
+outblk.o: outblk.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/response.hpp ../include/data.hpp \
+	../include/export.hpp ../include/inmem.hpp
+parse.o: parse.cc ../include/parse.hpp ../include/defines.hpp \
+	../include/config.h ../include/typedefs.h ../include/misc.hpp \
+	../include/apgenlib.hpp ../include/defines.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/types.hpp ../include/addrs.hpp ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp
+parsecfg.o: parsecfg.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/apgenlb2.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/parsetyp.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/parse.hpp ../include/misc.hpp \
+	../include/cfgdata.hpp ../include/outblk.hpp \
+	../include/response.hpp ../include/data.hpp \
+	../include/parsecfg.hpp ../include/export.hpp \
+	../include/parseglb.hpp ../include/parsecia.hpp \
+	../include/parsecin.hpp ../include/parsecil.hpp \
+	../include/parsecio.hpp ../include/parsecsa.hpp \
+	../include/parsecsl.hpp
+parsecia.o: parsecia.cc ../include/parsetyp.hpp ../include/inpblk.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h \
+	../include/typedefs.h ../include/v7.hpp ../include/phtrans.hpp \
+	../include/daydir.hpp ../include/iocur.hpp ../include/parse.hpp \
+	../include/parsecia.hpp ../include/apgenlb2.hpp \
+	../include/defines.h ../include/misc.hpp \
+	../include/apgenlib.hpp ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/response.hpp
+parsecil.o: parsecil.cc ../include/misc.hpp ../include/apgenlib.hpp \
+	../include/defines.h ../include/typedefs.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp \
+	../include/parsecil.hpp ../include/parsetyp.hpp \
+	../include/parse.hpp
+parsecin.o: parsecin.cc ../include/misc.hpp ../include/apgenlib.hpp \
+	../include/defines.h ../include/typedefs.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp \
+	../include/parsecin.hpp ../include/parsetyp.hpp \
+	../include/parse.hpp
+parsecio.o: parsecio.cc ../include/misc.hpp ../include/apgenlib.hpp \
+	../include/defines.h ../include/typedefs.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp \
+	../include/parsecio.hpp ../include/parsetyp.hpp \
+	../include/parse.hpp ../include/parsecfg.hpp \
+	../include/export.hpp
+parsecsa.o: parsecsa.cc ../include/parsetyp.hpp ../include/inpblk.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h \
+	../include/typedefs.h ../include/v7.hpp ../include/phtrans.hpp \
+	../include/daydir.hpp ../include/iocur.hpp ../include/parse.hpp \
+	../include/parsecsa.hpp ../include/apgenlb2.hpp \
+	../include/defines.h ../include/misc.hpp \
+	../include/apgenlib.hpp ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/response.hpp \
+	../include/export.hpp
+parsecsl.o: parsecsl.cc ../include/parsecsl.hpp ../include/defines.hpp \
+	../include/config.h ../include/typedefs.h \
+	../include/parsetyp.hpp ../include/inpblk.hpp \
+	../include/types.hpp ../include/addrs.hpp ../include/v7.hpp \
+	../include/phtrans.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/parse.hpp ../include/export.hpp \
+	../include/misc.hpp ../include/apgenlib.hpp \
+	../include/defines.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/apgenlb2.hpp \
+	../include/cfgdata.hpp ../include/outblk.hpp \
+	../include/response.hpp
+parseglb.o: parseglb.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp \
+	../include/data.hpp ../include/parsecfg.hpp \
+	../include/export.hpp ../include/parsetyp.hpp \
+	../include/parse.hpp ../include/parseglb.hpp
+parsetyp.o: parsetyp.cc ../include/misc.hpp ../include/apgenlib.hpp \
+	../include/defines.h ../include/typedefs.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/outblk.hpp \
+	../include/inpblk.hpp ../include/daydir.hpp \
+	../include/iocur.hpp ../include/response.hpp \
+	../include/parsetyp.hpp ../include/parse.hpp
+phtrans.o: phtrans.cc ../include/phtrans.hpp ../include/typedefs.h \
+	../include/parse.hpp ../include/defines.hpp ../include/config.h \
+	../include/apgenlib.hpp ../include/defines.h \
+	../include/bbsgenlb.hpp ../include/max/newarea.h \
+	../include/max/option.h ../include/max/prm.h
+response.o: response.cc ../include/apgenlib.hpp ../include/defines.h \
+	../include/typedefs.h ../include/bbsgenlb.hpp \
+	../include/max/newarea.h ../include/max/option.h \
+	../include/max/prm.h ../include/response.hpp \
+	../include/types.hpp ../include/addrs.hpp \
+	../include/defines.hpp ../include/config.h ../include/v7.hpp \
+	../include/phtrans.hpp ../include/misc.hpp \
+	../include/apgenlb2.hpp ../include/cfgdata.hpp \
+	../include/outblk.hpp ../include/inpblk.hpp \
+	../include/daydir.hpp ../include/iocur.hpp \
+	../include/msgapier.hpp
+
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+install-exec-am: install-binPROGRAMS
+install-exec: install-exec-am
+
+install-data-am:
+install-data: install-data-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-binPROGRAMS
+uninstall: uninstall-am
+all-am: Makefile $(PROGRAMS)
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(bindir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-binPROGRAMS mostlyclean-compile \
+		mostlyclean-tags mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-binPROGRAMS clean-compile clean-tags clean-generic \
+		mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-binPROGRAMS distclean-compile distclean-tags \
+		distclean-generic clean-am
+
+distclean: distclean-am
+
+maintainer-clean-am:  maintainer-clean-binPROGRAMS \
+		maintainer-clean-compile maintainer-clean-tags \
+		maintainer-clean-generic distclean-am
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+
+.PHONY: mostlyclean-binPROGRAMS distclean-binPROGRAMS clean-binPROGRAMS \
+maintainer-clean-binPROGRAMS uninstall-binPROGRAMS install-binPROGRAMS \
+mostlyclean-compile distclean-compile clean-compile \
+maintainer-clean-compile tags mostlyclean-tags distclean-tags \
+clean-tags maintainer-clean-tags distdir info-am info dvi-am dvi check \
+check-am installcheck-am installcheck install-exec-am install-exec \
+install-data-am install-data install-am install uninstall-am uninstall \
+all-redirect all-am all installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
+
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:
