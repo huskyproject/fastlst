@@ -122,15 +122,14 @@ BOOL my_touchf (const char *fname, time_t mtime, time_t ctime, time_t *nowp)
     FTouch = TRUE;
   }
 
-  if (ctime == ULONG_MAX) {
+  if (ctime == FL_TIME_MAX) {
     ctime = now;
     FTouch = TRUE;
   }
 
-  if (mtime == ULONG_MAX)
+  if (mtime == FL_TIME_MAX)
     mtime = now;
 
-  ushort date, time;
   if (FTouch)
     mtime = ctime;
   if (mtime) {
@@ -154,15 +153,15 @@ BOOL touchf (pcsz filename, time_t mtime, time_t ctime, time_t *nowp)
 /*
 BOOL touchf (int handle, byte touchflag, time_t *nowp)
 {
-  return touchf (handle, (touchflag & _CF_mtouch_) ? ULONG_MAX : 0,
-		 (touchflag & _CF_ctouch_) ? ULONG_MAX : 0, nowp);
+  return touchf (handle, (touchflag & _CF_mtouch_) ? FL_TIME_MAX : 0,
+		 (touchflag & _CF_ctouch_) ? FL_TIME_MAX : 0, nowp);
 }
 */
 
 BOOL touchf (pcsz filename, byte touchflag, time_t *nowp)
 {
-  return touchf (filename, (touchflag & _CF_mtouch_) ? ULONG_MAX : 0,
-		 (touchflag & _CF_ctouch_) ? ULONG_MAX : 0, nowp);
+  return touchf (filename, (touchflag & _CF_mtouch_) ? FL_TIME_MAX : 0,
+		 (touchflag & _CF_ctouch_) ? FL_TIME_MAX : 0, nowp);
 }
 
 
@@ -178,8 +177,7 @@ BOOL touchf (pcsz filename, byte touchflag, time_t *nowp)
 static int CopyFile (pcsz sourcefile, pcsz destfile, byte flags)
 {
   int source, destination;
-  unsigned bread;
-  ushort srcfdate, srcftime;
+  int bread;
 
   byte *bufp = new byte[COPYBUFSIZE];
 
@@ -199,7 +197,7 @@ static int CopyFile (pcsz sourcefile, pcsz destfile, byte flags)
   //    _dos_getftime (source, &srcfdate, &srcftime);
 
   while ((bread = read (source, bufp, COPYBUFSIZE)) > 0) {
-    if (bread == (unsigned) -1)
+    if (bread == -1)
       break;
     if (write (destination, bufp, bread) != bread) {
       delete[] bufp;

@@ -548,6 +548,7 @@ BOOL getftime (const char *filename, time_t *mtime, time_t *ctime = NULL, time_t
                             // for touchf mtime
 #define _TF_Auto     1UL    // If ctime not valid -> set mtime
 
+#define	FL_TIME_MAX	(time_t)LONG_MAX
 BOOL touchf (int handle, time_t mtime, time_t ctime = 0, time_t *nowp = NULL);
 BOOL touchf (pcsz filename, time_t mtime, time_t ctime = 0, time_t *nowp = NULL);
 BOOL touchf (int handle, byte touchflag = _CF_mtouch_ | _CF_ctouch_, time_t *nowp = NULL);
@@ -555,8 +556,8 @@ BOOL touchf (pcsz filename, byte touchflag = _CF_mtouch_ | _CF_ctouch_, time_t *
 // Sets filename time to ?time,
 // handle MUST be open for writing with SH_DENYRW
 // if ?time is 0 it is not changed,
-// if ?time is ULONG_MAX the current time is used (touch).
-// If ctime=ULONG_MAX is specified and old ctime==0 (FAT, DOS), mtime is touched.
+// if ?time is FL_TIME_MAX the current time is used (touch).
+// If ctime=FL_TIME_MAX is specified and old ctime==0 (FAT, DOS), mtime is touched.
 // If nowp != NULL, the current time is stored in *nowp.
 // Returns TRUE on success.
 // The last 2 forms allow touch only, full by default.
