@@ -24,14 +24,16 @@
 
 int Sleep (ulong interval)   /* wait interval ms (rounded to clock ticks) */
 {
+  int ret = 0;
 #if defined(__CYGWIN32__)
    usleep( interval * 1000);
 #else
    timespec t;
    t.tv_sec = 0;
    t.tv_nsec = interval * 1000000;
-   nanosleep  (&t, &t);
+   ret = nanosleep  (&t, &t);
 #endif
+  return(ret);
 }
 
 void PTIMER::Start (ulong interval) {          /* time in s/1000 */

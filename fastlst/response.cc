@@ -223,7 +223,7 @@ void SetOrigin (char *buffer, char *origin, ADR *adr)
     char *c;
 
     c = addrs (adr);            // max 79chars in origin
-    sprintf (buffer, " * Origin: %.*s (%s)\r", 65 - strlen (c), origin, c);
+    sprintf (buffer, " * Origin: %.*s (%s)\r", 65 - (int)strlen(c), origin, c);
 }
 
 
