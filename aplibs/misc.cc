@@ -168,8 +168,10 @@ static int waitopen (const char *bsyname, int timeout) // -1 on timeout
 
 void fl_strupr (char *string)
 {
-  while (*string)
-    *(string++) = toupper (*string);
+  while (*string !=0) {
+    *string = (char)toupper (*string);
+    string++;
+  }
 }
 
 // strto4Dadr: convert string to binary FNT address.
