@@ -116,10 +116,7 @@ void exitfunc (void)
 
     vwritelog ("End, FastLst "VER);
 
-#ifndef __FreeBSD__
     fcloseall ();
-    /* we need a workaround for BSD for this!!! */
-#endif
 
     if ((cob) && (killafter)) {     /* Erase temporary files if existing (aborted) */
 
@@ -149,7 +146,7 @@ void BreakHandler (int sign)
 #pragma on (unreferenced)
 
 
-int main (short argc, char *argv[])
+void main (short argc, char *argv[])
 {
     char    *s, *config_file = "fastlst.cfg";
     BOOL    PrepOnly;
@@ -213,9 +210,7 @@ int main (short argc, char *argv[])
     if (!IgnoreDat)
         read_data (config_file, cfgtime);
 
-    atexit (exitfunc);
-    signal (SIGINT, BreakHandler);
-
+    
     if (MsgLogAreaPath || MsgRemAreaPath) {
         struct _minf minf;
         minf.req_version = 0;
@@ -252,6 +247,9 @@ int main (short argc, char *argv[])
                 (word) MsgAttr, NULL);
         }
     }
+
+    atexit (exitfunc);
+    signal (SIGINT, BreakHandler);
 
     SomeNewNeeded = FALSE;      // initialized false
 
