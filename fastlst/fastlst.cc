@@ -18,12 +18,16 @@
 #include <signal.h>
 #define __USE_GNU
 #define _GNU_SOURCE
-#include <libio.h>
+#ifndef __GNUC__
+#  include <libio.h>
+#endif
 #include <stdio.h>
 #include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <new.h>
+#if __GNUC__ < 3
+#  include <new.h>
+#endif
 #include <fcntl.h>
 #include <string.h>
 #include <stdlib.h>
@@ -81,6 +85,9 @@ void exitfunc (void)
         KillSourceFiles ();
 
     switch (errorlevel) {
+    	case OK:
+	    vprintlogrsp (MsgLogRsp, "\nEverything went ok!\n");
+            break;
         case DISK_FULL:
             vprintlogrsp (MsgLogRsp, "\nError: Disk Full !\n");
             break;
@@ -138,16 +145,18 @@ void exitfunc (void)
     }
 }
 
-
+#ifndef __GNUC__
 #pragma off (unreferenced)
+#endif
 
 void BreakHandler (int sign)
 {
     Break = TRUE;
 }
 
+#ifndef __GNUC__
 #pragma on (unreferenced)
-
+#endif
 
 int main (short argc, char *argv[])
 {
