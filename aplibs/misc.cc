@@ -67,7 +67,7 @@ char *stpzcpy (char *dest, const char *src, size_t maxlen)
     return dest;
 }
 
-#if !defined(__FreeBSD__)
+#if !defined(__FreeBSD__) && !defined(__CYGWIN__)
 
 char *strlcat (char *dest, const char *src, size_t totsize)
 {
