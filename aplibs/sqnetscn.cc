@@ -54,7 +54,7 @@ static HAREA MsgTOpenArea (byte *name, word mode, word type)
 
 static sword MsgTLock (HAREA ha)
 {
-    sword ret;
+    sword ret = 0;
 
     for (int i = 0; i < 6; i ++) {
         ret = MsgLock (ha);
@@ -216,7 +216,10 @@ int SqNetScan::MarkMsgRead ()
     int err = 0;
 
     XMSG xmsg;
-    err |= (MsgReadMsg (hmsg, &xmsg, 0, 0, NULL, 0, NULL) == -1);
+    // explicit typecast of -1 to unsigned to make smapi happy
+    // see smapi/sq_read.c
+    // IMHO this should be changed in smapi to sword
+    err |= (MsgReadMsg (hmsg, &xmsg, 0, 0, NULL, 0, NULL) == (dword)-1);
     if (!err) {
         xmsg.attr |= MSGREAD;
         err |= (MsgWriteMsg (hmsg, 0, &xmsg, NULL, 0, 0, 0, NULL) == -1);
