@@ -1,3 +1,10 @@
+2004-05-11 Tuesday 14:27  gerritkuehn
+
+	* doc/german/: Compress.Cfg (1.1), FastLst.Doc (1.1), Fast_Ful.Cfg
+	(1.1), Fast_Min.Cfg (1.1), WhatsNew.Txt (1.1), fastlst.INF (1.1):
+	Adding German documentation.  Warning: this is not up-to-date and
+	needs to be reviewed!
+
 2004-01-02 Friday 20:26  gerritkuehn
 
 	* COPYING (1.6): Adding new BSD-style COPYING file to make autoconf
