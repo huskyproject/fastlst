@@ -1,3 +1,22 @@
+2004-01-02 Friday 22:27  gerritkuehn
+
+	* COPYING, LICENSE.txt, NEWS, ReadMe.txt
+	(fastlst-2_0_4-stable.[1,1,1,1]): New license conditions
+	(backported from -current): Alberto Pasquale kindly agreed to
+	change the license conditions to a BSD-style license. This will
+	make further development and distribution of the software easier,
+	especially within Linux distributions like Debian.  The new license
+	can be found as LICENSE.txt, Alberto's comment is in ReadMe.txt.
+
+2003-10-13 Monday 10:16  gerritkuehn
+
+	* LICENSE.txt (1.1), ReadMe.txt (1.1): New license conditions:
+	Alberto Pasquale kindly agreed to change the license conditions to
+	a BSD-style license. This will make further development and
+	distribution of the software easier, especially within Linux
+	distributions like Debian.  The new license can be found as
+	LICENSE.txt, Alberto's comment is in ReadMe.txt.
+
 2003-06-17 Tuesday 14:19  gerritkuehn
 
 	* NEWS (1.6): Updating maintainer information.
