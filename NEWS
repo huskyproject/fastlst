@@ -1,5 +1,7 @@
 New in 2.0.4 (-beta/-stable, released 2003-06-17):
   * many fixes, enhanced portability
+  - maintainer is now Gerrit Kuehn (<gerritkuehn@users.sourceforge.net>,
+    2:2411/12, 2:246/4020)
 
 New in 2.0.3+ (unreleased)
   * many fixes / all features enabled (possible problems with fixed-extension Nodelists)
