@@ -184,7 +184,7 @@ void strupr (char *string)
 // adr is a pointer to a 4D address.
 // Returns 0 on success address parsing
 // Returns not zero on illegal or not full address (*adr unchanged, adrs not moved).
-int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0)
+int strto4Dadr (const char *&adrs, ADR *adr)
 {
   int ret = 0;
   register unsigned zone, net, node, point=0;

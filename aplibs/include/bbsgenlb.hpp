@@ -225,7 +225,7 @@ class SqTag2Path {
 #define MSC_AcsStrSize      39      // space for <level>/<keys>
 
 
-int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0);
+int strto4Dadr (const char *&adrs, ADR *adr);
 
 // adrs is a pointer to a 4D address string that must not necessarily
 //   be terminated just after the address specification;
