@@ -14,7 +14,7 @@ fi
 
 LDFLAGS="$LIBS -L$libdir"
 AC_SEARCH_LIBS(MsgOpenApi, smapi smapilnx, [ ],
-  echo -e "\nYou need a working smapi installation for this program to compile.\n"
+[  echo -e "\nYou need a working smapi installation for this program to compile.\n"
   exit 1
 ])
 
