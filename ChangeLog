@@ -1,3 +1,12 @@
+2003-01-16 Thursday 15:39  gerritkuehn
+
+	* doc/: Compress.Cfg (1.1), FASTLST.INF (1.1), Fast_ful.Cfg (1.1),
+	Fast_min.Cfg (1.1), Fastlst.Doc (1.1), Fastlst.Ico (1.1),
+	V7Plus.Doc (1.1), Whatsnew.Txt (1.1): Created doc/ directory and
+	checked in fastlst documentation, sample configuration files and
+	updated Whatsnew.Txt (stemming from last official fastlst release
+	v2.0.1).
+
 2003-01-15 Wednesday 04:29  stas_degteff
 
 	* aplibs/cfgfile.cc (1.3): Check for NULL pointer (prevent
