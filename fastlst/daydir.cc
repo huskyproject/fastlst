@@ -193,7 +193,7 @@ DAYDIR::CommInit (int Latest)
 	    }
 	}
         nfound++;
-        if (g.gl_pathc == nfound) done = 1;
+        if ((size_t)g.gl_pathc == (size_t)nfound) done = 1;
     }
 
   chdir (oldpath);
@@ -289,17 +289,17 @@ DAYDIR::Name (int dd_idx)
     {				// return fixed extension !
       if (fixext == NULL)
 	return NULL;
-      sprintf (fname, "%.*s%s", strlen (mask) - 3, mask, fixext);
+      sprintf (fname, "%.*s%s", (int)strlen (mask) - 3, mask, fixext);
     }
   else
     {				// return day extension
       if (dd_idx >= nfound)
 	return NULL;
       if (arc)
-	sprintf (fname, "%.*s%c%02hd", strlen (mask) - 3, mask,
+	sprintf (fname, "%.*s%c%02hd", (int)strlen (mask) - 3, mask,
 		 dir[dd_idx].first, dir[dd_idx].day % 100);
       else
-	sprintf (fname, "%.*s%03hd", strlen (mask) - 3, mask, dir[dd_idx].day);
+	sprintf (fname, "%.*s%03hd", (int)strlen (mask) - 3, mask, dir[dd_idx].day);
     }
   return fname;
 }
