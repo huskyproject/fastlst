@@ -1,0 +1,99 @@
+<QPG:Generation>
+   <QPG:Options>
+      <QPG:User unattended="yes" verbosity="0" listfiles="yes"/>
+      <QPG:Defaults type="qnx_package"/>
+      <QPG:Source></QPG:Source>
+      <QPG:Release date="today" number="+"/>
+      <QPG:Build></QPG:Build>
+      <QPG:FileSorting strip="yes"/>
+      <QPG:Package targets="standart"/>
+      <QPG:Repository generate="yes"/>
+      <QPG:FinalDir></QPG:FinalDir>
+      <QPG:Cleanup></QPG:Cleanup>
+   </QPG:Options>
+
+   <QPG:Responsible>
+      <QPG:Company>QNX.ORG.RU Community</QPG:Company>
+      <QPG:Department></QPG:Department>
+      <QPG:Group></QPG:Group>
+      <QPG:Team>QNX.ORG.RU Team</QPG:Team>
+      <QPG:Employee>Mike Gorchak</QPG:Employee>
+      <QPG:EmailAddress>mike@malva.ua</QPG:EmailAddress>
+   </QPG:Responsible>
+
+   <QPG:Values>
+      <QPG:Files>
+         <QPG:Add file="./COPYING" install="LicenseUrl/" handling="repdata"/>
+         <QPG:Add permissions="0755" file="./fastlst/fastlst" install="/opt/bin/"/>
+         <QPG:Add permissions="0644" file="./AUTHORS" install="/usr/doc/husky/fastlst/"/>
+         <QPG:Add permissions="0644" file="./COPYING" install="/usr/doc/husky/fastlst/"/>
+         <QPG:Add permissions="0644" file="./ChangeLog" install="/usr/doc/husky/fastlst/"/>
+         <QPG:Add permissions="0644" file="./HISTORY" install="/usr/doc/husky/fastlst/"/>
+         <QPG:Add permissions="0644" file="./INSTALL" install="/usr/doc/husky/fastlst/"/>
+         <QPG:Add permissions="0644" file="./NEWS" install="/usr/doc/husky/fastlst/"/>
+         <QPG:Add permissions="0644" file="./README" install="/usr/doc/husky/fastlst/"/>
+         <QPG:Add permissions="0644" file="./doc/Fastlst.Doc" install="/usr/doc/husky/fastlst/original/"/>
+         <QPG:Add permissions="0644" file="./doc/Fastlst.Ico" install="/usr/doc/husky/fastlst/original/"/>
+         <QPG:Add permissions="0644" file="./doc/V7Plus.Doc" install="/usr/doc/husky/fastlst/original/"/>
+         <QPG:Add permissions="0644" file="./doc/Whatsnew.Txt" install="/usr/doc/husky/fastlst/original/"/>
+         <QPG:Add permissions="0644" file="./doc/Compress.Cfg" install="/usr/doc/husky/fastlst/samples/"/>
+         <QPG:Add permissions="0644" file="./doc/Fast_ful.Cfg" install="/usr/doc/husky/fastlst/samples/"/>
+         <QPG:Add permissions="0644" file="./doc/Fast_min.Cfg" install="/usr/doc/husky/fastlst/samples/"/>
+      </QPG:Files>
+      <QPG:PackageFilter>
+         <QPM:PackageManifest>
+            <QPM:PackageDescription>
+               <QPM:PackageType>Application</QPM:PackageType>
+               <QPM:PackageName>fastlst</QPM:PackageName>
+               <QPM:PackageReleaseNumber>1</QPM:PackageReleaseNumber>
+               <QPM:PackageRepository>http://qnx.org.ru/repository</QPM:PackageRepository>
+               <QPM:FileVersion>2.0</QPM:FileVersion>
+            </QPM:PackageDescription>
+            <QPM:ProductDescription>
+               <QPM:ProductName>fastlst</QPM:ProductName>
+               <QPM:ProductIdentifier>fastlst</QPM:ProductIdentifier>
+               <QPM:ProductEmail></QPM:ProductEmail>
+               <QPM:VendorName>husky</QPM:VendorName>
+               <QPM:VendorInstallName>husky</QPM:VendorInstallName>
+               <QPM:VendorURL>http://husky.sourceforge.net</QPM:VendorURL>
+               <QPM:VendorEmbedURL/>
+               <QPM:VendorEmail></QPM:VendorEmail>
+               <QPM:AuthorName>Husky Team</QPM:AuthorName>
+               <QPM:AuthorURL>http://husky.sourceforge.net/team.html</QPM:AuthorURL>
+               <QPM:AuthorEmbedURL/>
+               <QPM:AuthorEmail></QPM:AuthorEmail>
+               <QPM:ProductIconSmall/>
+               <QPM:ProductIconLarge/>
+               <QPM:ProductDescriptionShort>FastLst - The ultimate V7+ nodelist processor.</QPM:ProductDescriptionShort>
+               <QPM:ProductDescriptionLong>FastLst - The ultimate V7+ nodelist processor. Version 7 is a common format for binary nodelists to be used by mailers, message editors and all the programs that need fast access to a compiled nodelist.</QPM:ProductDescriptionLong>
+               <QPM:ProductDescriptionURL>http://husky.sourceforge.net</QPM:ProductDescriptionURL>
+               <QPM:ProductDescriptionEmbedURL/>
+            </QPM:ProductDescription>
+            <QPM:ReleaseDescription>
+               <QPM:ReleaseVersion>2.0.4</QPM:ReleaseVersion>
+               <QPM:ReleaseUrgency>Low</QPM:ReleaseUrgency>
+               <QPM:ReleaseStability>Experimental</QPM:ReleaseStability>
+               <QPM:ReleaseNoteMinor/>
+               <QPM:ReleaseNoteMajor/>
+               <QPM:ReleaseBuild>1</QPM:ReleaseBuild>
+               <QPM:CountryExclude/>
+               <QPM:ReleaseCopyright>GNU General Public License</QPM:ReleaseCopyright>
+            </QPM:ReleaseDescription>
+            <QPM:ContentDescription>
+               <QPM:ContentTopic>Software Development/Libraries and Extensions/C Libraries</QPM:ContentTopic>
+               <QPM:ContentKeyword>FIDO, Husky, FTN, nodelist, v7</QPM:ContentKeyword>
+               <QPM:Processor/>
+               <QPM:TargetProcessor/>
+               <QPM:TargetOS>qnx6</QPM:TargetOS>
+               <QPM:HostOS>qnx6</QPM:HostOS>
+               <QPM:DisplayEnvironment>Console</QPM:DisplayEnvironment>
+               <QPM:TargetAudience>Developer</QPM:TargetAudience>
+            </QPM:ContentDescription>
+            <QPM:LicenseUrl>repdata://LicenseUrl/COPYING</QPM:LicenseUrl>
+            <QPM:ProductInstallationDependencies>
+               <QPM:ProductRequirements/>
+            </QPM:ProductInstallationDependencies>
+         </QPM:PackageManifest>
+      </QPG:PackageFilter>
+   </QPG:Values>
+</QPG:Generation>
