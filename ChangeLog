@@ -1,7 +1,7 @@
 ----- cvs ci -----
 Wed Jan  3 13:33:17 UTC 2001
 sms:
-- Released fastlst 2.0.3
+= Released fastlst 2.0.3
 
 ----- cvs ci -----
 Mon Sep  4 01:29:49 UTC 2000
@@ -10,4 +10,12 @@ sms:
 * configure now looks for both libsmapi.so and libsmapilnx.so in order to find
   smapi
 * changed includes for smapi
+
+
+Notation:
++ added
+- removed
+* fixed
+! changed
+= note
 
