@@ -25,7 +25,7 @@ configure-it:
 
 all: configure-it
 	(cd ..; $(MAKE) all;)
-	
+
 install:
 	(cd ..; $(MAKE) install;)
 
