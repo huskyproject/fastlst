@@ -324,10 +324,21 @@ char *pathwbs (char *path)  // append trailing backslash
   return path;
 }
 
+#ifdef UNIX
 
+char *fullpath(char *buffer, const char *path, size_t size, int *len)
+{
+  if (!buffer)
+    buffer = (char *)malloc(PATH_MAX);
+
+  realpath(path, buffer);
+  return buffer;
+}
+
+#else
 char *fullpath (char *buffer, const char *path, size_t size, int *len)
 {
-  /*    char work[PATH_MAX];
+        char work[PATH_MAX];
 	int wlen;
 
 	if (!path) {
@@ -450,10 +461,10 @@ char *fullpath (char *buffer, const char *path, size_t size, int *len)
     }
     strcpy (buffer, work);
     if (len)
-    *len = wlen;*/
+    *len = wlen;
   return buffer;
 }
-
+#endif
 
 BOOL eqpath (const char *p1, const char *p2)
 {
@@ -469,14 +480,14 @@ BOOL eqpath (const char *p1, const char *p2)
     return FALSE;
 
   if (len1 > 4) {
-    if (p1f[len1-1] == '\\') {
+    if (p1f[len1-1] == DIRSEP) {
       p1f[len1-1] = '\0'; // remove trailing backslash if present
       len1 --;
     }
   }
 
   if (len2 > 4) {
-    if (p2f[len2-1] == '\\') {
+    if (p2f[len2-1] == DIRSEP) {
       p2f[len2-1] = '\0'; // remove trailing backslash if present
       len2 --;
     }
@@ -534,7 +545,7 @@ char *hasext (pcsz filename)
   pcsz p = strrchr (filename, '.');
   if (!p)
     return NULL;
-  if (strchr (p+1, '\\'))
+  if (strchr (p+1, DIRSEP))
     return NULL;
   return (char *)p;
 }
@@ -564,7 +575,7 @@ void addext (char *filename, pcsz ext)
 
 char *filefrompath (const char *path)
 {
-  char *bs = strrchr (path, '\\');
+  char *bs = strrchr (path, DIRSEP);
   if (!bs)
     bs = strchr (path, ':');
   if (!bs)

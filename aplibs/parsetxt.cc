@@ -150,23 +150,23 @@ gn_exit:
             src = skipspace (s);   // skip to next non-space character
 
         if (action & GN_BSlash) {
-            if ((len > 0) && (*(d-1) != '\\')) {
+            if ((len > 0) && (*(d-1) != DIRSEP)) {
                 if (len == maxlen - 1) {
                     d--;
                     len--;
-                    if (*(d-1) != '\\') {
-                        *(d++) = '\\';
+                    if (*(d-1) != DIRSEP) {
+                        *(d++) = DIRSEP;
                         len++;
                     }
                 } else {
-                    *(d++) = '\\';
+                    *(d++) = DIRSEP;
                     len++;
                 }
             }
         }
 
         if (action & GN_UBSlash) {
-            if ((len > 0) && (*(d-1) == '\\'))
+            if ((len > 0) && (*(d-1) == DIRSEP))
                 d--;
                 len--;
         }
@@ -178,11 +178,11 @@ gn_exit:
                 return -1;
     } else {                    // dest == NULL
         if (action & GN_BSlash)
-            if ((len > 0) && (l != '\\'))
+            if ((len > 0) && (l != DIRSEP))
                 len++;
 
         if (action & GN_UBSlash)
-            if ((len > 0) && (l == '\\'))
+            if ((len > 0) && (l == DIRSEP))
                 len--;
     }
 
@@ -230,8 +230,8 @@ void strbslash (char *dir)
     int l;
 
     l=strlen(dir);
-    if ((l > 0) && (dir[l-1]!='\\')) {
-        dir[l]='\\';
+    if ((l > 0) && (dir[l-1]!=DIRSEP)) {
+        dir[l]=DIRSEP;
         dir[l+1]=0;
     }
 }
@@ -240,7 +240,7 @@ void strbslash (char *dir)
 void strubslash (char *dir)
 {
     int l = strlen (dir);
-    if ((l > 0) && (dir[l-1] == '\\'))
+    if ((l > 0) && (dir[l-1] == DIRSEP))
         dir[l-1]='\0';
 }
  

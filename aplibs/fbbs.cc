@@ -140,7 +140,7 @@ FBBS::FBBS (const char *path, int filesize, int descsize, int linesize,
     strcpy (filesbbs, path);
 
     if (*filefrompath (path) == '\0')
-        strcat (filesbbs, "Files.Bbs");
+        strcat (filesbbs, "files.bbs");
 
     this->filesize = filesize;
     this->descsize = descsize;

@@ -155,7 +155,7 @@ int FileBase::AreaOpen (word areanum, const char *filesbbs, BOOL NoLocBase)
     char fullpath[PATH_MAX];
 
     strcpy (fullpath, filesbbs);
-    char *p = strrchr (fullpath, '\\'); // remove filename
+    char *p = strrchr (fullpath, DIRSEP); // remove filename
     if (!p)
         p = strchr (fullpath, ':');
     if (p)
@@ -491,7 +491,11 @@ int FileBase::BuildArea (word areanum, const char *filepath,
         char *fname;        // points to filename, no path
 
         if (fattr & FA_AUTODATE) {
+#ifndef UNIX
             if (strpbrk (filename, "\\:"))       // with path
+#else
+            if (strpbrk (filename, "/:"))       // with path
+#endif
                 fname = GetEntry (filename, entry, path);
             else {                              // in current dir
                 entry = areadir->Get (filename);  // search in dir
@@ -554,7 +558,7 @@ int FileBase::BuildArea (word areanum, const char *filepath,
 static char *GetEntry (const char *filename, _dir *&entry, char *&path,
                        word flags) // gets data on filename
 {
-    char *pathend = strrchr (filename, '\\');
+    char *pathend = strrchr (filename, DIRSEP);
     if (!pathend)
         pathend = strchr (filename, ':');
 
