@@ -39,6 +39,7 @@
          <QPG:Add permissions="0644" file="./doc/Compress.Cfg" install="/usr/doc/husky/fastlst/samples/"/>
          <QPG:Add permissions="0644" file="./doc/Fast_ful.Cfg" install="/usr/doc/husky/fastlst/samples/"/>
          <QPG:Add permissions="0644" file="./doc/Fast_min.Cfg" install="/usr/doc/husky/fastlst/samples/"/>
+         <QPG:Add permissions="0644" file="./man/fastlst.1" install="/opt/man/man1/"/>
       </QPG:Files>
       <QPG:PackageFilter>
          <QPM:PackageManifest>
@@ -80,7 +81,7 @@
                <QPM:ReleaseCopyright>GNU General Public License</QPM:ReleaseCopyright>
             </QPM:ReleaseDescription>
             <QPM:ContentDescription>
-               <QPM:ContentTopic>Software Development/Libraries and Extensions/C Libraries</QPM:ContentTopic>
+               <QPM:ContentTopic>Communication and Connectivity/Chat and Messaging</QPM:ContentTopic>
                <QPM:ContentKeyword>FIDO, Husky, FTN, nodelist, v7</QPM:ContentKeyword>
                <QPM:Processor/>
                <QPM:TargetProcessor/>
