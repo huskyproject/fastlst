@@ -149,7 +149,7 @@ void BreakHandler (int sign)
 #pragma on (unreferenced)
 
 
-void main (short argc, char *argv[])
+int main (short argc, char *argv[])
 {
     char    *s, *config_file = "fastlst.cfg";
     BOOL    PrepOnly;
