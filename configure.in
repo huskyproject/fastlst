@@ -1,11 +1,12 @@
 AC_INIT(fastlst/fastlst.cc)
 AM_INIT_AUTOMAKE(fastlst, 2.0.4-beta)
 AM_CONFIG_HEADER(include/config.h)
+AM_MAINTAINER_MODE
 
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_MAKE_SET
-AC_PROG_LIBTOOL
+AC_PROG_RANLIB
 
 dnl expand libdir if necessary
 if test "$libdir" = "\${exec_prefix}/lib"; then
