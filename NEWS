@@ -1,0 +1,6 @@
+
+New in 2.0.3 (released 2001-01-03):
+  - maintainer now is Sascha Silbe <sascha@silbe.org>
+  * fixed CRC calculation of Hi-ASCII characters
+  - adaptations for latest version of smapi
+

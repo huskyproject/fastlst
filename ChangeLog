@@ -1,4 +1,9 @@
 ----- cvs ci -----
+Wed Jan  3 13:33:17 UTC 2001
+sms:
+- Released fastlst 2.0.3
+
+----- cvs ci -----
 Mon Sep  4 01:29:49 UTC 2000
 sms:
 * fixed CRC calculation of chars > ASCII 127

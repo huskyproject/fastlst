@@ -4,5 +4,14 @@ Alberto Pasquale. See the file fastlst/COPYING and aplibs/COPYING for more
 information about this.
 
 The conversion to Linux and autoconf/automake was solemnly done by
-Per Lundberg. Please do NOT mail questions/whatever about this to Alberto,
-but to me. My E-mail address is plundis@debian.org.
+Per Lundberg, Email plundis@debian.org.
+
+The current maintainer is Sascha Silbe <sascha@silbe.org>. Please direct any
+mail regarding problems/bugs/whatever to him, not to Alberto or Per.
+
+The copyright lines:
+
+(C) Copyright 1992-1997 Alberto Pasquale
+Portions (C) Copyright 1999 Per Lundberg
+Portions (C) Copyright 2000-2001 Sascha Silbe
+

@@ -154,10 +154,11 @@ void main (short argc, char *argv[])
 
     StartTime = time (NULL);        // record start time
 
-    fprintf (stderr, "\n\
-FastLst ver. "VER"\n\
-(C) Copyright 1992-1997 Alberto Pasquale\n\
-Portions (C) Copyright 1999 Per Lundberg\n");
+    fprintf (stderr,
+	     "\n"
+	     "FastLst ver. " VER "\n"
+	     "See the file AUTHORS for copyright infos.\n"
+	     "\n");
 
 //    set_new_handler (new_handler);      // abort on out of memory
 

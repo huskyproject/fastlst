@@ -1,7 +1,10 @@
 
+Per Lundberg:
+
 This is fastlst/aplibs for Linux. I've just made it compile cleanly on my
 system (it uses autoconf/automake, but it doesn't really care about what it
 discovers). Since I didn't have any need for any of the other platforms, I've
 removed much of the OS/2/DOS/Win32-portability stuff. Porting to other Unixy
 platforms is probably quite simple, and your patches are welcome. See the file
 AUTHORS for contact information.
+
