@@ -1,3 +1,16 @@
+2003-01-08 Wednesday 15:03  gerritkuehn
+
+	* aplibs/timers.cc (1.3), fastlst/response.cc (1.2): Added
+	returnvalue to function Sleep in aplibs/timers.cc and typecast in
+	fastlst/response.cc. This removes warnings under gcc 2.95 and
+	(hopefully :-) allows compilation under gcc 3.2.
+
+2003-01-08 Wednesday 14:37  gerritkuehn
+
+	* aplibs/misc.cc (1.8): Added returnvalue to function strto4Dadr in
+	aplibs/misc.cc. This removes warnings under gcc 2.95 and (hopefully
+	:-) allows compilation under gcc 3.2.
+
 2003-01-07 Tuesday 18:25  gerritkuehn
 
 	* aplibs/areadat.cc (1.2), aplibs/misc.cc (1.7), aplibs/runcmd.cc
