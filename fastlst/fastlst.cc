@@ -116,7 +116,10 @@ void exitfunc (void)
 
     vwritelog ("End, FastLst "VER);
 
+#ifndef __FreeBSD__
     fcloseall ();
+    /* we need a workaround for BSD for this!!! */
+#endif
 
     if ((cob) && (killafter)) {     /* Erase temporary files if existing (aborted) */
 
@@ -146,7 +149,7 @@ void BreakHandler (int sign)
 #pragma on (unreferenced)
 
 
-void main (short argc, char *argv[])
+int main (short argc, char *argv[])
 {
     char    *s, *config_file = "fastlst.cfg";
     BOOL    PrepOnly;
