@@ -93,19 +93,16 @@ static void CleanLine (char *line)    // Get rid of tabs, comments, newline.
 
 static char *fgetln (FILE *f, char *lbuff, const char *&tkp)
 {
-    char *res, *tok;
+    char *tok = NULL;
 
-    while ((res = _fgets (lbuff, CFGLINESIZE, f)) != NULL) {
+    while ((_fgets (lbuff, CFGLINESIZE, f)) != NULL) {
         CleanLine (lbuff);  /* get rid of tabs, comments and newline */
         tkp = lbuff;
         tok = GetStatName (tkp);
         if (tok != NULL) /* if keyword ok, return */
             break;
     }
-    if (res)
-        return tok;
-    else
-        return NULL;
+    return tok;
 }
 
 
@@ -342,7 +339,7 @@ const AH_Archiver *AH_ComprCfg::ChkSfx (const char *filename)
 
             case St_StrChk:
                 if (ch == Status.CurArc->identstr[Status.idofs++]) {
-                    if (Status.CurArc->identlen == Status.idofs)
+                    if (Status.CurArc->identlen == (long)Status.idofs)
                         afound = TRUE;
                 } else {
                     long nback = Status.idofs;
