@@ -178,6 +178,7 @@ void strupr (char *string)
 
 int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0)
 {
+  int ret = 0;
   unsigned zone, net, node, point=0;
   if(strchr(adrs, '.'))
     sscanf (adrs, "%u:%u/%u.%u", &zone, &net, &node, &point);
@@ -187,6 +188,7 @@ int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0)
   adr->net  = net;
   adr->node = node;
   adr->point = point;
+  return(ret);
 }
 
 
