@@ -411,8 +411,9 @@ void vpwlog (byte msgtype, char *strfmt, ...)
     va_end (args);
 }
 
-
+#ifndef __GNUC__
 #pragma off (unreferenced)
+#endif
 
 void vwritelogrsp (_RSP *rsp, char *strfmt,...)
 {
@@ -445,8 +446,10 @@ void vprintlogrsp (_RSP *rsp, char *strfmt,...)
     va_end (args);
 
 }
-#pragma on (unreferenced)
 
+#ifndef __GNUC__
+#pragma on (unreferenced)
+#endif
 
 void EraseFile (const char *filename, int timeout)
 {
