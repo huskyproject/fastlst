@@ -19,7 +19,7 @@
 /*****************************************************************************/
 
 extern "C" {
-#include <msgapi.h>
+#include <smapi/msgapi.h>
 };
 
 void wr_mapi_err (void);

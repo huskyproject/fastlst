@@ -26,7 +26,7 @@
 #include "defines.hpp"
 #include "addrs.hpp"
 #include "types.hpp"
-#include "stamp.h"
+#include <smapi/stamp.h>
 #include "response.hpp"
 
 

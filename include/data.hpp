@@ -37,7 +37,7 @@
 #include "response.hpp"
 
 extern "C" {
-#include "msgapi.h"
+#include <smapi/msgapi.h>
 };
 
 extern long  StartTime;            // when FastLst began operating

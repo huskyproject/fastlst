@@ -23,7 +23,7 @@
 //#pragma pack (1)
 
 extern "C" {
-#include <msgapi.h>
+#include <smapi/msgapi.h>
 };
 
 typedef NETADDR v7ADR;

@@ -1,7 +1,7 @@
 #ifndef __NEWAREA_H_DEFINED
 #define __NEWAREA_H_DEFINED
 
-#include <msgapi.h>
+#include <smapi/msgapi.h>
 #include <option.h>
 
 typedef word zstr;      /* Offset of string within area heap */

@@ -25,7 +25,7 @@
 typedef int BOOL;
 
 extern "C" {
-#include <msgapi.h>
+#include <smapi/msgapi.h>
 };
 
 #include <newarea.h>

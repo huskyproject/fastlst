@@ -29,7 +29,7 @@
 #endif
 
 #include <stdlib.h>
-#include <stamp.h>
+#include <smapi/stamp.h>
 #include <apgenlib.hpp>
 
 #pragma pack (1)

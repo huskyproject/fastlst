@@ -31,7 +31,7 @@
 #include "parse.hpp"
 #include "apgenlib.hpp"
 #include "data.hpp"
-#include "stamp.h"
+#include <smapi/stamp.h>
 
 #define YEAR(t)     (((t & 0xFE00) >> 9) + 1980)
 #define MONTH(t)    ((t & 0x01E0) >> 5)

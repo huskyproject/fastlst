@@ -35,15 +35,17 @@
 
 word crcstr (char *buf, word crc, int *len)
 {
-    char *p;
+    unsigned char *buf2;
+    unsigned char *p;
 
-    p = buf;
+    buf2 = (unsigned char *) buf;
+    p = (unsigned char *) buf;
 
     while (*p)
         crc = updcrc (*p++, crc);
 
     if (len)
-	*len = int (p - buf);
+	*len = int (p - buf2);
 
     return (crc);
 }

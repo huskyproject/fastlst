@@ -27,7 +27,7 @@
 #include <stdarg.h>
 #include "types.hpp"
 extern "C" {
-#include <msgapi.h>
+#include <smapi/msgapi.h>
 };
 
 class _RSP {

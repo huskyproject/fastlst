@@ -38,7 +38,7 @@
   typedef int BOOL;
 #endif
 
-#include <msgapi.h>
+#include <smapi/msgapi.h>
 
 #include <newarea.h>
 #include <limits.h>

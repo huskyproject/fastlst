@@ -27,7 +27,7 @@
 
 #include "defines.h"
 #include "typedefs.h"
-#include "stamp.h"
+#include <smapi/stamp.h>
 #include "bbsgenlb.hpp"
 
 //#pragma pack (1)

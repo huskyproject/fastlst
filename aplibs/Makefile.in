@@ -69,7 +69,7 @@ libap_a_SOURCES =  anumlst.cc areadat.cc cfgfile.cc comprcfg.cc dates.cc dir.cc 
 
 
 DEFS = -DUNIX
-INCLUDES = -Iinclude -I../include -I../include/max
+INCLUDES = -Iinclude -I../include -I../include/max -I$(includedir)
 SUBDIRS = include
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../include/config.h
@@ -243,7 +243,7 @@ distdir: $(DISTFILES)
 	@for file in $(DISTFILES); do \
 	  d=$(srcdir); \
 	  if test -d $$d/$$file; then \
-	    cp -pr $$/$$file $(distdir)/$$file; \
+	    cp -pr $$d/$$file $(distdir)/$$file; \
 	  else \
 	    test -f $(distdir)/$$file \
 	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
@@ -260,7 +260,6 @@ distdir: $(DISTFILES)
 	      || exit 1; \
 	  fi; \
 	done
-
 info-am:
 info: info-recursive
 dvi-am:

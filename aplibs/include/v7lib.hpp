@@ -28,7 +28,7 @@
 
 #pragma pack (1)
 
-#include <msgapi.h>
+#include <smapi/msgapi.h>
 typedef NETADDR v7ADR;
 
 

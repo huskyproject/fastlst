@@ -22,7 +22,7 @@
 #include "defines.hpp"
 
 extern "C" {
-#include <msgapi.h>
+#include <smapi/msgapi.h>
 };
 
 typedef NETADDR ADR;
