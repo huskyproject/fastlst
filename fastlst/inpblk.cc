@@ -385,7 +385,7 @@ BOOL INPBLK::ProcessFile (char *fname, INPCUR *icp, OUTCUR *ocp, OUTBLK *cob, BO
     byte    buffer[sizeof(_vers7) + LINESIZE];
     _vers7  *vers7 = (_vers7 *) buffer;
                                 
-    word    official_crc, calc_crc;
+    word    official_crc = 0, calc_crc = 0;
     FILE    *f;
     word    n_num;
     word    n_cost, u_cost;
@@ -393,10 +393,10 @@ BOOL INPBLK::ProcessFile (char *fname, INPCUR *icp, OUTCUR *ocp, OUTBLK *cob, BO
     dword   n_baud;
     int     coord_lev, cur_addr_lev;
     char    def_phone[PHONESIZE];
-    byte    def_modem;
-    word    def_cost, def_ucost;
-    dword   def_baud;
-    word    def_flags;
+    byte    def_modem = 0;
+    word    def_cost = 0, def_ucost = 0;
+    dword   def_baud = 0;
+    word    def_flags = 0;
     char    buff[LINESIZE]; char verbuff[LINESIZE]; char *p, *q, *r;
     char    *modifier, *boardname, *cityname,
             *sysopname; /* no comma */
@@ -406,7 +406,7 @@ BOOL INPBLK::ProcessFile (char *fname, INPCUR *icp, OUTCUR *ocp, OUTBLK *cob, BO
     int     tmplen;
     ADRDATA *ph, *pw, *ad;
 
-    char *origline; // pointer to original nodelist line
+    char *origline = NULL; // pointer to original nodelist line
 
 
     if (SegExpHead) {
@@ -979,7 +979,7 @@ VerbPhone:
                }
             };
                              // DTP ptr into Pack
-            sprintf (q, "%08X", ocp->dtpofs);
+            sprintf (q, "%08lX", ocp->dtpofs);
 
             byte DTPFixSize = pnt ? sizeof (_DTPAllLnk) : sizeof (_DTPLnk);
 
