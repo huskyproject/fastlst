@@ -1,3 +1,17 @@
+2003-06-19 Thursday 14:34  lmike
+
+	* fastlst.qpg (1.3): Removed icon file from the package, seems to
+	be broken icon.
+
+2003-06-19 Thursday 04:42  lmike
+
+	* fastlst.qpg (1.2): Added man page and changed trove map of this
+	software.
+
+2003-06-19 Thursday 04:25  lmike
+
+	* man/fastlst.1 (1.1): Added man page for fastlst.
+
 2003-06-18 Wednesday 08:52  gerritkuehn
 
 	* Makefile.in (1.6), aclocal.m4 (1.4), configure (1.7),
