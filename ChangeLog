@@ -1,3 +1,9 @@
+2003-01-24 Friday 18:15  gerritkuehn
+
+	* aplibs/comprcfg.cc (1.4), aplibs/runcmd.cc (1.4),
+	fastlst/daydir.cc (1.7): (Hopefully :-) fixed bugs when processing
+	archived nodelists and nodediffs.  See source for further comments.
+
 2003-01-23 Thursday 13:49  gerritkuehn
 
 	* aplibs/fbbs.cc (1.4), fastlst/fastlst.cc (1.9),
