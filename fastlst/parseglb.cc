@@ -322,6 +322,14 @@ BOOL ParseGlb (CfgFile &f1)
         return TRUE;
     }
 
+    if (strcasecmp (tok, "DatFile") == 0) {
+        tok = f1.GetToken ();
+        if (!tok)
+            CfgError (f1);
+        getallocpath (tok, &DatFile);
+        return TRUE;
+    }
+
     if (strcasecmp (tok, "ArcPath") == 0) {
         tok = f1.GetToken ();
         if (!tok)

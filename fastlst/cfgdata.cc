@@ -39,7 +39,8 @@ BOOL ForceComp = FALSE;
 BOOL IgnoreDat = FALSE;
 
 char *InputPath = NullStr,
-     *ArcPath = NullStr;
+     *ArcPath = NullStr,
+     *DatFile = "fastlst.dat";
 
 byte ArcDate = _ArcDateCreation_;
 

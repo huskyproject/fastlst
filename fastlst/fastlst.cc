@@ -228,7 +228,7 @@ int main (short argc, char *argv[])
     delete cfg;
 
     if (!IgnoreDat)
-        read_data (config_file, cfgtime);
+        read_data (DatFile, cfgtime);
 
     
     if (MsgLogAreaPath || MsgRemAreaPath) {
@@ -296,7 +296,7 @@ int main (short argc, char *argv[])
     }
 
     if ((errorlevel != NO_NEW) && (errorlevel != ERR_TIMEOUT))
-        save_data (config_file, cfgtime);
+        save_data (DatFile, cfgtime);
 
     if ((errorlevel == OK) && (!SomethingCompiled))
         errorlevel = NOTHING_COMPILED;

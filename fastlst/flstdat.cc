@@ -29,22 +29,6 @@
 #define vID 8           // version ID of the DAT file (byte)
 
 
-static BOOL GetDatName (psz DatName, pcsz CfgName)
-{
-    int cfglen = strlen (CfgName);
-    if (cfglen < 5)
-        return FALSE;
-
-    if (strcasecmp (CfgName + cfglen - 4, ".cfg") != 0)
-        return FALSE;
-
-    strncpy (DatName, CfgName, cfglen - 3);
-    strcpy  (DatName + cfglen - 3, "dat");
-
-    return TRUE;
-}
-
-
 static void read_cib (FILE *f, InpSave *is)
 {
     fread (is, sizeof (InpSave), 1, f);
@@ -74,17 +58,11 @@ void read_cob (FILE *f, OutncBlk *cob, OutSave *os = NULL)
 }
 
 
-void read_data (pcsz CfgName, time_t newcfgtime)
+void read_data (pcsz DatFile, time_t newcfgtime)
 {
-    char DatName[PATH_MAX];
     FILE *f;     
 
-    if (!GetDatName (DatName, CfgName)) {
-        printf ("\nConfig file name must have a \".cfg\" extension !\n\n");
-        myexit (CFG_ERROR);
-    }
-
-    f = fopen (DatName, "rb");
+    f = fopen (DatFile, "rb");
     if (!f)
         return;     // file not existent, all fields remain as initialized
 
@@ -138,17 +116,14 @@ int save_cob (FILE *f, OutncBlk *cob, OutSave *os = NULL)
 }
 
 
-void save_data (pcsz CfgName, time_t cfgtime)
+void save_data (pcsz DatFile, time_t cfgtime)
 {
-    char DatName[PATH_MAX];
     FILE *f;
     int error = 0;
 
-    GetDatName (DatName, CfgName);
-
-    f = fopen (DatName, "wb");
+    f = fopen (DatFile, "wb");
     if (!f) {
-        vprintlog ("Cannot save data to \"%s\"\n", DatName);
+        vprintlog ("Cannot save data to \"%s\"\n", DatFile);
         return;
     }
 
@@ -169,6 +144,6 @@ void save_data (pcsz CfgName, time_t cfgtime)
     fclose (f);
 
     if (error)
-        vprintlog ("Error writing \"%s\"\n", DatName);
+        vprintlog ("Error writing \"%s\"\n", DatFile);
 }
 

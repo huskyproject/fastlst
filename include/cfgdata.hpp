@@ -47,7 +47,8 @@ extern BOOL ForceComp;
 extern BOOL IgnoreDat;
 
 extern char *InputPath,
-            *ArcPath;
+            *ArcPath,
+            *DatFile;
                             // for ArcDate
 
 #define _ArcDateCreation_  0x00
