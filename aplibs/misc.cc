@@ -176,14 +176,25 @@ void strupr (char *string)
 
 #endif
 
+// strto4Dadr: convert string to binary FNT address.
+// adrs is a pointer to a 4D address string that must not necessarily
+//   be terminated just after the address specification;
+//   spaces and tabs are allowed before the address; space, tab, newline,
+//   @ are allowed after the address.
+// adr is a pointer to a 4D address.
+// Returns 0 on success address parsing
+// Returns not zero on illegal or not full address (*adr unchanged, adrs not moved).
 int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0)
 {
   int ret = 0;
-  unsigned zone, net, node, point=0;
+  register unsigned zone, net, node, point=0;
+
+  if(!adrs || !adr) return -1;
+
   if(strchr(adrs, '.'))
-    sscanf (adrs, "%u:%u/%u.%u", &zone, &net, &node, &point);
+    ret = (4 != sscanf (adrs, "%u:%u/%u.%u", &zone, &net, &node, &point));
   else
-    sscanf (adrs, "%u:%u/%u", &zone, &net, &node);
+    ret = (3 != sscanf (adrs, "%u:%u/%u", &zone, &net, &node));
   adr->zone = zone;
   adr->net  = net;
   adr->node = node;

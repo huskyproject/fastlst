@@ -220,9 +220,8 @@ int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0);
 //   spaces and tabs are allowed before the address; space, tab, newline,
 //   @ are allowed after the address.
 // adr is a pointer to a 4D address.
-// Returns the number of characters parsed, space included and optionally
-// advances adrs to first non-space character (MSC_SrcMov flag).
-// Returns -1 on illegal or not full address (*adr unchanged, adrs not moved).
+// Returns 0 on success address parsing
+// Returns not zero on illegal or not full address (*adr unchanged, adrs not moved).
 
 
 bool eq4Dadr (const ADR *adr1, const ADR *adr2);
