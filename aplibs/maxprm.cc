@@ -49,7 +49,7 @@ int MAXPRM::Read (char *prmname)
         return 1;
 
     long prmlen = filelength (fileno (prmf));
-    if ((prmlen == -1) || (prmlen != (size_t)prmlen)) {
+    if (prmlen < 0) {
        fclose (prmf);
        return 1;
     }
