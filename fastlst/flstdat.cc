@@ -50,7 +50,7 @@ static void read_cib (FILE *f, InpSave *is)
 
 void read_cob (FILE *f, OutncBlk *cob, OutSave *os = NULL)
 {
-    time_t NewPwdFileTime;
+    time_t NewPwdFileTime = 0;
 
     if (os) {
         NewPwdFileTime = os->PwdFileTime;    // save newpwdfiletime
