@@ -28,7 +28,7 @@ extern "C" {
 
 typedef NETADDR v7ADR;
 
-extern "C" struct _vers7 {
+extern "C" { struct _vers7 {
     word Zone;
     word Net;
     word Node;
@@ -45,7 +45,7 @@ extern "C" struct _vers7 {
     byte pack_len;         // length of packed blk
     byte BaudRate;         /* baud rate divided by 300 */
 }  __attribute__ ((packed));
-
+};
 
 // for NodeFlags
 
