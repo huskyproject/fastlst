@@ -68,7 +68,7 @@ static int tabcmp (ADRDATA **p1, ADRDATA **p2)
 static ADRDATA **build (uint n, ADRDATA *ad)
 {
     ADRDATA **ret;
-    int i;
+    uint i;
 
     if (n == 0)
         return NULL;

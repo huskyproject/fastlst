@@ -216,6 +216,7 @@ int InpncBlk::ApplyDiff (int ListDay, int DiffDay)    // -1 on error
             s->FutDiff = (short)DiffDay;
             ret = -1;
             break;
+	default:
         case -1:    // error
             s->FutDiff = 0;
             ret = -1;
