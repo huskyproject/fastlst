@@ -1,3 +1,13 @@
+2003-04-10 Thursday 10:07  gerritkuehn
+
+	* configure (1.5), configure.in (1.5): Bump version number to
+	2.0.4-beta.
+
+2003-04-09 Wednesday 19:21  gerritkuehn
+
+	* aplibs/misc.cc (1.12): Eleminating problems with gcc 3.x and
+	optimization caused by undefined code.
+
 2003-02-18 Tuesday 05:54  sfpavel
 
 	* include/typedefs.h (1.2): Fix compiler warning about 'long long
