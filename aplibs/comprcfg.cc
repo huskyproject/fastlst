@@ -241,7 +241,12 @@ void AH_ComprCfg::ScanIdent (const char *tok)
     byte identbuf[IDENTBUFSIZE];
     int identlen = 0;
 
-    char *p = strchr (tok, ',');
+    #ifndef __QNX__
+       char *p = strchr (tok, ',');
+    #else
+       char *p = strchr ((char *)tok, ',');
+    #endif // __QNX__
+
     if (!p)
         return;
 

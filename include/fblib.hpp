@@ -18,7 +18,7 @@
 #define _FBlib_HPP_
 
 #include <stdlib.h>
-#include <smapi/stamp.h>
+#include <smapi/msgapi.h>
 #include <apgenlib.hpp>
 
 //#pragma pack (1)

@@ -26,6 +26,11 @@
 #endif
 
 #include <string.h>
+
+#ifdef __QNXNTO__
+   #include <strings.h>
+#endif // __QNXNTO__
+
 #include "parsetyp.hpp"
 #include "parsecsa.hpp"
 #include "misc.hpp"

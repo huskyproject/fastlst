@@ -27,7 +27,7 @@
 
 #include "defines.h"
 #include "typedefs.h"
-#include <smapi/stamp.h>
+#include <smapi/msgapi.h>
 #include "bbsgenlb.hpp"
 
 //#pragma pack (1)
@@ -387,7 +387,7 @@ time_t dates2unix (char *dates, byte DFovr = DF_DEFAULT);
 //                READONLY,ARCHIVED permitted
 
 
-// FFIND.attrib:
+// FLFFIND.attrib:
 //
 #define _DFF_FILE_ARCHIVED      0x20
 #define _DFF_FILE_DIRECTORY     0x10
@@ -399,7 +399,7 @@ time_t dates2unix (char *dates, byte DFovr = DF_DEFAULT);
 
 struct FILEFINDEABUF;
 
-struct FFIND {
+struct FLFFIND {
 
   private:
 #if defined (__OS2__)
@@ -435,18 +435,18 @@ struct FFIND {
     unsigned long  size;
     char *name;
 
-    friend void Dos2My (FFIND *);
-    friend void SetAttrMask (unsigned, FFIND *);
-    friend unsigned _DosFindFirst (pcsz, unsigned, FFIND *);
-    friend unsigned _DosFindNext (FFIND *);
-    friend unsigned _DosFindClose (FFIND *);
+    friend void Dos2My (FLFFIND *);
+    friend void SetAttrMask (unsigned, FLFFIND *);
+    friend unsigned _DosFindFirst (pcsz, unsigned, FLFFIND *);
+    friend unsigned _DosFindNext (FLFFIND *);
+    friend unsigned _DosFindClose (FLFFIND *);
 
 };
 
 
-unsigned _DosFindFirst (pcsz path, unsigned attributes, FFIND *buffer);
-unsigned _DosFindNext (FFIND *buffer);
-unsigned _DosFindClose (FFIND *buffer);
+unsigned _DosFindFirst (pcsz path, unsigned attributes, FLFFIND *buffer);
+unsigned _DosFindNext (FLFFIND *buffer);
+unsigned _DosFindClose (FLFFIND *buffer);
 
 
 
@@ -471,7 +471,7 @@ class DIRcl {
         _dir **dirp;
         uint ntot;
 
-        void Add (const FFIND *f);
+        void Add (const FLFFIND *f);
         void Read (const char *path);
 
     public:

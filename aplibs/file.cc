@@ -573,11 +573,23 @@ void addext (char *filename, pcsz ext)
 
 char *filefrompath (const char *path)
 {
-  char *bs = strrchr (path, DIRSEP);
-  if (!bs)
-    bs = strchr (path, ':');
+  #ifndef __QNXNTO__
+     char *bs = strrchr (path, DIRSEP);
+  #else
+     char *bs = strrchr ((char *)path, DIRSEP);
+  #endif // __QNXNTO__
+
+  #ifndef __QNXNTO__
+     if (!bs)
+       bs = strchr (path, ':');
+  #else
+     if (!bs)
+       bs = strchr ((char *)path, ':');
+  #endif // __QNXNTO__
+
   if (!bs)
     return (psz) path;
+
   return (bs + 1);
 }
 

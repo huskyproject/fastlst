@@ -33,7 +33,7 @@
 #include "parse.hpp"
 #include "apgenlib.hpp"
 #include "data.hpp"
-#include <smapi/stamp.h>
+#include <smapi/msgapi.h>
 
 #define YEAR(t)     (((t & 0xFE00) >> 9) + 1980)
 #define MONTH(t)    ((t & 0x01E0) >> 5)
@@ -157,7 +157,7 @@ time_t arcfiletime (const char *path)
 }
 
 
-time_t filetounix (const FFIND *ffblk)
+time_t filetounix (const FLFFIND *ffblk)
 {
     return dosdatimetounix (ffblk->wr_date, ffblk->wr_time);
 }

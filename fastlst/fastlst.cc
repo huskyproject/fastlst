@@ -163,7 +163,12 @@ void BreakHandler (int sign)
 
 int main (short argc, char *argv[])
 {
-    char    *s, *config_file = "fastlst.cfg";
+    char    *s;
+    #ifndef __QNXNTO__
+       char    *config_file = "fastlst.cfg";
+    #else
+       char    *config_file = "/etc/fido/fastlst.cfg";
+    #endif // __QNXNTO__
     BOOL    PrepOnly;
     short   i;
 

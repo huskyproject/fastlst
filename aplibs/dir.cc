@@ -19,6 +19,10 @@
 #include <dirent.h>
 #include "apgenlib.hpp"
 
+#ifdef __QNXNTO__
+   #include <strings.h>
+#endif // __QNXNTO__
+
 typedef _dir *DIRP;
 
 #define RAWSIZE 2048
@@ -42,7 +46,7 @@ static int fnameCmp (DIRP *d1, DIRP *d2)
         // private
 
 
-void DIRcl::Add (const FFIND *f)
+void DIRcl::Add (const FLFFIND *f)
 {
     int namelen = strlen (f->name);
     int reclen = sizeof (_dir) + namelen;
@@ -71,7 +75,7 @@ void DIRcl::Read (const char *path)
 {
     struct dirent *dirent;
     DIR *dir;
-    FFIND ffblk;
+    FLFFIND ffblk;
     BOOL done = 0;
 
     dir = opendir (path);   

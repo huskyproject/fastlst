@@ -22,6 +22,10 @@
 #include <string.h>
 #include <stdlib.h>
 
+#ifdef __QNXNTO__
+   #include <strings.h>
+#endif // __QNXNTO__
+
 #include "apgenlib.hpp"
 #include "apgenlb2.hpp"
 #include "bbsgenlb.hpp"

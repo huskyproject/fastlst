@@ -26,7 +26,7 @@
 #include "defines.hpp"
 #include "addrs.hpp"
 #include "types.hpp"
-#include <smapi/stamp.h>
+#include <smapi/msgapi.h>
 #include "response.hpp"
 
 
@@ -56,7 +56,7 @@ time_t arcfiletime (const char *path);   // Unix File Time, 0 if not found.
                                          // The date used depends on ArcDate.
                                       // If Creation and not available,
                                       // Write is used.
-time_t filetounix (const FFIND *ffblk);
+time_t filetounix (const FLFFIND *ffblk);
 BOOL toucharcfile (const char *fname, time_t ftime);
 
 void MoveName (char *fullname, char *filename);

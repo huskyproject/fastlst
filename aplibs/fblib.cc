@@ -558,9 +558,15 @@ int FileBase::BuildArea (word areanum, const char *filepath,
 static char *GetEntry (const char *filename, _dir *&entry, char *&path,
                        word flags) // gets data on filename
 {
+    #ifndef __QNXNTO__
     char *pathend = strrchr (filename, DIRSEP);
     if (!pathend)
         pathend = strchr (filename, ':');
+    #else
+    char *pathend = strrchr((char *)filename, DIRSEP);
+    if (!pathend)
+        pathend = strchr((char *)filename, ':');
+    #endif // __QNXNTO__
 
     const char *fname;
     if (!pathend) {           // no path

@@ -28,6 +28,11 @@
 
 #include <limits.h>
 #include <string.h>
+
+#ifdef __QNXNTO__
+   #include <strings.h>
+#endif // __QNXNTO__
+
 #include "parsecsl.hpp"
 #include "misc.hpp"
 #include "export.hpp"

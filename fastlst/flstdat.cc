@@ -22,6 +22,9 @@
 #include "outblk.hpp"
 #include "cfgdata.hpp"
 
+#ifdef __QNXNTO__
+   #include <strings.h>
+#endif // __QNXNTO__
 
 #define vID 8           // version ID of the DAT file (byte)
 

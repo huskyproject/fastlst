@@ -254,7 +254,11 @@ int GetLn (const char *src, char *dest, int maxlen)
 
                             // get whole line
 
-    char *e = strchr (src, 0);   // points to terminating NULL
+    #ifndef __QNXNTO__
+       char *e = strchr (src, 0);   // points to terminating NULL
+    #else
+       char *e = strchr ((char *)src, 0);   // points to terminating NULL
+    #endif // __QNXNTO__
 
     while (e > src) {       // skip trailing space
         if ((*(e-1) == '\n') || (*(e-1) == '\t') || (*(e-1) == ' '))

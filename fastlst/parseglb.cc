@@ -16,8 +16,13 @@
 
 #include <ctype.h>
 
-#include <string.h>
 #include <limits.h>
+#include <string.h>
+
+#ifdef __QNXNTO__
+   #include <strings.h>
+#endif // __QNXNTO__
+
 #include <apgenlib.hpp>
 #include <bbsgenlb.hpp>
 #include "misc.hpp"

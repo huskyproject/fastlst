@@ -2,6 +2,9 @@
 #include <string.h>
 #include "common.hpp"
 
+#ifdef __QNXNTO__
+   #include <strings.h>
+#endif // __QNXNTO__
 
 HeapStrStore *hs;
 
@@ -289,7 +292,11 @@ int GetNameIt (const char *line, const char *&s, int &slen, const char *&t, int 
     if (*t != '\'')
         return -1;
     t ++;           // skip heading '
-    char *endofstr = strrchr (t, '\'');
+    #ifndef __QNXNTO__
+       char *endofstr = strrchr (t, '\'');
+    #else
+       char *endofstr = strrchr ((char *)t, '\'');
+    #endif // __QNXNTO__
     if (!endofstr)
         return -1;
     tlen = int (endofstr - t); // length of text

@@ -27,6 +27,8 @@
    #define VER VERSION"/FreeBSD"
 #elif defined (__CYGWIN32__)
    #define VER VERSION"/Cygwin"
+#elif defined (__QNXNTO__)
+   #define VER VERSION"/QNX"
 #elif defined(UNIX)
    #define VER VERSION"/Unix"
 #endif

@@ -69,7 +69,7 @@
 #endif
 
 
-void Dos2My (FFIND *buf)
+void Dos2My (FLFFIND *buf)
 {
 
 #if defined (__OS2__)
@@ -168,7 +168,7 @@ static bool OkAttribute (byte fileattr, byte required, byte forbidden)
 }
 
 
-void SetAttrMask (unsigned attributes, FFIND *buffer)
+void SetAttrMask (unsigned attributes, FLFFIND *buffer)
 {
     buffer->flags = 0;
 
@@ -223,7 +223,7 @@ void SetAttrMask (unsigned attributes, FFIND *buffer)
 }
 
 
-unsigned _DosFindFirst (pcsz path, unsigned attributes, FFIND *buffer)
+unsigned _DosFindFirst (pcsz path, unsigned attributes, FLFFIND *buffer)
 {
     SetAttrMask (attributes, buffer);
 
@@ -287,7 +287,7 @@ unsigned _DosFindFirst (pcsz path, unsigned attributes, FFIND *buffer)
 }
 
 
-unsigned _DosFindNext (FFIND *buffer)
+unsigned _DosFindNext (FLFFIND *buffer)
 {
 
    do {
@@ -315,7 +315,7 @@ unsigned _DosFindNext (FFIND *buffer)
 
 
 
-unsigned _DosFindClose (FFIND *buffer)
+unsigned _DosFindClose (FLFFIND *buffer)
 {
 #if defined (__OS2__)
 
