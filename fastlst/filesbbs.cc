@@ -21,12 +21,12 @@
 // FilesBbs.Cpp
 
 #ifdef __OS2__
-    #define INCL_DOS
-    #include <os2.h>
+#  define INCL_DOS
+#  include <os2.h>
 #endif
 
-#if defined(__CYGWIN32__)
-   #define NAME_MAX 512
+#if defined(__CYGWIN__)
+#  define NAME_MAX 512
 #endif
 
 #include <bbsgenlb.hpp>
@@ -38,7 +38,7 @@
 #include "misc.hpp"
 #include "data.hpp"
 #include "filesbbs.hpp"
-
+#include "defines.hpp"
 
 
 void KillFile (char *fullname)
@@ -51,8 +51,15 @@ void KillFile (char *fullname)
     MoveName (filesbbs, filename);
                                                  
     FBBS *fbbs = new FBBS (filesbbs, 0, 0, 1024, fb_cont, fb_cpos);
-    if (fbbs->GetDesc (filename, NULL, NULL, FBBS_REMOVE) == -1)
+    switch (fbbs->GetDesc (filename, NULL, NULL, FBBS_REMOVE)) {
+      case -1:
         vprintlog ("Error deleting description for \"%s\"\n", fullname);
+	myexit (OPEN_ERR);
+	break;
+      case -2:
+        vprintlog ("Created new file: \"%s\"\n", fullname);
+	break;
+    }
     delete fbbs;
 }
 
@@ -113,7 +120,15 @@ void SetDesc (char *fullname, char *desc, int day, char *arcname)
 
                                       
     FBBS *fbbs = new FBBS (path, 0, 0, FBBSLSIZE, fb_cont, fb_cpos);
-    fbbs->GetDesc (file, NULL, NULL, FBBS_REMOVE);  // remove old description if present
+    switch (fbbs->GetDesc (file, NULL, NULL, FBBS_REMOVE)) {  // remove old description if present
+      case -1:
+        vprintlog ("Error deleting description for \"%s\"\n", fullname);
+	myexit (OPEN_ERR);
+	break;
+      case -2:
+        vprintlog ("Created new file: \"%s\"\n", fullname);
+	break;
+    }
     fbbs->SetDesc (file, fulldesc);         // append new description
     delete fbbs;
 

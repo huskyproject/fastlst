@@ -85,8 +85,7 @@ int FBBS::WrOpen ()
         return 0;
 
     RdClose ();
-
-    fileh = open (filesbbs, O_WRONLY | O_APPEND | O_CREAT);
+    fileh = open (filesbbs, O_WRONLY | O_APPEND);
     if (fileh == -1)
         return -1;
 
@@ -192,22 +191,28 @@ int FBBS::GetDesc (const char *file, char *desc, word *flag, byte action,
 {
     if (flag)
         *flag = 0;
-    if (date)                   // default inits
+    if (date)                   	// default inits
         *date = 0;
     if (size)
         *size = ULONG_MAX;
 
-    if (!repl)          // make sure the repl pointer is not NULL
-        repl = "";
-
-    if (access (filesbbs, 00))     // files.bbs does not exist
-        return -2;
-
-    if (RdOpen ())
-        return -1;
-
     FILE *tmp = NULL;
     char tmpname[PATH_MAX];
+    
+    if (!repl)          		// make sure the repl pointer is not NULL
+        repl = "";
+    if (access (filesbbs, 0)) {		// if files.bbs does not exist
+    	strcpy (tmpname, filesbbs);
+    	tmp = fopen(tmpname, "wt"); 	// create empty file with correct umask
+	if (!tmp)
+	  return -1;
+	if (fclose(tmp) == EOF)
+	  return -1;
+        return -2;
+    }  
+    if (RdOpen ())
+        return -1;
+    
     if ((action & FBBS_REMOVE) || (*repl)) {    // tmp file must be used
         strcpy (tmpname, filesbbs);
         setext (tmpname, ".$$$");

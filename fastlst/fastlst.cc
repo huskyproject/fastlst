@@ -88,6 +88,9 @@ void exitfunc (void)
     	case OK:
 	    vprintlogrsp (MsgLogRsp, "\nEverything went ok!\n");
             break;
+	case OPEN_ERR:
+	    vprintlogrsp (MsgLogRsp, "\nFile Open Error!\n");
+	    break;
         case DISK_FULL:
             vprintlogrsp (MsgLogRsp, "\nError: Disk Full !\n");
             break;
