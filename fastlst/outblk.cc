@@ -272,8 +272,10 @@ static dword WriteDtpHead (FILE *f)
 void OUTBLK::Open (OUTCUR *ocp)  // open out files for current OUTBLK
 {
                                         // Open DAT/DA$
-    ocp->nodex_dat = fopen (l->NLname (NL_DAs), "wb");
-
+    if ((ocp->nodex_dat = fopen (l->NLname (NL_DAs), "wb")) == NULL) {
+    	vprintlog ("Could not open V7 Nodelist Index File \"%s\"\n", l->NLname (NL_DAs));
+    	myexit(ERR_WRITE_V7);
+    }
     if (l->v7data.flags & V7DTP_F) {        // Open DTP/DT$
         ocp->nodex_dtp = fopen (l->NLname (NL_DTs), "wb");
         ocp->dtpofs = WriteDtpHead (ocp->nodex_dtp);
