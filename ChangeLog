@@ -1,3 +1,16 @@
+2003-06-17 Tuesday 14:19  gerritkuehn
+
+	* NEWS (1.6): Updating maintainer information.
+
+2003-06-17 Tuesday 14:15  gerritkuehn
+
+	* NEWS (1.5): Readying for branching off 2.0.4-stable.
+
+2003-06-17 Tuesday 04:25  lmike
+
+	* fastlst.qpg (1.1): Added .qpg file for automative packaging for
+	QNX6.
+
 2003-05-03 Saturday 15:54  gerritkuehn
 
 	* aplibs/Makefile.in (1.5), aplibs/include/Makefile.in (1.5),
@@ -305,8 +318,8 @@
 
 2002-06-08 Saturday 15:28  oliver.grimm
 
-	* include/max/: utime.h (1.2), utime.hhh (1.1): utime.h is a
-	system-include and no longer needed here (renamed to utime.hhh)
+	* include/max/utime.hhh (1.1): utime.h is a system-include and no
+	longer needed here (renamed to utime.hhh)
 
 2002-06-08 Saturday 15:25  oliver.grimm
 
@@ -332,11 +345,6 @@
 	* aplibs/dosfind.cc (1.2), aplibs/harderr.cc (1.2), aplibs/misc.cc
 	(1.2), fastlst/fastlst.cc (1.3), include/apgenlib.hpp (1.3),
 	include/defines.hpp (1.2): portability fixes
-
-2001-01-03 Wednesday 13:57  sms
-
-	* VERSION (1.1): file VERSION was initially added on branch
-	fastlst-2_0_3.
 
 2001-01-03 Wednesday 13:33  sms
 
@@ -367,70 +375,78 @@
 
 2000-09-04 Monday 00:47  sms
 
+	* aplibs/COPYING (1.1.1.1), aplibs/Makefile.am (1.1.1.1),
+	aplibs/anumlst.cc (1.1.1.1), aplibs/dirstack.cc (1.1.1.1),
+	aplibs/fbd.cc (1.1.1.1), aplibs/heapstor.cc (1.1.1.1),
+	aplibs/mdir.cc (1.1.1.1), aplibs/namelist.cc (1.1.1.1),
+	aplibs/outwrap.cc (1.1.1.1), aplibs/sqtagpat.cc (1.1.1.1),
+	aplibs/strlst.cc (1.1.1.1), aplibs/v7lib.cc (1.1.1.1),
+	aplibs/wordstore.cc (1.1.1.1), aplibs/writelog.cc (1.1.1.1),
+	aplibs/include/Makefile.am (1.1.1.1), aplibs/include/anumlst.hpp
+	(1.1.1.1), aplibs/include/apctrl.hpp (1.1.1.1),
+	aplibs/include/apspc1.hpp (1.1.1.1), aplibs/include/defines.h
+	(1.1.1.1), aplibs/include/fbd.hpp (1.1.1.1), aplibs/include/mutex.h
+	(1.1.1.1), aplibs/include/namelist.hpp (1.1.1.1),
+	aplibs/include/timer.h (1.1.1.1), aplibs/include/uclass.h
+	(1.1.1.1), aplibs/include/v7.h (1.1.1.1), fastlst/COPYING
+	(1.1.1.1), fastlst/Makefile.am (1.1.1.1), fastlst/addrs.cc
+	(1.1.1.1), fastlst/cfgdata.cc (1.1.1.1), fastlst/data.cc (1.1.1.1),
+	fastlst/export.cc (1.1.1.1), fastlst/field.cc (1.1.1.1),
+	fastlst/msgapier.cc (1.1.1.1), fastlst/parsecfg.cc (1.1.1.1),
+	fastlst/parsecia.cc (1.1.1.1), fastlst/parsecil.cc (1.1.1.1),
+	fastlst/parsecin.cc (1.1.1.1), fastlst/parsecio.cc (1.1.1.1),
+	fastlst/parsecsa.cc (1.1.1.1), fastlst/parsecsl.cc (1.1.1.1),
+	fastlst/parsetyp.cc (1.1.1.1), fastlst/phtrans.cc (1.1.1.1),
+	include/.hpptrans.h (1.1.1.1), include/Makefile.am (1.1.1.1),
+	include/apcom.hpp (1.1.1.1), include/apctrl.hpp (1.1.1.1),
+	include/apgenlb2.hpp (1.1.1.1), include/apspc1.hpp (1.1.1.1),
+	include/cfgdata.hpp (1.1.1.1), include/common.hpp (1.1.1.1),
+	include/crc16.hpp (1.1.1.1), include/crc16tab.hpp (1.1.1.1),
+	include/daydir.hpp (1.1.1.1), include/edit.hpp (1.1.1.1),
+	include/export.hpp (1.1.1.1), include/field.hpp (1.1.1.1),
+	include/filesbbs.hpp (1.1.1.1), include/flstdat.hpp (1.1.1.1),
+	include/inmem.hpp (1.1.1.1), include/inpblk.hpp (1.1.1.1),
+	include/iocur.hpp (1.1.1.1), include/outblk.hpp (1.1.1.1),
+	include/parse.hpp (1.1.1.1), include/parsecfg.hpp (1.1.1.1),
+	include/parsecia.hpp (1.1.1.1), include/parsecil.hpp (1.1.1.1),
+	include/parsecin.hpp (1.1.1.1), include/parsecio.hpp (1.1.1.1),
+	include/parsecsa.hpp (1.1.1.1), include/parsecsl.hpp (1.1.1.1),
+	include/parseglb.hpp (1.1.1.1), include/parsetyp.hpp (1.1.1.1),
+	include/phtrans.hpp (1.1.1.1), include/pmlib.hpp (1.1.1.1),
+	include/stamp-h.in (1.1.1.1), include/types.hpp (1.1.1.1),
+	include/v7.hpp (1.1.1.1), include/winctl.hpp (1.1.1.1) (utags:
+	fastlst-2_0_2-release): imported original 2.0.2 tree
+
+2000-09-04 Monday 00:47  sms
+
 	* AUTHORS (1.1), COPYING (1.1), INSTALL (1.1), Makefile.am (1.1),
 	Makefile.in (1.1), NEWS (1.1), README (1.1), aclocal.m4 (1.1),
 	configure (1.1), configure.in (1.1), install-sh (1.1), missing
-	(1.1), mkinstalldirs (1.1), aplibs/COPYING (1.1),
-	aplibs/Makefile.am (1.1), aplibs/Makefile.in (1.1),
-	aplibs/anumlst.cc (1.1), aplibs/areadat.cc (1.1), aplibs/cfgfile.cc
-	(1.1), aplibs/comprcfg.cc (1.1), aplibs/dates.cc (1.1),
-	aplibs/dir.cc (1.1), aplibs/dirstack.cc (1.1), aplibs/dosfind.cc
-	(1.1), aplibs/fbbs.cc (1.1), aplibs/fbd.cc (1.1), aplibs/fblib.cc
-	(1.1), aplibs/file.cc (1.1), aplibs/harderr.cc (1.1),
-	aplibs/heapstor.cc (1.1), aplibs/maxacs.cc (1.1), aplibs/maxprm.cc
-	(1.1), aplibs/mdir.cc (1.1), aplibs/misc.cc (1.1),
-	aplibs/namelist.cc (1.1), aplibs/outwrap.cc (1.1),
-	aplibs/parsetxt.cc (1.1), aplibs/runcmd.cc (1.1),
-	aplibs/sqnetscn.cc (1.1), aplibs/sqtagpat.cc (1.1),
-	aplibs/strlst.cc (1.1), aplibs/timers.cc (1.1), aplibs/v7lib.cc
-	(1.1), aplibs/wordstore.cc (1.1), aplibs/writelog.cc (1.1),
-	aplibs/include/Makefile.am (1.1), aplibs/include/Makefile.in (1.1),
-	aplibs/include/anumlst.hpp (1.1), aplibs/include/apctrl.hpp (1.1),
-	aplibs/include/apspc1.hpp (1.1), aplibs/include/bbsgenlb.hpp (1.1),
-	aplibs/include/defines.h (1.1), aplibs/include/fb.hpp (1.1),
-	aplibs/include/fbd.hpp (1.1), aplibs/include/fblib.hpp (1.1),
-	aplibs/include/mutex.h (1.1), aplibs/include/namelist.hpp (1.1),
-	aplibs/include/timer.h (1.1), aplibs/include/uclass.h (1.1),
-	aplibs/include/v7.h (1.1), aplibs/include/v7lib.hpp (1.1),
-	fastlst/COPYING (1.1), fastlst/Makefile.am (1.1),
-	fastlst/Makefile.in (1.1), fastlst/addrs.cc (1.1),
-	fastlst/cfgdata.cc (1.1), fastlst/common.cc (1.1), fastlst/crc16.cc
-	(1.1), fastlst/data.cc (1.1), fastlst/daydir.cc (1.1),
-	fastlst/edit.cc (1.1), fastlst/export.cc (1.1), fastlst/fastlst.cc
-	(1.1), fastlst/field.cc (1.1), fastlst/filesbbs.cc (1.1),
-	fastlst/flstdat.cc (1.1), fastlst/inmem.cc (1.1), fastlst/inpblk.cc
-	(1.1), fastlst/inpbprep.cc (1.1), fastlst/iocur.cc (1.1),
-	fastlst/misc.cc (1.1), fastlst/msgapier.cc (1.1), fastlst/outblk.cc
-	(1.1), fastlst/parse.cc (1.1), fastlst/parsecfg.cc (1.1),
-	fastlst/parsecia.cc (1.1), fastlst/parsecil.cc (1.1),
-	fastlst/parsecin.cc (1.1), fastlst/parsecio.cc (1.1),
-	fastlst/parsecsa.cc (1.1), fastlst/parsecsl.cc (1.1),
-	fastlst/parseglb.cc (1.1), fastlst/parsetyp.cc (1.1),
-	fastlst/phtrans.cc (1.1), fastlst/response.cc (1.1),
-	include/Makefile.in (1.1), include/.hpptrans.h (1.1),
-	include/Makefile.am (1.1), include/addrs.hpp (1.1),
-	include/apcom.hpp (1.1), include/apctrl.hpp (1.1),
-	include/apgenlb2.hpp (1.1), include/apgenlib.hpp (1.1),
-	include/apspc1.hpp (1.1), include/bbsgenlb.hpp (1.1),
-	include/cfgdata.hpp (1.1), include/common.hpp (1.1),
-	include/config.h.in (1.1), include/crc16.hpp (1.1),
-	include/crc16tab.hpp (1.1), include/data.hpp (1.1),
-	include/daydir.hpp (1.1), include/defines.h (1.1),
-	include/defines.hpp (1.1), include/edit.hpp (1.1),
-	include/export.hpp (1.1), include/fblib.hpp (1.1),
-	include/field.hpp (1.1), include/filesbbs.hpp (1.1),
-	include/flstdat.hpp (1.1), include/inmem.hpp (1.1),
-	include/inpblk.hpp (1.1), include/iocur.hpp (1.1), include/misc.hpp
-	(1.1), include/msgapier.hpp (1.1), include/outblk.hpp (1.1),
-	include/parse.hpp (1.1), include/parsecfg.hpp (1.1),
-	include/parsecia.hpp (1.1), include/parsecil.hpp (1.1),
-	include/parsecin.hpp (1.1), include/parsecio.hpp (1.1),
-	include/parsecsa.hpp (1.1), include/parsecsl.hpp (1.1),
-	include/parseglb.hpp (1.1), include/parsetyp.hpp (1.1),
-	include/phtrans.hpp (1.1), include/pmlib.hpp (1.1),
-	include/response.hpp (1.1), include/stamp-h.in (1.1),
-	include/typedefs.h (1.1), include/types.hpp (1.1), include/v7.hpp
-	(1.1), include/v7lib.hpp (1.1), include/winctl.hpp (1.1),
+	(1.1), mkinstalldirs (1.1), aplibs/Makefile.in (1.1),
+	aplibs/areadat.cc (1.1), aplibs/cfgfile.cc (1.1),
+	aplibs/comprcfg.cc (1.1), aplibs/dates.cc (1.1), aplibs/dir.cc
+	(1.1), aplibs/dosfind.cc (1.1), aplibs/fbbs.cc (1.1),
+	aplibs/fblib.cc (1.1), aplibs/file.cc (1.1), aplibs/harderr.cc
+	(1.1), aplibs/maxacs.cc (1.1), aplibs/maxprm.cc (1.1),
+	aplibs/misc.cc (1.1), aplibs/parsetxt.cc (1.1), aplibs/runcmd.cc
+	(1.1), aplibs/sqnetscn.cc (1.1), aplibs/timers.cc (1.1),
+	aplibs/include/Makefile.in (1.1), aplibs/include/bbsgenlb.hpp
+	(1.1), aplibs/include/fb.hpp (1.1), aplibs/include/fblib.hpp (1.1),
+	aplibs/include/v7lib.hpp (1.1), fastlst/Makefile.in (1.1),
+	fastlst/common.cc (1.1), fastlst/crc16.cc (1.1), fastlst/daydir.cc
+	(1.1), fastlst/edit.cc (1.1), fastlst/fastlst.cc (1.1),
+	fastlst/filesbbs.cc (1.1), fastlst/flstdat.cc (1.1),
+	fastlst/inmem.cc (1.1), fastlst/inpblk.cc (1.1),
+	fastlst/inpbprep.cc (1.1), fastlst/iocur.cc (1.1), fastlst/misc.cc
+	(1.1), fastlst/outblk.cc (1.1), fastlst/parse.cc (1.1),
+	fastlst/parseglb.cc (1.1), fastlst/response.cc (1.1),
+	include/Makefile.in (1.1), include/addrs.hpp (1.1),
+	include/apgenlib.hpp (1.1), include/bbsgenlb.hpp (1.1),
+	include/config.h.in (1.1), include/data.hpp (1.1),
+	include/defines.h (1.1), include/defines.hpp (1.1),
+	include/fblib.hpp (1.1), include/misc.hpp (1.1),
+	include/msgapier.hpp (1.1), include/response.hpp (1.1),
+	include/typedefs.h (1.1), include/v7lib.hpp (1.1),
 	include/max/Makefile.am (1.1), include/max/Makefile.in (1.1),
 	include/max/alc.h (1.1), include/max/callinfo.h (1.1),
 	include/max/compiler.h (1.1), include/max/fb.h (1.1),
@@ -438,6 +454,5 @@
 	include/max/newarea.h (1.1), include/max/option.h (1.1),
 	include/max/prm.h (1.1), include/max/prog.h (1.1),
 	include/max/typedefs.h (1.1), include/max/uclass.h (1.1),
-	include/max/uni.h (1.1), include/max/utime.h (1.1): Initial
-	revision
+	include/max/uni.h (1.1): Initial revision
 
