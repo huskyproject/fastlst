@@ -414,7 +414,7 @@ struct FFIND {
 #elif defined (__NT__)
     HANDLE DirHandle;
     PWIN32_FIND_DATA ff;
-#elif defined (__linux__) || defined(UNIX)
+#elif defined (__linux__) || defined(UNIX) || defined(__CYGWIN32__)
     dirent *ff;   
 #else   // __DOS__
     find_t *ff;

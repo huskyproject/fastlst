@@ -136,6 +136,7 @@ void Dos2My (FFIND *buf)
     buf->name    = ff->cFileName;
 
 #elif defined (__linux__) || defined(UNIX)
+#elif defined (__CYGWIN32__)
 #else
 
     find_t *ff = buf->ff;
@@ -300,6 +301,7 @@ unsigned _DosFindNext (FFIND *buffer)
 #elif defined (__NT__)
     if (!FindNextFile (buffer->DirHandle, buffer->ff))
 #elif defined (__linux__) || defined(UNIX)
+#elif defined (__CYGWIN32__)
 #else
     if (_dos_findnext (buffer->ff))
 #endif
@@ -329,6 +331,7 @@ unsigned _DosFindClose (FFIND *buffer)
     FindClose (buffer->DirHandle);
 
 #elif defined (__linux__) || defined(UNIX)
+#elif defined (__CYGWIN32__)
 #else
 
     _dos_findclose (buffer->ff);

@@ -23,6 +23,11 @@
 
 #ifdef __linux
    #define VER VERSION"/Linux"
+#elif defined (__FreeBSD__)
+   #define VER VERSION"/FreeBSD"
+#elif defined (__CYGWIN32__)
+   #define VER VERSION"/Cygwin"
+   #define BufSize 32768
 #elif defined(UNIX)
    #define VER VERSION"/Unix"
 #endif

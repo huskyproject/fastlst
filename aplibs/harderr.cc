@@ -50,6 +50,7 @@ void HardErrDisable (void)
 #elif defined (__NT__)
     SetErrorMode (SEM_FAILCRITICALERRORS);
 #elif defined (__linux__) || defined(UNIX)
+#elif defined (__CYGWIN32__)
 #else   // __DOS__
     _harderr (critical_error_handler);
 #endif

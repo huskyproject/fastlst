@@ -23,7 +23,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include <malloc.h>
+#if !defined (__FreeBSD__)
+  #include <malloc.h>
+#endif
 #include <unistd.h>
 
 #include "types.hpp"

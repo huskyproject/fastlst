@@ -25,6 +25,10 @@
     #include <os2.h>
 #endif
 
+#if defined(__CYGWIN32__)
+   #define NAME_MAX 512
+#endif
+
 #include <bbsgenlb.hpp>
 #include <string.h>
 #include <stdio.h>

@@ -115,8 +115,11 @@ void exitfunc (void)
     }
 
     vwritelog ("End, FastLst "VER);
-
+#ifdef __FreeBSD__
+    fclose(logfile);
+#else
     fcloseall ();
+#endif
 
     if ((cob) && (killafter)) {     /* Erase temporary files if existing (aborted) */
 

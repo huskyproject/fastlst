@@ -156,6 +156,7 @@ DAYDIR::CommInit (int Latest)
   int fflen;
 
   done = glob (name, 0, NULL, &g);
+  if (!g.gl_pathc) done=1;
 
   while (!done)
     {

@@ -18,12 +18,20 @@
 #include <time.h>
 #include "apctrl.hpp"
 
+#if defined(__CYGWIN32__)
+#include <unistd.h>
+#endif
+
 int Sleep (ulong interval)   /* wait interval ms (rounded to clock ticks) */
 {
+#if defined(__CYGWIN32__)
+   usleep( interval * 1000);
+#else
    timespec t;
    t.tv_sec = 0;
    t.tv_nsec = interval * 1000000;
    nanosleep  (&t, &t);
+#endif
 }
 
 void PTIMER::Start (ulong interval) {          /* time in s/1000 */

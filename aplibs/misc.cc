@@ -54,7 +54,6 @@ char *stpcpy (char *dest, const char *src)
     return dest;
 }
 
-
 char *stpzcpy (char *dest, const char *src, size_t maxlen)
 {
     size_t count = 0;
@@ -68,6 +67,7 @@ char *stpzcpy (char *dest, const char *src, size_t maxlen)
     return dest;
 }
 
+#if !defined(__FreeBSD__)
 
 char *strlcat (char *dest, const char *src, size_t totsize)
 {
@@ -79,6 +79,7 @@ char *strlcat (char *dest, const char *src, size_t totsize)
     return dest;
 }
 
+#endif
 
 char *stristr (const char *str, const char *substr)
 {
@@ -165,11 +166,15 @@ static int waitopen (const char *bsyname, int timeout) // -1 on timeout
     return ret;
 }
 
+#if !defined(__CYGWIN32__)
+
 void strupr (char *string)
 {
   while (*string)
     *(string++) = toupper (*string);
 }
+
+#endif
 
 int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0)
 {
