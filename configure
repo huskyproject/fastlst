@@ -1484,7 +1484,7 @@ fi
 
 # Define the identity of the package.
 PACKAGE=fastlst
-VERSION=2.0.3
+VERSION=2.0.4-beta
 
 cat >>confdefs.h <<_ACEOF
 #define PACKAGE "$PACKAGE"

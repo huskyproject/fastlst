@@ -1,5 +1,5 @@
 AC_INIT(fastlst/fastlst.cc)
-AM_INIT_AUTOMAKE(fastlst, 2.0.3)
+AM_INIT_AUTOMAKE(fastlst, 2.0.4-beta)
 AM_CONFIG_HEADER(include/config.h)
 
 AC_PROG_CC
