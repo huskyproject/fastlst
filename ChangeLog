@@ -1,3 +1,8 @@
+2003-02-18 Tuesday 05:54  sfpavel
+
+	* include/typedefs.h (1.2): Fix compiler warning about 'long long
+	type'
+
 2003-01-24 Friday 18:15  gerritkuehn
 
 	* aplibs/comprcfg.cc (1.4), aplibs/runcmd.cc (1.4),
