@@ -1,0 +1,26 @@
+This is no real HISTORY file, it is just a backup of the old ChangeLog file
+before I enabled the automatic generation of ChangeLog files according to:
+"huskybse/develop-docs/changelog-writing"
+                      Volker Quetschke (quetschke@scytek.de / 2:2411/12.99)
+
+----- cvs ci -----
+Wed Jan  3 13:33:17 UTC 2001
+sms:
+= Released fastlst 2.0.3
+
+----- cvs ci -----
+Mon Sep  4 01:29:49 UTC 2000
+sms:
+* fixed CRC calculation of chars > ASCII 127
+* configure now looks for both libsmapi.so and libsmapilnx.so in order to find
+  smapi
+* changed includes for smapi
+
+
+Notation:
++ added
+- removed
+* fixed
+! changed
+= note
+
