@@ -166,15 +166,11 @@ static int waitopen (const char *bsyname, int timeout) // -1 on timeout
     return ret;
 }
 
-#if !defined(__CYGWIN32__)
-
-void strupr (char *string)
+void fl_strupr (char *string)
 {
   while (*string)
     *(string++) = toupper (*string);
 }
-
-#endif
 
 // strto4Dadr: convert string to binary FNT address.
 // adrs is a pointer to a 4D address string that must not necessarily

@@ -91,10 +91,8 @@ void strslash(char *directory);
 void strunslash (char *directory);
 
 char *strzcat (char *dest, size_t maxlen, char *src, ...);
-#if !defined(__CYGWIN32__)
-void strupr (char *);
-#endif
 
+void fl_strupr (char *);
 void comma_it (char *str);
 void dot_it (psz str);
 void CopyUndash (pcsz fms, psz tos);

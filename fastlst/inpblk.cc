@@ -520,7 +520,7 @@ BOOL INPBLK::ProcessFile (char *fname, INPCUR *icp, OUTCUR *ocp, OUTBLK *cob, BO
 
         /* Modifier (Host, Region, etc.) */
         modifier = nextfield (p);
-        strupr (modifier);
+        fl_strupr (modifier);
 
         /* Node number (or region or zone) */
         p = nextfield (NULL);
@@ -703,7 +703,7 @@ BOOL INPBLK::ProcessFile (char *fname, INPCUR *icp, OUTCUR *ocp, OUTBLK *cob, BO
         if (ad)
             flags = ad->txt;
 
-        strupr (flags);     // Convert FLAGS to upper case
+        fl_strupr (flags);     // Convert FLAGS to upper case
 
         PT *pt = NULL;      // Phone translation (for Verbatim phones)
         byte tdinfo = 0;

@@ -204,7 +204,7 @@ int GetTypeDef (CfgFile &f, TD **td_head)
             break;
         ttd = *td = new TD;
         strzcpy (ttd->flag, tok, sizeof (ttd->flag));
-        strupr (ttd->flag);
+        fl_strupr (ttd->flag);
         tok = f.GetToken ();
         if (tok)
             ttd->type = (byte) atoi (tok);
@@ -255,7 +255,7 @@ void GetFlagDef (CfgFile &f, FD **fd_head)
             break;
         tfd = *fd = new FD;
         strzcpy (tfd->flag, tok, sizeof (tfd->flag));
-        strupr (tfd->flag);
+        fl_strupr (tfd->flag);
         tok = f.GetToken ();
         tfd->flag_w = 0;
         if (tok)
