@@ -160,23 +160,24 @@ DAYDIR::CommInit (int Latest)
   while (!done)
     {
       fflen = strlen (g.gl_pathv[nfound]);
+
       if (fflen == namelen)
 	{			// one char for every '?'
             q = g.gl_pathv[nfound] + fflen - 3;     // point to first char of ext
-            day = GetExtDay (q, arc ? dayn (DosFileTime(g.gl_pathv[nfound])) :*/ 0); // if dir_arc, p points to Archive->ext
+            day = GetExtDay (q, arc ? dayn (arcfiletime (g.gl_pathv[nfound])) : 0); // if dir_arc, p points to Archive->ext
 	  switch (day)
 	    {
 	    case dir_none:
 	      break;
-//	    case dir_arc:	// fixed archive extension
-//	      {
-//                      long newtime = filetounix (&ffblk);
-//                      if (newtime >= fixtime) {    // store latest fixed extension
-//                        fixtime = newtime;
-//                        fixext = p;
-//                      }
-//	      }
-//	      break;
+/*	    case dir_arc:	// fixed archive extension
+	      {
+                      long newtime = arcfiletime (g.gl_pathv[nfound]);
+                      if (newtime >= fixtime) { 
+                        fixtime = newtime;
+                        fixext = q;
+                      }
+	      }
+	      break;*/
 	    default:		// day number
 	      if (nfound == DD_SIZE)
 		{
@@ -198,6 +199,7 @@ DAYDIR::CommInit (int Latest)
 
   if (nfound == 0)
     return;
+
 
   qsort (dir, nfound, sizeof (dd_data), (QSF) cmp_dd_data);
 

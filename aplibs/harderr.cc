@@ -49,7 +49,7 @@ void HardErrDisable (void)
         abort ();
 #elif defined (__NT__)
     SetErrorMode (SEM_FAILCRITICALERRORS);
-#elif defined (__linux__) || defined(UNIX)
+#elif defined (__linux__)
 #else   // __DOS__
     _harderr (critical_error_handler);
 #endif

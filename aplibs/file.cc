@@ -23,6 +23,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <time.h>
+#include <sys/types.h>
+#include <utime.h>
 #include <stdio.h>
 
 int Exist (const char *path, _ExistStat *st)
@@ -104,10 +106,11 @@ BOOL getftime (const char *filename, time_t *mtime, time_t *ctime, time_t *atime
   return TRUE;
 }
 
-BOOL touchf (int handle, time_t mtime, time_t ctime, time_t *nowp)
+// BOOL touchf (int handle, time_t mtime, time_t ctime, time_t *nowp)
+BOOL my_touchf (const char *fname, time_t mtime, time_t ctime, time_t *nowp)
 {
   time_t now = time (NULL);
-  //    timeval tvp[2];
+  struct utimbuf tvp;
 
   if (nowp)
     *nowp = now;
@@ -131,10 +134,10 @@ BOOL touchf (int handle, time_t mtime, time_t ctime, time_t *nowp)
   if (FTouch)
     mtime = ctime;
   if (mtime) {
-    //        tvp[0] = ctime;
-    //        tvp[1] = mtime;
-    //        if (utimes (fname, tvp))
-    return FALSE;
+    tvp.actime = ctime;
+    tvp.modtime = mtime;
+    if (utime (fname, &tvp))
+      return FALSE;
   }
 
   return TRUE;
@@ -143,26 +146,18 @@ BOOL touchf (int handle, time_t mtime, time_t ctime, time_t *nowp)
 
 BOOL touchf (pcsz filename, time_t mtime, time_t ctime, time_t *nowp)
 {
-  int handle;
-
-  if ((handle = open (filename, O_RDWR)) == -1)
-    return FALSE;
-  if (!touchf (handle, mtime, ctime, nowp)) {
-    close (handle);
-    return FALSE;
-  }
-  if (close (handle) == EOF)
+  if (!my_touchf (filename, mtime, ctime, nowp))
     return FALSE;
   return TRUE;
 }
 
-
+/*
 BOOL touchf (int handle, byte touchflag, time_t *nowp)
 {
   return touchf (handle, (touchflag & _CF_mtouch_) ? ULONG_MAX : 0,
 		 (touchflag & _CF_ctouch_) ? ULONG_MAX : 0, nowp);
 }
-
+*/
 
 BOOL touchf (pcsz filename, byte touchflag, time_t *nowp)
 {

@@ -135,7 +135,7 @@ void Dos2My (FFIND *buf)
     buf->size    = ff->nFileSizeLow;
     buf->name    = ff->cFileName;
 
-#elif defined (__linux__) || defined(UNIX)
+#elif defined (__linux__)
 #else
 
     find_t *ff = buf->ff;
@@ -269,7 +269,7 @@ unsigned _DosFindFirst (pcsz path, unsigned attributes, FFIND *buffer)
     buffer->DirHandle = FindFirstFile (path, buffer->ff);
     if (buffer->DirHandle == INVALID_HANDLE_VALUE)
 
-#elif defined (__linux__) || defined(UNIX)
+#elif defined (__linux__)
 #else
     buffer->ff = new find_t;
     if (_dos_findfirst (path, _A_NORMAL | _A_HIDDEN | _A_SYSTEM | _A_SUBDIR,
@@ -299,7 +299,7 @@ unsigned _DosFindNext (FFIND *buffer)
 
 #elif defined (__NT__)
     if (!FindNextFile (buffer->DirHandle, buffer->ff))
-#elif defined (__linux__) || defined(UNIX)
+#elif defined (__linux__)
 #else
     if (_dos_findnext (buffer->ff))
 #endif
@@ -328,7 +328,7 @@ unsigned _DosFindClose (FFIND *buffer)
 
     FindClose (buffer->DirHandle);
 
-#elif defined (__linux__) || defined(UNIX)
+#elif defined (__linux__)
 #else
 
     _dos_findclose (buffer->ff);
