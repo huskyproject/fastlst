@@ -75,19 +75,17 @@ char *GetToken (const char **c)         // get token and return ptr to token
     static char Token[TokenSize];
     char *d;
     int toklen;
-
-    *c = SkipBlank (*c);
-    d = SkipNotBlank (*c);
-    toklen = __min (TokenSize-1, (int) (d-(*c)));
-    strncpy (Token, *c, toklen);
-    Token[toklen] = '\0';
-    d = SkipBlank (d);
-    *c = d;
+    if (*c != NULL) {
+      *c = SkipBlank (*c);
+      d = SkipNotBlank (*c);
+      toklen = __min (TokenSize-1, (int) (d-(*c)));
+      strncpy (Token, *c, toklen);
+      Token[toklen] = '\0';
+      d = SkipBlank (d);
+      *c = d;
+    
     if (*Token)
         return Token;
-    else
-        return NULL;
+    }
+    return NULL;	
 }
-
-
-

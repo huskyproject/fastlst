@@ -166,7 +166,7 @@ uint CfgFile::LineN ()
 
 pcsz CfgFile::RestOfLine ()	// start of next word, NullStr if EOL
 {
-   if (*nextc == 0)
+   if (*nextc == '\0')
      return NULL;
    return nextc;
 }
