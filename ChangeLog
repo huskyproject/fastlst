@@ -1,3 +1,60 @@
+2003-01-14 Tuesday 17:10  gerritkuehn
+
+	* aplibs/cfgfile.cc (1.2), fastlst/parse.cc (1.2): Removed
+	coredumps caused by usage of NULL pointers in string operations.
+
+2003-01-14 Tuesday 14:55  gerritkuehn
+
+	* fastlst/daydir.cc (1.6): Added comment.
+
+2003-01-14 Tuesday 14:50  gerritkuehn
+
+	* include/defines.hpp (1.5): Added define for errorcode 18.
+
+2003-01-14 Tuesday 14:49  gerritkuehn
+
+	* fastlst/outblk.cc (1.3): Improved error handling to avoid
+	coredump when V7 nodelist index file is unaccessible.
+
+2003-01-14 Tuesday 14:48  gerritkuehn
+
+	* fastlst/misc.cc (1.6): Removed warnings by commenting out pragmas
+	for gcc.
+
+2003-01-14 Tuesday 14:46  gerritkuehn
+
+	* fastlst/: inpbprep.cc (1.2), iocur.cc (1.2): Removed warning.
+
+2003-01-14 Tuesday 14:41  gerritkuehn
+
+	* fastlst/inpblk.cc (1.3): Removed warnings by initializing
+	variables and by adjusting string parsing.
+
+2003-01-14 Tuesday 14:36  gerritkuehn
+
+	* fastlst/inmem.cc (1.2): Removed several warnings by initializing
+	variables and by adjusting data types.
+
+2003-01-14 Tuesday 14:31  gerritkuehn
+
+	* fastlst/flstdat.cc (1.2): Removed warning by initializing
+	variable.
+
+2003-01-14 Tuesday 14:30  gerritkuehn
+
+	* fastlst/fastlst.cc (1.8): Various fixes: Changed includes to
+	compile under gcc2 and gcc3.  Added errorcode OK.  Removed pragmas
+	for gcc.
+
+2003-01-14 Tuesday 14:28  gerritkuehn
+
+	* fastlst/edit.cc (1.2): Removed warnings by initializing
+	variables.
+
+2003-01-14 Tuesday 12:56  gerritkuehn
+
+	* include/v7lib.hpp (1.3): Fixed compilation for gcc3.
+
 2003-01-13 Monday 15:17  gerritkuehn
 
 	* fastlst/daydir.cc (1.5): Removed some warnings.
