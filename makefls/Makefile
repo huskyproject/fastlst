@@ -20,7 +20,6 @@ CDEFS=-D$(OSTYPE) $(ADDCDEFS)
 default: all
 
 configure-it:
-	(cd ..; if [ -f makefile ]; then mv makefile makefile.nfo; fi; )
 	(cd ..; export LIBS="$(LIBS)"; export CC="$(CC)"; export CFLAGS=$(subst -c,,"$(CDEFS) $(CFLAGS)"); export CXXFLAGS=$(subst -c,,"$(CDEFS) $(CFLAGS)"); if [ ~$(GPP)~ = ~~ ]; then export CXX=g++; else export CXX=$(GPP); fi; rm config.cache; ./configure --bindir=$(BINDIR) --sbindir=$(BINDIR) --libexecdir=$(BINDIR) --datadir=$(CFGDIR) --sysconfdir=$(CFGDIR) --sharedstatedir=$(CFGDIR) --localstatedir=$(CFGDIR) --libdir=$(LIBDIR) --includedir=$(INCDIR) --infodir=$(INFODIR) --mandir=$(MANDIR))
 	touch configure-it
 
