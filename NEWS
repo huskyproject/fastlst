@@ -1,3 +1,6 @@
+New in 2.0.3+ (unreleased)
+  * many fixes / all features enabled (possible problems with fixed-extension Nodelists)
+  - updated ApGenLib to make NEF (!!!) compiling (& working)
 
 New in 2.0.3 (released 2001-01-03):
   - maintainer now is Sascha Silbe <sascha@silbe.org>
