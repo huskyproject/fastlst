@@ -1,3 +1,9 @@
+2003-01-21 Tuesday 09:47  gerritkuehn
+
+	* aplibs/misc.cc (1.11), fastlst/inpblk.cc (1.4),
+	fastlst/parseglb.cc (1.2), include/misc.hpp (1.4): Renamed
+	strupr->fl_strupr.
+
 2003-01-16 Thursday 15:39  gerritkuehn
 
 	* doc/: Compress.Cfg (1.1), FASTLST.INF (1.1), Fast_ful.Cfg (1.1),
