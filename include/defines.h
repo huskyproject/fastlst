@@ -29,5 +29,13 @@
 
 #define MKushort(a) (*((ushort *)(&(a))))
 
+#ifndef DIRSEP
+#ifdef UNIX
+#define DIRSEP '/'
+#else
+#define DIRSEP '\\'
+#endif
+#endif
+
 
 #endif

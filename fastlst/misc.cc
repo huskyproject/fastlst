@@ -171,11 +171,8 @@ BOOL toucharcfile (const char *fname, time_t ftime)
 
 void MoveName (char *fullname, char *filename)
 {
-#ifdef UNIX
-    char *p = strrchr (fullname, '/');
-#else
-    char *p = strrchr (fullname, '\\');
-#endif
+    char *p = strrchr (fullname, DIRSEP);
+
     if (!p)
         p = fullname;
     else
