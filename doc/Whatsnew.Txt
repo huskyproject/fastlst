@@ -3,6 +3,7 @@
         
                          Changes and Additions
 
+        2.04   For latest news see NEWS.
 
         2.03   Conversion to Linux by Per Lundberg (see AUTHORS), 
                January 03 2001.
