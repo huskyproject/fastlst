@@ -178,7 +178,15 @@ void strupr (char *string)
 
 int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0)
 {
-  sscanf (adrs, "%u:%u/%u.%u", &adr->zone, &adr->net, &adr->node, &adr->point);
+  unsigned zone, net, node, point=0;
+  if(strchr(adrs, '.'))
+    sscanf (adrs, "%u:%u/%u.%u", &zone, &net, &node, &point);
+  else
+    sscanf (adrs, "%u:%u/%u", &zone, &net, &node);
+  adr->zone = zone;
+  adr->net  = net;
+  adr->node = node;
+  adr->point = point;
 }
 
 
@@ -217,3 +225,141 @@ Busy::~Busy ()
     }
     delete[] bsyname;
 }
+
+
+
+BOOL TagMatch (const char *Tag, const char *WildTag)
+{
+    if (Tag[0] == '<')      // exclude special tags
+        return (stricmp (Tag, WildTag) == 0);
+
+    return  (fnamecmp (Tag, WildTag) == 0);
+}
+
+
+    // gets keys from src, stores in *keys, advances src
+    // returns length, -1 on error
+
+static int getkeys (const char *&src, dword *keys)
+{
+    *keys = 0;
+
+    const char *p = src;
+    while (*p) {
+        if ((*p == ' ') || (*p == '\t'))
+            break;
+
+        int u = toupper (*p);
+        int nbit;
+        if ((u >= '1') && (u <= '8'))
+            nbit = u - '1';
+        else if ((u >= 'A') && (u <= 'X'))
+            nbit = u - 'A' + 8;
+        else
+            return -1;
+
+        *keys |= (1L << nbit);
+        p ++;
+    }
+
+    int slen = int (p - src);
+
+    src += slen;
+
+    return slen;
+}
+
+
+int GetLevKey (const char *&src, word *level, dword *keys, byte flags)
+{
+    const char *p = src;
+
+    p += strspn (p, " \t");     // skip leading blanks
+
+    if (!isdigit (*p)) {                 // decimal level ?
+        if ((flags & MSC_Allow_NoLevel) && (*p == '/'))
+            *level = USHRT_MAX;
+        else
+            return -1;
+    } else
+        *level = (word) strtoul (p, (char **)&p, 10);  // convert to ulong
+
+
+    if (keys)
+        *keys = 0;
+
+    if (*p == '/') {          // keys present
+        if (!keys)
+            return -1;
+        p ++;
+        if (getkeys (p, keys) == -1)
+            return -1;
+    }
+
+    switch (*p) {
+        case '\0':
+            break;
+        case ' ':               // skip trailing blanks
+        case '\t':
+            p += strspn (p, " \t");
+            break;
+        default:                // illegal chars
+            return -1;
+    }
+
+    int slen = int (p - src);
+
+    if (flags & MSC_SrcMov)
+        src += slen;
+
+    return slen;
+}
+
+
+char Ibm2Ascii (char c)
+{
+    if ((unsigned char)c <= 127)       // 0->127, return unchanged
+        return c;
+
+    static char cvt[129] = "CueaaaaceeeiiiAAEaAooouuyOUcLYPfaiounNao?++24!<>XXX|++++++|+++++++++-++++++++-+++++++++++++XXXXXabgpEouTOOOqooeU=+><()%=o../n2X";
+
+    return cvt[c-128];
+}
+
+
+static char keych[33] = "12345678abcdefghijklmnopqrstuvwx";
+
+
+void PrintLevKey (char *buffer, word level, dword keys)
+{
+#ifdef UNIX
+    sprintf(buffer,"%u",level);
+#else
+    utoa (level, buffer, 10);       // write the level
+#endif
+    char *p = strchr (buffer, '\0'); // points after level
+    if (keys == 0UL)
+        return;
+
+    *(p++) = '/';
+
+    dword ibit = 0x00000001;
+    for (int i = 0;  i < 32; i ++) {
+        if (ibit & keys)
+            *(p++) = keych[i];
+        ibit <<= 1;
+    }
+
+    *p = '\0';
+}
+
+
+bool eq4Dadr (const ADR *adr1, const ADR *adr2)
+{
+    if (adr1->zone  != adr2->zone)  return false;
+    if (adr1->net   != adr2->net)   return false;
+    if (adr1->node  != adr2->node)  return false;
+    if (adr1->point != adr2->point) return false;
+    return true;
+}
+
