@@ -1,21 +1,240 @@
------ cvs ci -----
-Wed Jan  3 13:33:17 UTC 2001
-sms:
-= Released fastlst 2.0.3
+2002-07-29 Monday 15:21  quetschke
 
------ cvs ci -----
-Mon Sep  4 01:29:49 UTC 2000
-sms:
-* fixed CRC calculation of chars > ASCII 127
-* configure now looks for both libsmapi.so and libsmapilnx.so in order to find
-  smapi
-* changed includes for smapi
+	* fastlst/fastlst.cc (1.7): Changed "void main .." to "int main
+	..". This was necessary because g++ with option "-Wall" otherwise
+	stops with an error. (2:2411/12.99)
 
+2002-07-29 Monday 15:11  quetschke
 
-Notation:
-+ added
-- removed
-* fixed
-! changed
-= note
+	* makefls/Makefile (1.3): Cosmetic fix. Removed <TAB> in empty
+	line. (2:2411/12.99)
+
+2002-07-29 Monday 15:07  quetschke
+
+	* include/defines.hpp (1.4): Removed redundant definition of
+	BufSize for cygwin. (2:2411/12.99)
+
+2002-07-29 Monday 15:04  quetschke
+
+	* fastlst/fastlst.cc (1.6): Cygwin doesn't provide fcloseall().
+	(2:2411/12.99)
+
+2002-07-29 Monday 15:00  quetschke
+
+	* aplibs/misc.cc (1.6): Cygwin doesn't need definition of strlcat.
+	(2:2411/12.99)
+
+2002-07-29 Monday 14:53  quetschke
+
+	* aplibs/: dosfind.cc (1.6), harderr.cc (1.6): Removed redundant
+	lines with __CYGWIN32__ conditions. Cygwin has the UNIX macro
+	defined and doesn't neet the extra condition. (2:2411/12.99)
+
+2002-07-29 Monday 14:44  quetschke
+
+	* configure.in (1.4): Fix! Added missing "[". (2:2411/12.99)
+
+2002-07-29 Monday 12:58  quetschke
+
+	* .cvs2cl (1.1), HISTORY (1.1): Enabled the automatic generation of
+	ChangeLog files according to:
+	"huskybse/develop-docs/changelog-writing". (2:2411/12.99)
+
+2002-06-16 Sunday 19:23  oliver.grimm
+
+	* NEWS (1.3): NEWS !
+
+2002-06-16 Sunday 19:21  oliver.grimm
+
+	* aplibs/: fbbs.cc (1.2), fblib.cc (1.2), file.cc (1.3),
+	parsetxt.cc (1.2): More fixes for the UNIX-Port !
+
+2002-06-16 Sunday 19:17  oliver.grimm
+
+	* fastlst/misc.cc (1.5), include/defines.h (1.2): DIRSEP fix.
+
+2002-06-16 Sunday 19:10  oliver.grimm
+
+	* include/max/: alc.h (1.2), callinfo.h (1.2), compiler.h (1.2),
+	fb.h (1.2), max.h (1.2), max_u.h (1.2), newarea.h (1.3), option.h
+	(1.2), prm.h (1.2), prog.h (1.2), typedefs.h (1.2), uclass.h (1.2),
+	uni.h (1.2): Update for DIRSEP
+
+2002-06-16 Sunday 19:03  oliver.grimm
+
+	* aplibs/misc.cc (1.5): Fix strto4Daddr()
+
+2002-06-15 Saturday 21:37  oliver.grimm
+
+	* aplibs/dosfind.cc (1.5), aplibs/harderr.cc (1.5), aplibs/misc.cc
+	(1.4), aplibs/runcmd.cc (1.2), aplibs/timers.cc (1.2),
+	fastlst/daydir.cc (1.4), fastlst/fastlst.cc (1.5),
+	fastlst/filesbbs.cc (1.2), fastlst/misc.cc (1.4), fastlst/outblk.cc
+	(1.2), include/apgenlib.hpp (1.4), include/defines.hpp (1.3),
+	include/misc.hpp (1.3): FreeBSD & CYGWIN patches
+
+2002-06-08 Saturday 18:54  oliver.grimm
+
+	* aplibs/: dosfind.cc (1.4), harderr.cc (1.4): Add the lost "||
+	defined(UNIX)" statements :-)
+
+2002-06-08 Saturday 18:43  oliver.grimm
+
+	* aplibs/dosfind.cc (1.3), aplibs/file.cc (1.2), aplibs/harderr.cc
+	(1.3), fastlst/daydir.cc (1.3): Sync the complete sourcetree.
+	Should make no changes, but sure is sure ! :-)
+
+2002-06-08 Saturday 18:39  oliver.grimm
+
+	* aplibs/misc.cc (1.3): Now MsgFromNode and MsgToNode works right.
+	
+	In strto4Daddr() the arguments are incorrecly passed to sscanf() -
+	FIXED.
+
+2002-06-08 Saturday 18:32  oliver.grimm
+
+	* fastlst/fastlst.cc (1.4): Now MsgLogArea & MsgRemArea can be
+	used.
+	
+	smapi uses atexit(), so if fastlst want to write messages via smapi
+	in his own exit-funcs, these funcs must added to the exit-func-list
+	after smapi initialisation.
+
+2002-06-08 Saturday 17:28  oliver.grimm
+
+	* include/max/: utime.h (1.2), utime.hhh (1.1): utime.h is a
+	system-include and no longer needed here (renamed to utime.hhh)
+
+2002-06-08 Saturday 17:25  oliver.grimm
+
+	* aplibs/comprcfg.cc (1.2), fastlst/misc.cc (1.3),
+	include/max/Makefile.am (1.2), include/max/Makefile.in (1.4): More
+	changes to get archiver work correctly.
+
+2002-06-08 Saturday 16:06  oliver.grimm
+
+	* fastlst/daydir.cc (1.2): My first try to get fastlst working with
+	archives - seem's to run perfectly !
+
+2001-01-05 Friday 12:53  tobi
+
+	* makefls/Makefile (1.2): fixed husky makefile
+
+2001-01-05 Friday 12:46  tobi
+
+	* README (1.3), makefls/Makefile (1.1): Added huskymak.cfg Makefile
+
+2001-01-05 Friday 12:38  tobi
+
+	* aplibs/dosfind.cc (1.2), aplibs/harderr.cc (1.2), aplibs/misc.cc
+	(1.2), fastlst/fastlst.cc (1.3), include/apgenlib.hpp (1.3),
+	include/defines.hpp (1.2): portability fixes
+
+2001-01-03 Wednesday 14:57  sms
+
+	* VERSION (1.1): file VERSION was initially added on branch
+	fastlst-2_0_3.
+
+2001-01-03 Wednesday 14:33  sms
+
+	* AUTHORS (1.2), COPYING (1.2), Makefile.in (1.3), NEWS (1.2),
+	README (1.2), configure (1.3), configure.in (1.3),
+	aplibs/Makefile.in (1.3), aplibs/include/Makefile.in (1.3),
+	fastlst/Makefile.in (1.3), fastlst/fastlst.cc (1.2),
+	include/Makefile.in (1.3), include/max/Makefile.in (1.3): released
+	fastlst 2.0.3
+
+2000-09-04 Monday 03:41  sms
+
+	* Makefile.in (1.2), configure (1.2), configure.in (1.2),
+	aplibs/Makefile.in (1.2), aplibs/include/Makefile.in (1.2),
+	aplibs/include/bbsgenlb.hpp (1.2), aplibs/include/fb.hpp (1.2),
+	aplibs/include/fblib.hpp (1.2), aplibs/include/v7lib.hpp (1.2),
+	fastlst/Makefile.in (1.2), fastlst/crc16.cc (1.2), fastlst/misc.cc
+	(1.2), include/Makefile.in (1.2), include/addrs.hpp (1.2),
+	include/apgenlib.hpp (1.2), include/bbsgenlb.hpp (1.2),
+	include/config.h.in (1.2), include/data.hpp (1.2),
+	include/fblib.hpp (1.2), include/misc.hpp (1.2),
+	include/msgapier.hpp (1.2), include/response.hpp (1.2),
+	include/v7lib.hpp (1.2), include/max/Makefile.in (1.2),
+	include/max/newarea.h (1.2): * fixed CRC calculation of chars >
+	ASCII 127 * configure now looks for both libsmapi.so and
+	libsmapilnx.so in order to find   smapi * changed includes for
+	smapi
+
+2000-09-04 Monday 02:47  sms
+
+	* AUTHORS (1.1), COPYING (1.1), INSTALL (1.1), Makefile.am (1.1),
+	Makefile.in (1.1), NEWS (1.1), README (1.1), aclocal.m4 (1.1),
+	configure (1.1), configure.in (1.1), install-sh (1.1), missing
+	(1.1), mkinstalldirs (1.1), aplibs/COPYING (1.1),
+	aplibs/Makefile.am (1.1), aplibs/Makefile.in (1.1),
+	aplibs/anumlst.cc (1.1), aplibs/areadat.cc (1.1), aplibs/cfgfile.cc
+	(1.1), aplibs/comprcfg.cc (1.1), aplibs/dates.cc (1.1),
+	aplibs/dir.cc (1.1), aplibs/dirstack.cc (1.1), aplibs/dosfind.cc
+	(1.1), aplibs/fbbs.cc (1.1), aplibs/fbd.cc (1.1), aplibs/fblib.cc
+	(1.1), aplibs/file.cc (1.1), aplibs/harderr.cc (1.1),
+	aplibs/heapstor.cc (1.1), aplibs/maxacs.cc (1.1), aplibs/maxprm.cc
+	(1.1), aplibs/mdir.cc (1.1), aplibs/misc.cc (1.1),
+	aplibs/namelist.cc (1.1), aplibs/outwrap.cc (1.1),
+	aplibs/parsetxt.cc (1.1), aplibs/runcmd.cc (1.1),
+	aplibs/sqnetscn.cc (1.1), aplibs/sqtagpat.cc (1.1),
+	aplibs/strlst.cc (1.1), aplibs/timers.cc (1.1), aplibs/v7lib.cc
+	(1.1), aplibs/wordstore.cc (1.1), aplibs/writelog.cc (1.1),
+	aplibs/include/Makefile.am (1.1), aplibs/include/Makefile.in (1.1),
+	aplibs/include/anumlst.hpp (1.1), aplibs/include/apctrl.hpp (1.1),
+	aplibs/include/apspc1.hpp (1.1), aplibs/include/bbsgenlb.hpp (1.1),
+	aplibs/include/defines.h (1.1), aplibs/include/fb.hpp (1.1),
+	aplibs/include/fbd.hpp (1.1), aplibs/include/fblib.hpp (1.1),
+	aplibs/include/mutex.h (1.1), aplibs/include/namelist.hpp (1.1),
+	aplibs/include/timer.h (1.1), aplibs/include/uclass.h (1.1),
+	aplibs/include/v7.h (1.1), aplibs/include/v7lib.hpp (1.1),
+	fastlst/COPYING (1.1), fastlst/Makefile.am (1.1),
+	fastlst/Makefile.in (1.1), fastlst/addrs.cc (1.1),
+	fastlst/cfgdata.cc (1.1), fastlst/common.cc (1.1), fastlst/crc16.cc
+	(1.1), fastlst/data.cc (1.1), fastlst/daydir.cc (1.1),
+	fastlst/edit.cc (1.1), fastlst/export.cc (1.1), fastlst/fastlst.cc
+	(1.1), fastlst/field.cc (1.1), fastlst/filesbbs.cc (1.1),
+	fastlst/flstdat.cc (1.1), fastlst/inmem.cc (1.1), fastlst/inpblk.cc
+	(1.1), fastlst/inpbprep.cc (1.1), fastlst/iocur.cc (1.1),
+	fastlst/misc.cc (1.1), fastlst/msgapier.cc (1.1), fastlst/outblk.cc
+	(1.1), fastlst/parse.cc (1.1), fastlst/parsecfg.cc (1.1),
+	fastlst/parsecia.cc (1.1), fastlst/parsecil.cc (1.1),
+	fastlst/parsecin.cc (1.1), fastlst/parsecio.cc (1.1),
+	fastlst/parsecsa.cc (1.1), fastlst/parsecsl.cc (1.1),
+	fastlst/parseglb.cc (1.1), fastlst/parsetyp.cc (1.1),
+	fastlst/phtrans.cc (1.1), fastlst/response.cc (1.1),
+	include/Makefile.in (1.1), include/.hpptrans.h (1.1),
+	include/Makefile.am (1.1), include/addrs.hpp (1.1),
+	include/apcom.hpp (1.1), include/apctrl.hpp (1.1),
+	include/apgenlb2.hpp (1.1), include/apgenlib.hpp (1.1),
+	include/apspc1.hpp (1.1), include/bbsgenlb.hpp (1.1),
+	include/cfgdata.hpp (1.1), include/common.hpp (1.1),
+	include/config.h.in (1.1), include/crc16.hpp (1.1),
+	include/crc16tab.hpp (1.1), include/data.hpp (1.1),
+	include/daydir.hpp (1.1), include/defines.h (1.1),
+	include/defines.hpp (1.1), include/edit.hpp (1.1),
+	include/export.hpp (1.1), include/fblib.hpp (1.1),
+	include/field.hpp (1.1), include/filesbbs.hpp (1.1),
+	include/flstdat.hpp (1.1), include/inmem.hpp (1.1),
+	include/inpblk.hpp (1.1), include/iocur.hpp (1.1), include/misc.hpp
+	(1.1), include/msgapier.hpp (1.1), include/outblk.hpp (1.1),
+	include/parse.hpp (1.1), include/parsecfg.hpp (1.1),
+	include/parsecia.hpp (1.1), include/parsecil.hpp (1.1),
+	include/parsecin.hpp (1.1), include/parsecio.hpp (1.1),
+	include/parsecsa.hpp (1.1), include/parsecsl.hpp (1.1),
+	include/parseglb.hpp (1.1), include/parsetyp.hpp (1.1),
+	include/phtrans.hpp (1.1), include/pmlib.hpp (1.1),
+	include/response.hpp (1.1), include/stamp-h.in (1.1),
+	include/typedefs.h (1.1), include/types.hpp (1.1), include/v7.hpp
+	(1.1), include/v7lib.hpp (1.1), include/winctl.hpp (1.1),
+	include/max/Makefile.am (1.1), include/max/Makefile.in (1.1),
+	include/max/alc.h (1.1), include/max/callinfo.h (1.1),
+	include/max/compiler.h (1.1), include/max/fb.h (1.1),
+	include/max/max.h (1.1), include/max/max_u.h (1.1),
+	include/max/newarea.h (1.1), include/max/option.h (1.1),
+	include/max/prm.h (1.1), include/max/prog.h (1.1),
+	include/max/typedefs.h (1.1), include/max/uclass.h (1.1),
+	include/max/uni.h (1.1), include/max/utime.h (1.1): Initial
+	revision
 
