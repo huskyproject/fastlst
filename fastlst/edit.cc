@@ -63,7 +63,7 @@ EDIT::~EDIT (void)
 int EDIT::DoEdit (void)
 {							/* Actually put the new lines in here */
     char line[LINESIZE];
-    word official_crc;
+    word official_crc = 0;
     int i, j;
 
     int ErrorFull = 0, ErrorRead = 0;
@@ -235,7 +235,7 @@ int EDIT::Open (void)
 
 void EDIT::Close (BOOL Ok)
 {
-    time_t difftime;
+    time_t difftime = 0;
 
     if (Old)
         fclose (Old);
