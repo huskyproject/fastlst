@@ -193,8 +193,8 @@ static int AdrValidMatch (NODEP p1, NODEP p2)
 
 dword InMem::RemoveDupes ()
 {
-    long i,     // current item
-         j;     // last valid item
+    unsigned long i,     // current item
+		  j;     // last valid item
 
     for (i = 1, j = 0; i < NStored; i++) {
         switch (AdrValidMatch (np[i], np[j])) {  // check item i with last valid
@@ -250,8 +250,8 @@ int InMem::loadblk (int Select, byte *ndxrec, byte *strbuf, uint *stringlen,
                 entry = inp->bp[inp->c ++];
         }
 
-        byte *entrystring;
-        uint entrystlen;
+        byte *entrystring = NULL;
+        uint entrystlen = 0;
 
         switch (Select) {
             case _Adr_Indx:
@@ -335,7 +335,7 @@ void InMem::mkndx7 (int Select, pcsz OutName)
     inp->n  = TotN;
 
     long levblk;           // this level
-    long lastleaf;
+    long lastleaf = 0;
 
     do {
         inp->c = 0;
@@ -390,7 +390,7 @@ void InMem::mkndx7 (int Select, pcsz OutName)
 
     word parity = 0;
     word *ptr = (word *) ctl;
-    for (int i = 0; i < (sizeof (_CtlBlk) - 2) / 2; i++, ptr++)
+    for (size_t i = 0; i < (sizeof (_CtlBlk) - 2) / 2; i++, ptr++)
         parity ^= *ptr;
 
     ctl->CtlParity = parity;
@@ -422,12 +422,12 @@ dword InMem::Link (int Select)
 
     for (i = 1; i < TotN; i ++) {
 
-        dword first;        // first entry in same-phone ring
-        byte  n;            // number of entry in same-phone ring
+        dword first = 0;     // first entry in same-phone ring
+        byte  n = 0;        // number of entry in same-phone ring
 
-        char *p1, *p2;
-        byte *pn;
-        dword *pofs;
+        char *p1 = NULL, *p2 = NULL;
+        byte *pn = NULL;
+        dword *pofs = NULL;
         dword li = lpi (i-1);
 
         switch (Select) {
@@ -452,7 +452,6 @@ dword InMem::Link (int Select)
             if (!ingroup) {              // first entry in ring
                 ingroup = true;
                 first = i-1;
-                n = 0;
             }
 
             *pofs = np[i]->datofs;
@@ -655,7 +654,7 @@ void InMem::FidoLnk ()
     qsort (np, TotN, sizeof (NODEP), (QSF) FidoCmp); // sort by EXTADR
 
     dword i = 0;
-    dword lastdown;
+    dword lastdown = 0;
 
     while (i < TotN) {
 
@@ -775,7 +774,7 @@ static int DTPUpdateOnDisk (FILE *dtpf,                 // DTP stream
     dword hund = N/100;
     printflush (": ");
 
-    for (int i = 0; i < N; i ++) {
+    for (dword i = 0; i < N; i ++) {
 
         if (i % hund == 0) {
             printflush ("%02d%%\b\b\b", i * 100 / N);
@@ -815,14 +814,13 @@ static int DTPUpdateInMem  (FILE *dtpf,                 // DTP stream
         return -1;
 
     int error = 0;
-    int i;
 
     error |= (fread (buffer, fsize, 1, dtpf) != 1);
     if (error) goto exitpnt;
 
     ((_DTPHead *)buffer)->lnk = *DtpTop;
 
-    for (i = 0; i < N; i ++) {
+    for (dword i = 0; i < N; i ++) {
         if (lp[i].dtpofs == OfsNoLink)
             continue;
         if (lp[i].dtplnk.N.ndowns == 0xffff)  // point
