@@ -1,4 +1,14 @@
 
+Tobias Ernst:
+
+Husky users: Do ***NOT*** run configure in the main directory of this
+distribution. Change into the "makefls" subdirectory and run "gmake all
+install" there without having run configure before
+
+For technical reasons, for this package the "Husky" makefile
+is in the "makefls" subdirectory instead of in the main directory.
+
+
 Per Lundberg:
 
 This is fastlst/aplibs for Linux. I've just made it compile cleanly on my
