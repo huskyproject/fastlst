@@ -68,7 +68,7 @@ char *stpzcpy (char *dest, const char *src, size_t maxlen)
     return dest;
 }
 
-#if 0
+
 char *strlcat (char *dest, const char *src, size_t totsize)
 {
     size_t curlen = strlen (dest);
@@ -78,7 +78,6 @@ char *strlcat (char *dest, const char *src, size_t totsize)
     strcpy (dest+curlen, src);
     return dest;
 }
-#endif
 
 
 char *stristr (const char *str, const char *substr)
@@ -174,7 +173,7 @@ void strupr (char *string)
 
 int strto4Dadr (const char *&adrs, ADR *adr, byte flags = 0)
 {
-  sscanf (adrs, "%u:%u/%u.%u", adr->zone, adr->net, adr->node, adr->point);
+  sscanf (adrs, "%u:%u/%u.%u", &adr->zone, &adr->net, &adr->node, &adr->point);
 }
 
 
