@@ -89,7 +89,7 @@ static void BuildCmd (char *cmdline, uint cmdlinesize, int nargs,
     if (strlen (args[0]) > cmdlinesize)    // too long command name
         return;
 
-    p = stpcpy (p, args[0]);        // command name
+    p = fl_stpcpy (p, args[0]);        // command name
 
     for (int i = 1; i < nargs; i++) {
         if (((p - cmdline) + 1 + strlen (args[i]) + (delimited ? 2 : 0)) > cmdlinesize)
@@ -99,7 +99,7 @@ static void BuildCmd (char *cmdline, uint cmdlinesize, int nargs,
 
         if (delimited)
             *p++ = '"';
-        p = stpcpy (p, args[i]);
+        p = fl_stpcpy (p, args[i]);
         if (delimited)
             *p++ = '"';
     }

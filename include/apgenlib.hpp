@@ -728,7 +728,7 @@ char *strzcpy(char *dest, const char *src, size_t maxlen);
 // always appends a NULL, returns dest.
 // maxlen MUST be at least 1.
 
-char *stpcpy (char *dest, const char *src);
+char *fl_stpcpy (char *dest, const char *src);
 // copies src to dest, returns pointer to terminating null
 
 char *stpzcpy (char *dest, const char *src, size_t maxlen);

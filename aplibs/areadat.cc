@@ -94,7 +94,7 @@ FAH *FAREADAT::LoadArea ()
     fahp->bi.use_barpriv = 0;
 
     if (*PFAS (fahp, filesbbs) == '\0') {
-        strcpy (stpcpy (filesbbsbuf, PFAS (fahp, downpath)), "files.bbs");
+        strcpy (fl_stpcpy (filesbbsbuf, PFAS (fahp, downpath)), "files.bbs");
         filesbbsptr = filesbbsbuf;
     } else
         filesbbsptr = PFAS (fahp, filesbbs);

@@ -88,22 +88,22 @@ void SetDesc (char *fullname, char *desc, int day, char *arcname)
                 switch (*c) {
                     case 'D':       // %D -> Date
                         c ++;
-                        d = stpcpy (d, UnixToDate (dayntounix (day)));
+                        d = fl_stpcpy (d, UnixToDate (dayntounix (day)));
                         continue;
                     case 'L':       // %L -> Locale Date
                         c ++;
-                        d = stpcpy (d, UnixToLDate (dayntounix (day)));
+                        d = fl_stpcpy (d, UnixToLDate (dayntounix (day)));
                         continue;
                     case 'd':       // %d -> day
                         c ++;
-                        d = stpcpy (d, days);
+                        d = fl_stpcpy (d, days);
                         continue;
                 }
 
             switch (*c) {
                 case 'a':       // %a -> archiver name
                     c ++;
-                    d = stpcpy (d, arcname);
+                    d = fl_stpcpy (d, arcname);
                     continue;
             }
         }                       // default: copy as is (%% -> %)

@@ -183,7 +183,7 @@ static void MkSysopComma (pcsz sysopname, char *sysop_comma)
     else
         lastname = sysopname;
 
-    char *d = stpcpy (sysop_comma, lastname);
+    char *d = fl_stpcpy (sysop_comma, lastname);
 
     if (sysopname != lastname) {    /* if there is a first name */
         const char *s = sysopname;
@@ -939,12 +939,12 @@ VerbPhone:
         vers7->BaudRate     = (byte) (n_baud / 300);
 
         q = (char *) (buffer + sizeof (_vers7));
-        p = stpcpy (q, phone);
+        p = fl_stpcpy (q, phone);
         vers7->Phone_len = (byte) (p - q);
 
         /* Stick in a password if there is one */
         if (pw != NULL) {
-            r = stpcpy (p, pw->txt);
+            r = fl_stpcpy (p, pw->txt);
             vers7->Password_len = (byte) (r - p);
         } else {
             r = p;
@@ -952,13 +952,13 @@ VerbPhone:
         }
 
         p = PackBuf + strlen (PackBuf);
-        q = stpcpy (p, boardname);
+        q = fl_stpcpy (p, boardname);
         vers7->Bname_len = (byte) (q - PackBuf);        /* board name */
 
-        p = stpcpy (q, sysopname);
+        p = fl_stpcpy (q, sysopname);
         vers7->Sname_len = (byte) (p - q);           /* SysOp name */
 
-        q = stpcpy (p, cityname);
+        q = fl_stpcpy (p, cityname);
         vers7->Cname_len = (byte) (q - p);           /* City name */
 
         if (cob->l->v7data.flags & V7DTP_F) {       // DTP data

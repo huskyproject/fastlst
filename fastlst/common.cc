@@ -252,7 +252,7 @@ char *ExpLine::Expand (const char *s)
                     if (!text)
                         text = GetStdSymbol (s+1, len-2);
                     if (text) {
-                        d = stpcpy (d, text);
+                        d = fl_stpcpy (d, text);
                         s += len;
                         ExpDone = TRUE;
                         continue;

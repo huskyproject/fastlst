@@ -46,7 +46,7 @@ char *strzcpy (char *dest, const char *src, size_t maxlen)
 }
 
 
-char *stpcpy (char *dest, const char *src)
+char *fl_stpcpy (char *dest, const char *src)
 {
     while (*src)
         *(dest++) = *(src++);
