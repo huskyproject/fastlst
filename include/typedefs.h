@@ -42,8 +42,10 @@
   typedef unsigned long  ulong;
   typedef   signed long  slong;
 
+/* ANSI C++ does not support 'long long'
   typedef unsigned long long u64;
   typedef   signed long long s64;
+*/
 
   typedef char *         psz;
   typedef const char *   pcsz;
