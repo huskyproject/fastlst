@@ -1,3 +1,9 @@
+2003-01-23 Thursday 13:49  gerritkuehn
+
+	* aplibs/fbbs.cc (1.4), fastlst/fastlst.cc (1.9),
+	fastlst/filesbbs.cc (1.4): Fixed and improved error handling for
+	files.bbs.
+
 2003-01-21 Tuesday 09:47  gerritkuehn
 
 	* aplibs/misc.cc (1.11), fastlst/inpblk.cc (1.4),
