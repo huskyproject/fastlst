@@ -1,4 +1,4 @@
-2002-08-05 Monday 04:42  gerrit
+2002-08-05 Monday 11:42  gerrit
 
 	* Makefile.in (1.4), aclocal.m4 (1.2), configure (1.4), depcomp
 	(1.1), missing (1.2), mkinstalldirs (1.2), aplibs/Makefile.in
@@ -7,73 +7,73 @@
 	include/max/Makefile.in (1.5): Update to automake 1.5 / autoconf
 	2.53. Please report problems to 2:2411/12 or 2:2411/12.99.
 
-2002-07-29 Monday 06:21  quetschke
+2002-07-29 Monday 13:21  quetschke
 
 	* fastlst/fastlst.cc (1.7): Changed "void main .." to "int main
 	..". This was necessary because g++ with option "-Wall" otherwise
 	stops with an error. (2:2411/12.99)
 
-2002-07-29 Monday 06:11  quetschke
+2002-07-29 Monday 13:11  quetschke
 
 	* makefls/Makefile (1.3): Cosmetic fix. Removed <TAB> in empty
 	line. (2:2411/12.99)
 
-2002-07-29 Monday 06:07  quetschke
+2002-07-29 Monday 13:07  quetschke
 
 	* include/defines.hpp (1.4): Removed redundant definition of
 	BufSize for cygwin. (2:2411/12.99)
 
-2002-07-29 Monday 06:04  quetschke
+2002-07-29 Monday 13:04  quetschke
 
 	* fastlst/fastlst.cc (1.6): Cygwin doesn't provide fcloseall().
 	(2:2411/12.99)
 
-2002-07-29 Monday 06:00  quetschke
+2002-07-29 Monday 13:00  quetschke
 
 	* aplibs/misc.cc (1.6): Cygwin doesn't need definition of strlcat.
 	(2:2411/12.99)
 
-2002-07-29 Monday 05:53  quetschke
+2002-07-29 Monday 12:53  quetschke
 
 	* aplibs/: dosfind.cc (1.6), harderr.cc (1.6): Removed redundant
 	lines with __CYGWIN32__ conditions. Cygwin has the UNIX macro
 	defined and doesn't neet the extra condition. (2:2411/12.99)
 
-2002-07-29 Monday 05:44  quetschke
+2002-07-29 Monday 12:44  quetschke
 
 	* configure.in (1.4): Fix! Added missing "[". (2:2411/12.99)
 
-2002-07-29 Monday 03:58  quetschke
+2002-07-29 Monday 10:58  quetschke
 
 	* .cvs2cl (1.1), HISTORY (1.1): Enabled the automatic generation of
 	ChangeLog files according to:
 	"huskybse/develop-docs/changelog-writing". (2:2411/12.99)
 
-2002-06-16 Sunday 10:23  oliver.grimm
+2002-06-16 Sunday 17:23  oliver.grimm
 
 	* NEWS (1.3): NEWS !
 
-2002-06-16 Sunday 10:21  oliver.grimm
+2002-06-16 Sunday 17:21  oliver.grimm
 
 	* aplibs/: fbbs.cc (1.2), fblib.cc (1.2), file.cc (1.3),
 	parsetxt.cc (1.2): More fixes for the UNIX-Port !
 
-2002-06-16 Sunday 10:17  oliver.grimm
+2002-06-16 Sunday 17:17  oliver.grimm
 
 	* fastlst/misc.cc (1.5), include/defines.h (1.2): DIRSEP fix.
 
-2002-06-16 Sunday 10:10  oliver.grimm
+2002-06-16 Sunday 17:10  oliver.grimm
 
 	* include/max/: alc.h (1.2), callinfo.h (1.2), compiler.h (1.2),
 	fb.h (1.2), max.h (1.2), max_u.h (1.2), newarea.h (1.3), option.h
 	(1.2), prm.h (1.2), prog.h (1.2), typedefs.h (1.2), uclass.h (1.2),
 	uni.h (1.2): Update for DIRSEP
 
-2002-06-16 Sunday 10:03  oliver.grimm
+2002-06-16 Sunday 17:03  oliver.grimm
 
 	* aplibs/misc.cc (1.5): Fix strto4Daddr()
 
-2002-06-15 Saturday 12:37  oliver.grimm
+2002-06-15 Saturday 19:37  oliver.grimm
 
 	* aplibs/dosfind.cc (1.5), aplibs/harderr.cc (1.5), aplibs/misc.cc
 	(1.4), aplibs/runcmd.cc (1.2), aplibs/timers.cc (1.2),
@@ -82,25 +82,25 @@
 	(1.2), include/apgenlib.hpp (1.4), include/defines.hpp (1.3),
 	include/misc.hpp (1.3): FreeBSD & CYGWIN patches
 
-2002-06-08 Saturday 09:54  oliver.grimm
+2002-06-08 Saturday 16:54  oliver.grimm
 
 	* aplibs/: dosfind.cc (1.4), harderr.cc (1.4): Add the lost "||
 	defined(UNIX)" statements :-)
 
-2002-06-08 Saturday 09:43  oliver.grimm
+2002-06-08 Saturday 16:43  oliver.grimm
 
 	* aplibs/dosfind.cc (1.3), aplibs/file.cc (1.2), aplibs/harderr.cc
 	(1.3), fastlst/daydir.cc (1.3): Sync the complete sourcetree.
 	Should make no changes, but sure is sure ! :-)
 
-2002-06-08 Saturday 09:39  oliver.grimm
+2002-06-08 Saturday 16:39  oliver.grimm
 
 	* aplibs/misc.cc (1.3): Now MsgFromNode and MsgToNode works right.
 	
 	In strto4Daddr() the arguments are incorrecly passed to sscanf() -
 	FIXED.
 
-2002-06-08 Saturday 09:32  oliver.grimm
+2002-06-08 Saturday 16:32  oliver.grimm
 
 	* fastlst/fastlst.cc (1.4): Now MsgLogArea & MsgRemArea can be
 	used.
@@ -109,42 +109,42 @@
 	in his own exit-funcs, these funcs must added to the exit-func-list
 	after smapi initialisation.
 
-2002-06-08 Saturday 08:28  oliver.grimm
+2002-06-08 Saturday 15:28  oliver.grimm
 
 	* include/max/: utime.h (1.2), utime.hhh (1.1): utime.h is a
 	system-include and no longer needed here (renamed to utime.hhh)
 
-2002-06-08 Saturday 08:25  oliver.grimm
+2002-06-08 Saturday 15:25  oliver.grimm
 
 	* aplibs/comprcfg.cc (1.2), fastlst/misc.cc (1.3),
 	include/max/Makefile.am (1.2), include/max/Makefile.in (1.4): More
 	changes to get archiver work correctly.
 
-2002-06-08 Saturday 07:06  oliver.grimm
+2002-06-08 Saturday 14:06  oliver.grimm
 
 	* fastlst/daydir.cc (1.2): My first try to get fastlst working with
 	archives - seem's to run perfectly !
 
-2001-01-05 Friday 03:53  tobi
+2001-01-05 Friday 11:53  tobi
 
 	* makefls/Makefile (1.2): fixed husky makefile
 
-2001-01-05 Friday 03:46  tobi
+2001-01-05 Friday 11:46  tobi
 
 	* README (1.3), makefls/Makefile (1.1): Added huskymak.cfg Makefile
 
-2001-01-05 Friday 03:38  tobi
+2001-01-05 Friday 11:38  tobi
 
 	* aplibs/dosfind.cc (1.2), aplibs/harderr.cc (1.2), aplibs/misc.cc
 	(1.2), fastlst/fastlst.cc (1.3), include/apgenlib.hpp (1.3),
 	include/defines.hpp (1.2): portability fixes
 
-2001-01-03 Wednesday 05:57  sms
+2001-01-03 Wednesday 13:57  sms
 
 	* VERSION (1.1): file VERSION was initially added on branch
 	fastlst-2_0_3.
 
-2001-01-03 Wednesday 05:33  sms
+2001-01-03 Wednesday 13:33  sms
 
 	* AUTHORS (1.2), COPYING (1.2), Makefile.in (1.3), NEWS (1.2),
 	README (1.2), configure (1.3), configure.in (1.3),
@@ -153,7 +153,7 @@
 	include/Makefile.in (1.3), include/max/Makefile.in (1.3): released
 	fastlst 2.0.3
 
-2000-09-03 Sunday 18:41  sms
+2000-09-04 Monday 01:41  sms
 
 	* Makefile.in (1.2), configure (1.2), configure.in (1.2),
 	aplibs/Makefile.in (1.2), aplibs/include/Makefile.in (1.2),
@@ -171,7 +171,7 @@
 	libsmapilnx.so in order to find   smapi * changed includes for
 	smapi
 
-2000-09-03 Sunday 17:47  sms
+2000-09-04 Monday 00:47  sms
 
 	* AUTHORS (1.1), COPYING (1.1), INSTALL (1.1), Makefile.am (1.1),
 	Makefile.in (1.1), NEWS (1.1), README (1.1), aclocal.m4 (1.1),
