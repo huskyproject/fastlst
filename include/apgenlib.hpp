@@ -414,7 +414,7 @@ struct FFIND {
 #elif defined (__NT__)
     HANDLE DirHandle;
     PWIN32_FIND_DATA ff;
-#elif defined (__linux__)
+#elif defined (__linux__) || defined(UNIX)
     dirent *ff;   
 #else   // __DOS__
     find_t *ff;
@@ -736,7 +736,7 @@ char *stpzcpy (char *dest, const char *src, size_t maxlen);
 // always appends a NULL, returns pointer to terminating null
 // maxlen MUST be at least 1.
 
-char *strlcat (char *dest, const char *src, size_t totsize);
+// char *strlcat (char *dest, const char *src, size_t totsize);
 // Appends src (w terminating null) to dest, returns dest.
 // If totsize is not sufficient, returns NULL
 

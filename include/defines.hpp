@@ -23,6 +23,11 @@
 
 #ifdef __linux
    #define VER VERSION"/Linux"
+#elif defined(UNIX)
+   #define VER VERSION"/Unix"
+#endif
+
+#if defined(__linux) || defined(UNIX)
    #define BufSize 32768
 #endif
 

@@ -68,7 +68,7 @@ char *stpzcpy (char *dest, const char *src, size_t maxlen)
     return dest;
 }
 
-
+#if 0
 char *strlcat (char *dest, const char *src, size_t totsize)
 {
     size_t curlen = strlen (dest);
@@ -78,6 +78,7 @@ char *strlcat (char *dest, const char *src, size_t totsize)
     strcpy (dest+curlen, src);
     return dest;
 }
+#endif
 
 
 char *stristr (const char *str, const char *substr)
