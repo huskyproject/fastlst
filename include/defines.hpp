@@ -66,6 +66,7 @@ typedef int (*QSF) (const void *, const void *);
 #define ERR_TOO_MANY_FILES   15
 #define ERR_UNARCHIVE        16
 #define ERR_UPDATE           17   // Updating files (index/data blocks)
+#define ERR_WRITE_V7	     18   // error opening v7 output file
 #define NOTHING_COMPILED    100
 #define MsgApiInitErr       250
 #define AreaOpenErr         251
