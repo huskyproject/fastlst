@@ -115,7 +115,7 @@ void exitfunc (void)
     }
 
     vwritelog ("End, FastLst "VER);
-#ifdef __FreeBSD__
+#if defined(__FreeBSD__) || defined(__CYGWIN__)
     fclose(logfile);
 #else
     fcloseall ();
