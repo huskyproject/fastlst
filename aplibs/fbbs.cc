@@ -171,7 +171,7 @@ FBBS::~FBBS ()
 }
 
 
-static bool IsInTokLst (const char *line, int toklen, const char *toklst)
+static bool IsInTokLst (const char *line, size_t toklen, const char *toklst)
 {
     WordStore ws ((char *)toklst);
 
@@ -603,7 +603,7 @@ int FBBS::PutGenEntry (const char *file, const char *desc, word flag,
         if (cpos != -1) {     // output continuation lines
                                           // init start of continuation lines
             char blank[] = "                                                                                ";
-            if (cpos > sizeof (blank) - 3) // space for cont, ' ', '\0'
+            if ((size_t)cpos > sizeof (blank) - 3) // space for cont, ' ', '\0'
                 cpos = sizeof (blank) - 3;
             int contlen = cpos;
 

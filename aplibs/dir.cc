@@ -69,14 +69,14 @@ void DIRcl::Add (const FFIND *f)
 
 void DIRcl::Read (const char *path)
 {
-    char searchpath[PATH_MAX];
     struct dirent *dirent;
     DIR *dir;
     FFIND ffblk;
     BOOL done = 0;
 
     dir = opendir (path);   
-    if (dirent == NULL) done = 1;
+//the following line seems to be useless
+//    if (dirent == NULL) done = 1;
     while (!done) 
       {
          dirent = readdir (dir);
@@ -96,7 +96,7 @@ void DIRcl::Read (const char *path)
 
     curblk = dirblkhead;            // build table of pointers
     byte *np = curblk->raw;
-    for (int i = 0; i < ntot; i++) {
+    for (uint i = 0; i < ntot; i++) {
         if (*np == 0) {
             curblk = curblk->next;
             np = curblk->raw;
