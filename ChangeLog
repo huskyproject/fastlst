@@ -1,3 +1,18 @@
+2004-01-02 Friday 20:26  gerritkuehn
+
+	* COPYING (1.6): Adding new BSD-style COPYING file to make autoconf
+	happy.
+
+2004-01-02 Friday 20:24  gerritkuehn
+
+	* fastlst/cfgdata.cc (1.2), fastlst/fastlst.cc (1.11),
+	fastlst/flstdat.cc (1.4), fastlst/parseglb.cc (1.4),
+	include/cfgdata.hpp (1.2): Committing patch from Klaus Reimer
+	<k@ailis.de> to make the location of the .dat file configurable.
+	Use the new "DatFile" keyword right below "InputPath" in your
+	fastlst.cfg to do so.  The default location for fastlst.cfg has
+	been changed to /etc/fastlst/fastlst.cfg.
+
 2003-10-13 Monday 10:16  gerritkuehn
 
 	* COPYING (1.5), LICENSE.txt (1.1), NEWS (1.7), ReadMe.txt (1.1),
