@@ -1,0 +1,41 @@
+.TH FASTLST 1 "fastlst" "18 June 2003" "Husky - Portable Fidonet Software"
+.SH NAME
+fastlst \- The ultimate V7\+ nodelist processor
+.SH SYNOPSIS
+.B fastlst
+[-c <config>] [-f] [-i] [-p] [-r] [-h] [-?]
+.SH "DESCRIPTION"
+.B fastlst
+compiles to version 7\+ format nodelist.
+.br
+.SH OPTIONS
+.B [-c <config>]
+Use <config> configuration file instead of fastlst.cfg
+.br
+.TP
+.B [-f]
+Force compilation even if no new list/diff has been detected.
+.br
+.TP
+.B [-i]
+Ignore fastlst.dat: run as if it were the first time. All nodelists compiled, all exports executed.
+.br
+.TP
+.B [-p]
+Prepare: Unarc new lists and diffs, Apply diffs and Arc new nodelists, do not compile nodelists.
+.br
+.TP
+.B [-r]
+When applying a diff, FastLst usually deletes the newly generated source nodelist file if a CRC error is detected. With this switch the new nodelist is _not_ deleted, so that it will be processed anyway.
+.br
+.TP
+.B [-h] [-?]
+Print help and exit.
+.br
+.SH SEE ALSO
+fastlst.doc file, included to the fastlst package.
+.SH NOTES
+All Husky-Software is written by various developers. For detailed information
+about the Husky-Team take a look at http://husky.sourceforge.net/team.html.
+.SH AUTHOR
+This manual page was written by Mike Gorchak <mike@malva.ua> based on fastlst.doc document.
