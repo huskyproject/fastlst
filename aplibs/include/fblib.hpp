@@ -29,7 +29,7 @@
 #endif
 
 #include <stdlib.h>
-#include <smapi/stamp.h>
+#include <huskylib/cvtdate.h>
 #include <apgenlib.hpp>
 
 #pragma pack (1)

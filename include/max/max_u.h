@@ -5,7 +5,7 @@
 #define __MAX_U_H_DEFINED
 
 #include "typedefs.h"
-#include "stamp.h"
+#include "<huskylib/cvtdate.h>"
 
 
 #define MAX_ALEN         64     /* Max length of usr.msg[] and usr.files[]  */

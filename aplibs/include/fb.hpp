@@ -3,7 +3,7 @@
 
 #ifndef __TYPEDEFS_H_DEFINED
 #include "typedefs.h"
-#include <smapi/stamp.h>
+#include <huskylib/cvtdate.h>
 #endif
 
 #define MAX_SEARCH_DAT    32

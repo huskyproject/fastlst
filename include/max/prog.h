@@ -17,7 +17,7 @@ extern "C" {
 #include <time.h>
 #include <stdlib.h>
 #include "compiler.h"
-#include "stamp.h"
+#include "<huskylib/cvtdate.h>"
 
 #ifdef __FARDATA__
   #include "alc.h"
