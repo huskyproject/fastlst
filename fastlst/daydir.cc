@@ -193,6 +193,10 @@ DAYDIR::CommInit (int Latest)
 	    }
 	}
         nfound++;
+	/* Double typecasting is neccessary because glibc2 (newer versions of 
+	   Linux) have gl_pathc defined as type size_t, while libc5 (older
+	   versions of Linux) and FreeBSD have gl_pathc defined as type int.
+	*/
         if ((size_t)g.gl_pathc == (size_t)nfound) done = 1;
     }
 
