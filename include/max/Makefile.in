@@ -64,7 +64,7 @@ PACKAGE = @PACKAGE@
 RANLIB = @RANLIB@
 VERSION = @VERSION@
 
-noinst_HEADERS =  alc.h callinfo.h compiler.h fb.h max.h max_u.h newarea.h option.h prm.h prog.h typedefs.h uclass.h uni.h utime.h
+noinst_HEADERS =  alc.h callinfo.h compiler.h fb.h max.h max_u.h newarea.h option.h prm.h prog.h typedefs.h uclass.h uni.h utime.hhh
 
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../../include/config.h

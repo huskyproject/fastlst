@@ -374,6 +374,7 @@ int AH_ComprCfg::UnArc (const char *filename, const char *extract)
     const AH_Archiver *a;              // returns -1 if cannot execute
     int res;                           // returns -2 on unknown type
     BOOL afound; // Archive type found // returns -3 on file not found
+    char buf[PATH_MAX];
 
 
     f = fopen (filename, "rb");
@@ -420,7 +421,10 @@ int AH_ComprCfg::UnArc (const char *filename, const char *extract)
         return -2;      // Archive type not identified
     }
 
-    return RunCmd (a->extcmd, RcShow, "af", filename, extract);
+    strcpy(buf,"\"");
+    strcat(buf,extract);
+    strcat(buf,"\"");
+    return RunCmd (a->extcmd, RcShow, "af", filename, buf);
 }
 
 
