@@ -148,12 +148,23 @@ DAYDIR::CommInit (int Latest)
   glob_t g;
   int done;
 
-  int today = dayn (time (NULL));
+  int today = dayn (time (NULL));  //tomorrow?!
 
   dir = new dd_data[DD_SIZE];	// alloc memory for directory data
 
   int day;
   int fflen;
+  int ncount = 0;    /* Note from Gerrit (2:2411/12):
+  			This counter is neccessary because not every globbed
+			filename may be usable. When e.g. fastlst looks for a
+			unarced list (arc=FALSE) it globs for nodelist.??? and
+			gets gl_pathc matches. There may be arced lists among
+			these (nodelist.a??) that produce day=-1 and no valid
+			entry in dir.day. So there have to be two independent
+			counters: ncount for counting though the globbed
+			filenames and nfound for the number of matching lists
+			found. I hope that this patch corrects the usage of
+			archived nodelists and nodediffs.*/
 
   done = glob (name, 0, NULL, &g);
   if (!g.gl_pathc) done=1;
@@ -170,7 +181,7 @@ DAYDIR::CommInit (int Latest)
 	    {
 	    case dir_none:
 	      break;
-/*	    case dir_arc:	// fixed archive extension
+	    case dir_arc:	// fixed archive extension
 	      {
                       long newtime = arcfiletime (g.gl_pathv[nfound]);
                       if (newtime >= fixtime) { 
@@ -178,7 +189,7 @@ DAYDIR::CommInit (int Latest)
                         fixext = q;
                       }
 	      }
-	      break;*/
+	      break;
 	    default:		// day number
 	      if (nfound == DD_SIZE)
 		{
@@ -190,14 +201,15 @@ DAYDIR::CommInit (int Latest)
 	      if (arc)
 		dir[nfound].first = q[0];	// get first char of ext
 	      dir[nfound].day = (short) day;
+	      nfound++;
 	    }
 	}
-        nfound++;
+        ncount++;
+	
 	/* Double typecasting is neccessary because glibc2 (newer versions of 
 	   Linux) have gl_pathc defined as type size_t, while libc5 (older
-	   versions of Linux) and FreeBSD have gl_pathc defined as type int.
-	*/
-        if ((size_t)g.gl_pathc == (size_t)nfound) done = 1;
+	   versions of Linux) and FreeBSD have gl_pathc defined as type int. */
+        if ((size_t)g.gl_pathc == (size_t)ncount) done = 1;
     }
 
   chdir (oldpath);

@@ -19,7 +19,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #if !defined (__FreeBSD__) 
-  #include <malloc.h>
+#  include <malloc.h>
 #endif
 
 static char *StrQTok (char *&c)
@@ -181,5 +181,3 @@ int RunCmd (const char *cmd, RCShow rcs, const char *prmlst, ...)
     #undef MAXSUBS
     #undef MAXARGS
 }
-
-

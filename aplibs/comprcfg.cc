@@ -371,7 +371,7 @@ int AH_ComprCfg::UnArc (const char *filename, const char *extract)
     const AH_Archiver *a;              // returns -1 if cannot execute
     int res;                           // returns -2 on unknown type
     BOOL afound; // Archive type found // returns -3 on file not found
-    char buf[PATH_MAX];
+    char buf[PATH_MAX], buf2[PATH_MAX];
 
 
     f = fopen (filename, "rb");
@@ -418,10 +418,32 @@ int AH_ComprCfg::UnArc (const char *filename, const char *extract)
         return -2;      // Archive type not identified
     }
 
-    strcpy(buf,"\"");
-    strcat(buf,extract);
-    strcat(buf,"\"");
-    return RunCmd (a->extcmd, RcShow, "af", filename, buf);
+/*  Note from Gerrit (2:2411/12):
+    The following code tries two types to unarc commands:
+	1. extcmd filename "extract"
+	2. (if 1. has failed)
+	   extcmd "filename extract"
+    The whole thing is about jokers (???) being present in extract. A shell
+    (e.g. under *ix) must be prevented to expand them - extract has to be given
+    to extcmd as is. However, sometimes (namely with arc under *ix) this seems
+    to fail and the 2nd form of command is tried (my arc sometimes works with
+    the first version, sometimes with the second - I really don't know why!).*/
+    
+    sprintf(buf2,"%s",filename);
+    sprintf(buf,"\"%s\"",extract);
+    res = RunCmd (a->extcmd, RcShow, "af", buf2, buf);
+    if (res) {
+      outf (AH_MT_Error, "Warning: unable to extract from \"%s\"\n", filename);
+      outf (AH_MT_Error, "Warning: trying alternate extract command composition\n");
+      sprintf(buf2,"\"%s",filename);
+      sprintf(buf,"%s\"",extract);
+      res = RunCmd (a->extcmd, RcShow, "af", buf2, buf);
+    }
+    if (res) {
+      outf (AH_MT_Error, "Error: unable to extract from \"%s\"\n", filename);
+      outf (AH_MT_Error, "Error: giving up\n");
+    }
+    return res;
 }
 
 
